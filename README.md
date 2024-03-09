@@ -2,6 +2,6 @@
 
 Website Tiket Konser
 
-Imanuel
-Dwiyan
-Wawan
+- Imanuel
+- Dwiyan
+- Wawan
