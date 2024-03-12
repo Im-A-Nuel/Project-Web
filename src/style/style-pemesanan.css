@@ -1,9 +1,16 @@
+header {
+    text-align: right;
+}
+
 body {
     background-image: url();
 }
 
 .detailPesan {
-
+    background-image: url();
+    background-color: whitesmoke;
+    box-shadow: 1px 7px 5px 3px grey;
+    padding-bottom: 10%;
 }
 
 .pesanan {
@@ -21,4 +28,32 @@ input::placeholder {
 
 .check {
     display: block;
+}
+
+input[type="text"] {
+    font-size: x-small;
+}
+
+input[type="number"] {
+    font-size: x-small;
+}
+
+input[type="date"] {
+    font-size: x-small;
+}
+
+select {
+    font-size: x-small;
+}
+
+
+
+footer {
+    text-align: center;
+    margin-top: 30%;
+}
+
+p {
+    font-size: x-small;
+    background-color: aquamarine;
 }
