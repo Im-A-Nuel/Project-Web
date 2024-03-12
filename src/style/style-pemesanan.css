@@ -1,0 +1,24 @@
+body {
+    background-image: url();
+}
+
+.detailPesan {
+
+}
+
+.pesanan {
+    font-size: x-small; 
+}
+
+input::placeholder {
+    font-size: x-small;
+}
+
+.penjelasan {
+    font-size: xx-small;
+    color: lightgray;
+}
+
+.check {
+    display: block;
+}
