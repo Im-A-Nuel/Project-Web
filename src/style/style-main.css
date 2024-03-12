@@ -1,0 +1,52 @@
+#hyperlink{
+    border: 1px solid lightblue;
+    border-color: lightblue;
+    background-color: lightblue;
+    padding: 10px;
+    text-align: right;
+}
+
+#hyperlink a{
+    text-decoration: none;
+    padding-left: 5px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+
+header h1{
+    text-align: left;
+}
+
+#navbar{
+    border: 1px solid rgb(118, 193, 218);
+    background-color: rgb(118, 193, 218);
+}
+#tab td{
+    padding: 10px;
+}
+
+#navbar img{
+    width: 300px;
+    height: 40px;
+}
+
+.container {
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 10px;
+    margin: 20px auto;
+    width: 220px;
+    height: auto;
+    font-size: 10px;
+  }
+
+#gambar{
+    width: 200px;
+}
+  
+#list td{
+    padding: 10px;
+}
+
