@@ -61,6 +61,11 @@ body main div#detail{
     margin-right: 250px;
 }
 
+body main div#detail h1{
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
 body main div#back{
     margin-left: 70px;
 }
