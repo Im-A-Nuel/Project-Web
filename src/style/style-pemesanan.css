@@ -8,9 +8,17 @@ body {
 
 .detailPesan {
     background-image: url();
+    border: 1px;
+    border-radius: 3%;
     background-color: whitesmoke;
     box-shadow: 1px 7px 5px 3px grey;
     padding-bottom: 10%;
+}
+
+.judul {
+    text-align: left;
+    padding-top: 3%;
+    padding-left: 2%;
 }
 
 .pesanan {
@@ -23,30 +31,53 @@ input::placeholder {
 
 .penjelasan {
     font-size: xx-small;
-    color: lightgray;
+    color: rgb(131, 131, 131);
 }
 
 .check {
-    display: block;
+    display: flex;
+    align-items: center;
+}
+
+.tiket {
+    display: flex;
+    align-items: center;
 }
 
 input[type="text"] {
     font-size: x-small;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 input[type="number"] {
     font-size: x-small;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 input[type="date"] {
     font-size: x-small;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+input[type="submit"] {
+    font-size: x-small;
+    margin-left: 80%;
+}
+
+input[type="reset"] {
+    font-size: x-small;
+    margin-left: 80%;
+}
+
+input[type="checkbox"] {
+    width: 6%;
+    height: 6%;
 }
 
 select {
     font-size: x-small;
+    font-family: 'Times New Roman', Times, serif;
 }
-
-
 
 footer {
     text-align: center;
@@ -57,3 +88,9 @@ p {
     font-size: x-small;
     background-color: aquamarine;
 }
+
+.pembayaran {
+    text-align: left;
+    padding-left: 2%;
+}
+

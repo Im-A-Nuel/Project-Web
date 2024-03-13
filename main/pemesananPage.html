@@ -14,6 +14,8 @@
     <main>
         <center>
             <div class="detailPesan">
+                <h5 class="judul">Isi Data Diri</h5>
+                <p class="namaTiket"></p>
                 <form action="">
                        <table>
                             <tbody>
@@ -54,7 +56,7 @@
                                         <br>
                                         <span class="penjelasan">masukkan NIK sesuai KTP anda</span>
                                         <br>
-                                        <input type="number" name="nikPesan" id="" placeholder="masukkan nomor NIK anda" required>
+                                        <input type="number" name="nikPesan" id="" placeholder="masukkan NIK anda" required>
                                     </td>
                                 </tr>
                                 <tr>
@@ -66,9 +68,9 @@
                                 </tr>
                                 <tr>
                                     <td class="pesanan">
-                                        Jenis Kelamin
+                                        <span>Jenis Kelamin</span>
                                         <br>
-                                        <select name="" id="">
+                                        <select name="" id="" required>
                                             <option value="">pilih</option>
                                             <option value="">Laki-Laki</option>
                                             <option value="">perempuan</option>
@@ -77,7 +79,15 @@
                                 </tr>
                             </tbody>
                        </table>
-                </form>
+                       <p>Pastikan Data Diri Yang Anda Isi Sudah Sesuai</p>
+                       <h5 class="pembayaran">Pembayaran</h5>
+                       
+
+            
+                       <input type="submit" value="daftar">
+                       <br>
+                       <input type="reset" value="reset ">
+                </form>   
             </div>
         </center>
     </main>
