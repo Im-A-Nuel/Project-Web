@@ -21,11 +21,13 @@ header span>a{
 }
 
 header>a:hover{
-    background-color: green;
+    background-color: rgb(96, 151, 170);
+    color:white;
 }
 
 header span>a:hover{
-    background-color: green;
+    background-color: rgb(96, 151, 170);
+    color:white;
 }
 
 /* header */
@@ -40,18 +42,28 @@ body {
     margin-left: 0;
 }
 
+body main div#back{
+    margin-left: 70px;
+}
 
+
+body main div#back nav a:hover{
+    color:red;
+}
 
 body main div#back>a{
-    background-color: orange;
+    background-color: darkblue;
+    color:lightblue;
     text-decoration: none;
     padding: 20px;
     border-radius: 50px;
     margin-left: 900px;
+    font-size: 15px;
 }
 
 body main div#back>a:hover{
-    background-color: red;
+    background-color: rgb(133, 133, 232);
+    color:white;
 }
 
 /* divdetail */
@@ -61,15 +73,28 @@ body main div#detail{
     margin-right: 20%;
 }
 
+body main div#detail img{
+    width:200px;
+    height:150px;
+    border-radius: 20px;
+    box-shadow: 0 3px 3px 3px silver;
+}
+
+body main div#detail table:nth-child(4) img{
+    margin-top: 70px;
+}
+
 body main div#detail h1{
     padding-top: 50px;
     padding-bottom: 20px;
+    text-shadow: 3px 3px 5px silver;
 }
 
-body main div#back{
-    margin-left: 70px;
+body main div#desk>p{
+    font-size: 15px;
+    text-indent: 35px;
+    padding-right: 50px;
 }
-
 
 
 
@@ -78,16 +103,18 @@ body main div#back{
 body main table tr td>table tr:nth-child(1) td span a{
     padding: 10px;
     border-radius: 15px;
-    background-color: darkblue;
-    color:bisque;
+    background-color: lightblue;
+    color:black;
     text-decoration: none;
-    
-
 }
+
+
 
 body main table tr td>table tr:nth-child(1) td span a:hover{
-    background-color: red;
+    background-color: rgb(96, 151, 170);
+    color:white;
 }
+
 
 body main div#detail{
     box-shadow: 10px 20px 36px 1px silver;
