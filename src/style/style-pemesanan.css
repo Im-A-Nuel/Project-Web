@@ -48,18 +48,12 @@ header {
 }
 
 .gambarDuduk {
-    width: 50%;
-    height: 50%;
     /* margin-top: 10%; */
-    margin-right: 40%; 
+    /* margin-right: 40%;  */
     border: 10px outset white;
     /* object-fit: contain; */
 }
 
-.tdGambar {
-    width: fit-content;
-    height: fit;
-}
 
 
 .judul {
