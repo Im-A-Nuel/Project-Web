@@ -1,7 +1,37 @@
-header {
+
+/* header */
+header{
+    background-color: lightblue;
     text-align: right;
-    margin-bottom: -10%;
+    padding: 30px;
+    margin: -10px -15px 0 -10px;
 }
+
+header> a{
+    text-decoration: none;
+    padding:20px;
+    border-radius: 50px;
+}
+
+header span>a{
+    text-decoration: none;
+    padding: 20px;
+    border-radius: 50px;
+
+}
+
+header>a:hover{
+    background-color: rgb(96, 151, 170);
+    color:white;
+}
+
+header span>a:hover{
+    background-color: rgb(96, 151, 170);
+    color:white;
+}
+/* header */
+
+
 
 /* body {
     background-image: url(https://cdn.antaranews.com/cache/1200x800/2023/06/23/IMG_3849.jpeg);
@@ -162,3 +192,100 @@ p.detailTiket {
 }
 
 
+
+
+
+/* footer */
+footer div#rincianfooter div#footerdata{
+    margin-left: 16%;   
+   
+   }
+   
+   
+   footer div#rincianfooter div#footerdata table tr td{
+       padding-left:50px;  
+       padding-right: 50px; 
+       padding-bottom: 20px;
+   }
+   
+   
+   
+   
+   footer div#rincianfooter ul{
+       list-style: none;
+       
+   
+   }
+   
+   footer div#rincianfooter ul li:first-child{
+       padding-bottom: 25px;
+       font-weight: bold;
+   }
+   
+   footer div#rincianfooter{
+       background-color: lightblue;
+       margin-right: -15px;
+       
+   }
+   
+   
+   
+   
+   footer div#rincianfooter>table{
+       margin-left: 35%;
+       
+       
+   }
+   
+   footer div#rincianfooter>table tr td{
+       padding-left: 40px;
+       padding-bottom: 15px;
+       text-align: center;
+   
+   }
+   
+   
+   footer div#rincianfooter>table tr td i{
+       color:black;
+       font-size: 20px;
+   }
+   
+   footer div#rincianfooter>table tr td a:hover i{
+       color:white;
+   }
+   
+   
+   footer div#nav{
+       background-color:rgb(96, 151, 170);
+       padding:0.1px;
+       text-align: center;
+       padding-top: 20px;
+       margin-right: -15px;
+   }
+   
+   
+   footer div#nav nav a{
+       color:black;
+       text-decoration: none;
+       padding:5px;
+       
+   }
+   
+   footer div#nav nav a:hover{
+       color:whitesmoke;
+       
+   }
+   
+   footer>p{
+       text-align: center;
+       letter-spacing: 15px;
+       font-size: 12px;
+       background-color:rgb(96, 151, 170);
+       padding-bottom: 20px;
+       padding-top: 20px;
+       margin:0;
+       margin-bottom: 15px;
+       margin-right: -15px;
+       font-weight: bold;
+   }
+   
