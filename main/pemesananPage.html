@@ -40,97 +40,188 @@
         <center>
 
             <div id="form">   
-
-                <form action="get"> 
+                
+                <form action="" method="get"> 
         
                     <div id="detailPesan">
-                            <h5 class="judul">Detail Pemesanan Tiket</h5>
-                            <p class="detailTiket">Tiket Dewa 19</p>
-                            <h5 class="judul">Isi Data Diri</h5>
-                            <p class="namaTiket"></p>
-                            
-                                <table>
-                                        <tbody>
-                                            <tr>
-                                                <td class="pesanan">
-                                                    <span>Masukkan Nama Anda</span>
-                                                    <br>
-                                                    <span class="penjelasan">masukkan nama sesuai data diri anda</span>
-                                                    <br>
-                                                    <input type="text" name="namaPesan" id="" placeholder="masukkan nama anda" required>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="pesanan">
-                                                    <span>Masukkan Nomor Telepon Anda</span>
-                                                    <br>
-                                                    <span class="penjelasan">masukkan nomor yang dapat dihubungi</span>
-                                                    <br>
-                                                    <input type="number" name="nomerPesan" id="" placeholder="masukkan nomor anda" required>
-                                                    <br>
-                                                    <label class="check">
-                                                        <input type="checkbox" name="" id="">kirimkan ke whatsapp
-                                                    </label>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="pesanan">
-                                                    <span>E-Mail</span>
-                                                    <br>
-                                                    <span class="penjelasan">masukkan email konfirmasi</span>
-                                                    <br>
-                                                    <input type="text" name="e-mailPesan" id="" placeholder="masukkan E-Mail anda" required>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="pesanan">
-                                                    <span>NIK</span>
-                                                    <br>
-                                                    <span class="penjelasan">masukkan NIK sesuai KTP anda</span>
-                                                    <br>
-                                                    <input type="number" name="nikPesan" id="" placeholder="masukkan NIK anda" required>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="pesanan">
-                                                    Tanggal Lahir
-                                                    <br>
-                                                    <input type="date" name="tanggalLahirPesan" id="">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="pesanan">
-                                                    <span>Jenis Kelamin</span>
-                                                    <br>
-                                                    <select name="" id="" required>
-                                                        <option value="">pilih</option>
-                                                        <option value="">Laki-Laki</option>
-                                                        <option value="">perempuan</option>
-                                                    </select>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                </table>
-                                <p id="satu">Pastikan Data Diri Yang Anda Isi Sudah Sesuai</p>
+
+                        <table>
+
+                            <tr>
+                                <td><table>
+                                    <tr>
+                                        <td> <h5 class="judul">Detail Pemesanan Tiket</h5></td>
+                                    </tr>
+                                    <tr>
+                                        <td><p class="detailTiket">Tiket Dewa 19</p> </td>
+                                    </tr>
+                                    
+                                    </table></td>
+
+                                <td><h5 class="judul">Isi Data Diri</h5>
+                                    <p class="namaTiket"></p>
+                                    
+                                        <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="pesanan">
+                                                            <span>Masukkan Nama Anda</span>
+                                                            <br>
+                                                            <span class="penjelasan">masukkan nama sesuai data diri anda</span>
+                                                            <br>
+                                                            <input type="text" name="namaPesan" id="" placeholder="masukkan nama anda" required>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pesanan">
+                                                            <span>Masukkan Nomor Telepon Anda</span>
+                                                            <br>
+                                                            <span class="penjelasan">masukkan nomor yang dapat dihubungi</span>
+                                                            <br>
+                                                            <input type="number" name="nomerPesan" id="" placeholder="masukkan nomor anda" required>
+                                                            <br>
+                                                            <label class="check">
+                                                                <input type="checkbox" name="" id="">kirimkan ke whatsapp
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pesanan">
+                                                            <span>E-Mail</span>
+                                                            <br>
+                                                            <span class="penjelasan">masukkan email konfirmasi</span>
+                                                            <br>
+                                                            <input type="text" name="e-mailPesan" id="" placeholder="masukkan E-Mail anda" required>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pesanan">
+                                                            <span>NIK</span>
+                                                            <br>
+                                                            <span class="penjelasan">masukkan NIK sesuai KTP anda</span>
+                                                            <br>
+                                                            <input type="number" name="nikPesan" id="" placeholder="masukkan NIK anda" required>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pesanan">
+                                                            Tanggal Lahir
+                                                            <br>
+                                                            <input type="date" name="tanggalLahirPesan" id="">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pesanan">
+                                                            <span>Jenis Kelamin</span>
+                                                            <br>
+                                                            <select name="" id="" required>
+                                                                <option value="">pilih</option>
+                                                                <option value="">Laki-Laki</option>
+                                                                <option value="">perempuan</option>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                        </table>
+                                        <p id="satu">Pastikan Data Diri Yang Anda Isi Sudah Sesuai</p>
+                                    
+                                    </td>
+                            </tr>
+                        </table>
                         </div>
 
 
 
                         <div id="detailPesan1">
-                            <div>
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td class="tdGamvar">
-                                                <img src="/src/img/tempatDuduk.jpeg" alt="" class="gambarDuduk">
-                                            </td>
-                                            <td class="radioButton">
-                                                <input type="radio" name="" id="">hashbd
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                            <table>
+                                <tr>
+                                    <td class="tdGambar">
+                                        <img src="/src/img/tempatDuduk.jpeg" alt="" class="gambarDuduk">
+                                    </td>
+
+                                    <td class="radioButton">
+                                        <h3>Pilih Tempat Duduk</h3>
+                                        <h2>Posisi beserta Harga</h2>
+                                        <table>
+                                            <tr>
+                                                <th>A</th>
+                                                <th>B</th>
+                                                <th>Cat1</th>
+                                                <th>Cat2</th>
+                                            </tr>
+
+                                            <tr>
+                                                <td>(Rp.50.000)</td>
+                                                <td>(Rp.40.000)</td>
+                                                <td>(Rp.30.000)</td>
+                                                <td>(Rp.20.000)</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><input type="radio" name="sama" id="">A1</td>
+                                                <td><input type="radio" name="sama" id="">B1</td>
+                                                <td><input type="radio" name="sama" id="">Cat1A</td>
+                                                <td><input type="radio" name="sama" id="">Cat2</td>    
+                                            </tr>
+                                            
+                                            <tr>
+                                                <td><input type="radio" name="sama" id="">A2</td>
+                                                <td><input type="radio" name="sama" id="">B2</td>
+                                                <td><input type="radio" name="sama" id="">Cat1B</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                
+                                
+                                </tr>
+                                
+
+
+                                <div id="tiketkonser">
+                                    <tr>
+                                        <td> <h1>PILIH TIKET KONSER ANDA</h1></td>
+                                    
+    
+                                        <td>
+                                            <table>
+                                                <tr>
+                                                    <td> <h5>REGULER</h5></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>1 Ticket/Rp.200.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><input type="number" step="1" min="0" max="100"></td>
+                                                </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><h5>PAKET</h5></td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+
+                                </div>
+                                
+                                
+                               
+                            
+                            </table>
                         </div>
                         
 
@@ -175,8 +266,8 @@
                                     </tr>
                                 </tbody>
                             </table>
-
-                            <input type="submit" value="reset">
+                            <input type="submit" value="kirim">
+                            <input type="reset" value="reset">
                         </div>
                         
                 

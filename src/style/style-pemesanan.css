@@ -57,7 +57,7 @@ body main div#gambar table tr td img{
     height:350px;
     border-radius: 30px;
     padding:10px;
-    box-shadow: 0px 1px 1px 0px silver;
+    box-shadow: 0px 0.5px 0.5px 0px silver;
 }
 
 
@@ -66,14 +66,14 @@ body main div#form{
     margin: 40px;
     margin-right: 170px;
     margin-left: 170px;
-    margin-top: -10px;
-    
+    margin-top: 20px;
 }
 
 body main div#form form div#detailPesan{
     border-radius: 30px;
     background-color:white;
     box-shadow: 3px silver;
+
 
 }
 
@@ -89,7 +89,11 @@ body main div#form form div#detailPesan2{
     background-color:white;
     margin-top: 30px;
     box-shadow: 3px silver;
+    border-style: double;
 }
+
+
+
 
 
 /*
