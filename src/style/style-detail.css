@@ -37,9 +37,13 @@ header span>a:hover{
 /* body */
 body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    background-color: whitesmoke;
+    background-color: rgb(226, 223, 223);
     margin-right: 0;
     margin-left: 0;
+}
+
+body main div#detail{
+    background-color: white;
 }
 
 body main div#back{
@@ -74,8 +78,8 @@ body main div#detail{
 }
 
 body main div#detail img{
-    width:200px;
-    height:150px;
+    width:280px;
+    height:200px;
     border-radius: 20px;
     box-shadow: 0 3px 3px 3px silver;
 }
