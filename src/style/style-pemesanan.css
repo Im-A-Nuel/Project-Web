@@ -58,7 +58,7 @@ body main div#gambar table tr td img{
     border-radius: 30px;
     padding:1px;
     margin-left: 15px;
-    box-shadow: 1px 10px 10px 1px silver;
+    box-shadow: 1px 20px 20px 1px silver;
     
 }
 
@@ -96,7 +96,39 @@ body main div#form form div#detailPesan2{
 }
 
 
+body main div#form form div#detailPesan table tr:nth-child(1)>td:nth-child(1) table tr:nth-child(1) td{
+  text-align: left;
+  padding-right: 100px;
+  font-size: 40px;
+  text-shadow: 3px 3px 3px silver;
+}
 
+body main div#form form div#detailPesan table tr:nth-child(1)>td:nth-child(1) table tr:nth-child(2) td p{
+font-weight: bold;
+font-size: 30px;
+text-shadow: 3px 3px 3px silver;
+}
+  
+
+body main div#form form div#detailPesan table tr:nth-child(1)>td:nth-child(2) h5{
+  font-size: 20px;
+  text-shadow: 3px 3px 3px silver;
+  margin-bottom: -10px;
+}
+
+body main div#form form div#detailPesan table tr:nth-child(1)>td:nth-child(2) p{
+font-weight: bold;
+}
+
+
+body main div#form form div#detailPesan table tr:nth-child(1) td:nth-child(2) table tr div.datapesan1{
+  
+  
+}
+
+/* body main center div#form div#detailpesan1 table div#tiketkonser tr td:nth-child(1) h1{
+  text-align: center;
+} */
 
 
 /*
