@@ -121,9 +121,50 @@ font-weight: bold;
 }
 
 
-body main div#form form div#detailPesan table tr:nth-child(1) td:nth-child(2) table tr div.datapesan1{
+body main div#form form div#detailPesan table tr:nth-child(1) td:nth-child(2)>table tr td{
   
+padding-top:20px;
   
+}
+
+
+
+body main center div#form div#detailPesan1 table tr:nth-child(1) td:nth-child(1) img{
+  border-radius: 15px;
+  box-shadow: 3px 8px 8px silver;
+  margin-top: 40px;
+  height: 280px;
+  width: 400px;
+  margin-left: 10px;
+
+}
+
+
+body main center div#form div#detailPesan1 table tr:nth-child(1) td:nth-child(2){
+  padding-left: 50px;
+
+}
+
+body main center div#form div#detailPesan1 table tr:nth-child(1) td:nth-child(2) table:nth-child(1) th,td{
+  padding-top: 10px;
+  padding-left: 30px;
+
+}
+
+body main center div#form div#detailPesan1 table tr:nth-child(2)> td h1{
+  color:rgb(175, 25, 25);
+  text-shadow: 3px 3px 3px silver;
+  margin-left: 10px;
+} 
+
+body main center div#form div#detailPesan1 table tr:nth-child(2)> td:nth-child(2) table tr,td{
+  padding-top: 10px;
+  padding: 5px;
+  padding-left: 20px;
+}
+
+body main center div#form div#detailPesan1 table tr:nth-child(2)> td:nth-child(2) {
+  margin-left: -20px;
 }
 
 /* body main center div#form div#detailpesan1 table div#tiketkonser tr td:nth-child(1) h1{
