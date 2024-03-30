@@ -13,14 +13,14 @@ body {
 
 #hyperlink a {
   text-decoration: none;
-  padding-left: 5px;
+  padding-left: 20px;
   font-size: 12px;
   font-weight: bold;
   color: black;
 }
 #hyperlink a:hover {
-  color: rgb(48, 48, 48);
-  text-decoration: underline;
+  color: white;
+  /* text-decoration: underline; */
 }
 
 #hyprlink a:visited {
@@ -46,18 +46,26 @@ header h1 {
   border-bottom: 5px solid rgb(114, 169, 188);
   border-top: 5px solid rgb(114, 169, 188);
   width: 101.5.5%;
-  height: 100px;
+  height: 85px;
   box-shadow: 0px 1px 0px 0px rgb(114, 169, 188);
 }
 /* #tab td{
     padding: 10px;
 } */
 
-#navbar img {
+#navbar img#logo1 {
   position: relative;
-  top: -30px;
-  width: 170px;
-  height: 160px;
+  left: -195px;
+  top: -147px;
+  width: 250px;
+  height: 270px;
+}
+#navbar img#logo2 {
+  position: relative;
+  left: -60px;
+  top: -127px;
+  width: 300px;
+  height: 140px;
 }
 
 #navbar#form > td {
@@ -75,51 +83,72 @@ header h1 {
   font-size: 0.875rem;
   color: black;
   border: none;
-  top: -30px;
-  left: 25%;
+  top: -95px;
+  left: -85%;
   border: 3px solid rgb(96, 151, 170);
 }
 
 #bt2 button {
   position: relative;
-  top: -30px;
-  left: 165%;
+  top: -95px;
+  left: -150%;
   padding: 10px 20px;
   font-size: 16px;
-  /* border: none; */
+  border: none;
+  border: 1.5px solid rgb(101, 141, 147);
+  box-shadow: 5px 2px 12px 1px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   cursor: pointer;
-  background-color: rgb(96, 151, 170);
+  background-color: lightblue;
 }
+#bt2 button:hover {
+  background-color: rgb(138, 192, 210);
+  box-shadow: 5px 2px 15px 1px rgba(0, 0, 0, 0.3);
+}
+
 
 #bt3 button {
   position: relative;
-  top: -30px;
-  left: 455%;
-  padding: 15px 17px;
+  top: -95px;
+  left: 75%;
+  padding: 10px 17px;
   font-size: 16px;
   border: none;
   border: 1.5px solid rgb(103, 119, 121);
-  border-radius: 20px;
+  border-radius: 15px;
   cursor: pointer;
-  background-color: rgb(96, 151, 170);
+  background-color: lightblue;
   font-weight: bold;
   box-shadow: 5px 2px 12px 1px rgba(0, 0, 0, 0.3);
 }
+
+#bt3 button:hover {
+  background-color: rgb(138, 192, 210);
+  box-shadow: 5px 2px 15px 1px rgba(0, 0, 0, 0.3);
+}
+
+
 #bt4 button {
   position: relative;
-  top: -30px;
-  left: 590%;
-  padding: 15px 17px;
+  top: -95px;
+  left: 100%;
+  padding: 10px 17px;
   font-size: 16px;
   border: none;
   border: 1.5px solid rgb(103, 119, 121);
-  border-radius: 20px;
+  border-radius: 15px;
   cursor: pointer;
-  background-color: rgb(96, 151, 170);
+  background-color: lightblue;
   font-weight: bold;
   box-shadow: 5px 2px 12px 1px rgba(0, 0, 0, 0.3);
 }
+
+#bt4 button:hover {
+  background-color: rgb(138, 192, 210);
+  box-shadow: 5px 2px 15px 1px rgba(0, 0, 0, 0.3);
+}
+
+
 .container {
   box-sizing: border-box;
   border: 3px solid whitesmoke;
@@ -132,6 +161,7 @@ header h1 {
   height: auto;
   font-size: 15px;
   color: black;
+  margin-left: 20px;
 }
 
 .container:hover {
@@ -148,6 +178,7 @@ a {
   text-decoration: none;
 }
 
+
 #gambar {
   border-radius: 20px 20px 0px 0px;
   width: 250px;
@@ -162,6 +193,7 @@ a {
 
 main {
   background-color: whitesmoke;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 main #gen {
@@ -253,7 +285,7 @@ footer > p {
   width: 102%;
 }
 
-#line {
+#line1 {
   height: 2px;
   background-color: rgb(64, 68, 69);
   margin-bottom: -15px;
@@ -261,4 +293,11 @@ footer > p {
   border: 1px solid rgb(64, 68, 69);
   border-radius: 5px;
   box-shadow: 2px 4px 7px rgb(74, 74, 74);
+}
+
+#line2{
+  height: 1px;
+  background-color: rgb(64, 68, 69);
+  border: 1px solid rgb(64, 68, 69);
+  border-radius: 5px;
 }
