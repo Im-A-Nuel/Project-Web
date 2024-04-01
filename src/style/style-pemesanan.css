@@ -167,6 +167,17 @@ body main center div#form div#detailPesan1 table tr:nth-child(2)> td:nth-child(2
   margin-left: -20px;
 }
 
+
+
+body main div#form div#detailPesan2 table tr td>b{
+  font-size: 30px;
+  text-shadow: 3px 3px 3px silver;
+  text-align: center;
+  color: rgb(172, 17, 17);
+  margin-right: 80px;
+}
+
+
 /* body main center div#form div#detailpesan1 table div#tiketkonser tr td:nth-child(1) h1{
   text-align: center;
 } */
