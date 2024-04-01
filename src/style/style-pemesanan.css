@@ -1,0 +1,441 @@
+/* header */
+header {
+  background-color: lightblue;
+  text-align: right;
+  padding: 30px;
+  margin: -10px -15px 0 -10px;
+}
+
+header > a {
+  text-decoration: none;
+  padding: 20px;
+  border-radius: 50px;
+}
+
+header span > a {
+  text-decoration: none;
+  padding: 20px;
+  border-radius: 50px;
+}
+
+header > a:hover {
+  background-color: rgb(96, 151, 170);
+  color: white;
+}
+
+header span > a:hover {
+  background-color: rgb(96, 151, 170);
+  color: white;
+}
+/* header */
+
+
+
+/* body {
+    background-image: url(https://cdn.antaranews.com/cache/1200x800/2023/06/23/IMG_3849.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    filter: blur(10px);
+} */
+
+/* .img {
+    background-image: url(https://cdn.antaranews.com/cache/1200x800/2023/06/23/IMG_3849.jpeg);
+} */
+
+
+body {
+    background-color:whitesmoke;
+}
+
+body main div#gambar{
+    margin-top: 60px;
+}
+
+body main div#gambar table tr td img{
+    width: 550px;
+    height:350px;
+    border-radius: 30px;
+    padding:1px;
+    margin-left: 15px;
+    box-shadow: 1px 20px 20px 1px silver;
+    
+}
+
+
+
+
+
+body main div#form{
+    margin: 40px;
+    margin-right: 170px;
+    margin-left: 170px;
+    margin-top: 20px;
+}
+
+body main div#form form div#detailPesan{
+    border-radius: 30px;
+    background-color:white;
+    box-shadow: 0px 25px 35px 5px silver;
+
+
+}
+
+body main div#form form div#detailPesan1{
+    border-radius: 30px;
+    background-color:white;
+    margin-top: 30px;
+    box-shadow: 0px 25px 35px 5px silver;
+}
+
+body main div#form form div#detailPesan2{
+    border-radius: 30px;
+    background-color:white;
+    margin-top: 30px;
+    box-shadow: 0px 25px 35px 5px silver;
+}
+
+
+body main div#form form div#detailPesan table tr:nth-child(1)>td:nth-child(1) table tr:nth-child(1) td{
+  text-align: left;
+  padding-right: 100px;
+  font-size: 40px;
+  text-shadow: 3px 3px 3px silver;
+}
+
+body main div#form form div#detailPesan table tr:nth-child(1)>td:nth-child(1) table tr:nth-child(2) td p{
+font-weight: bold;
+font-size: 30px;
+text-shadow: 3px 3px 3px silver;
+}
+  
+
+body main div#form form div#detailPesan table tr:nth-child(1)>td:nth-child(2) h5{
+  font-size: 20px;
+  text-shadow: 3px 3px 3px silver;
+  margin-bottom: -10px;
+}
+
+body main div#form form div#detailPesan table tr:nth-child(1)>td:nth-child(2) p{
+font-weight: bold;
+}
+
+
+body main div#form form div#detailPesan table tr:nth-child(1) td:nth-child(2)>table tr td{
+  
+padding-top:20px;
+  
+}
+
+
+
+body main center div#form div#detailPesan1 table tr:nth-child(1) td:nth-child(1) img{
+  border-radius: 15px;
+  box-shadow: 3px 8px 8px silver;
+  margin-top: 40px;
+  height: 280px;
+  width: 400px;
+  margin-left: 10px;
+
+}
+
+
+body main center div#form div#detailPesan1 table tr:nth-child(1) td:nth-child(2){
+  padding-left: 50px;
+
+}
+
+body main center div#form div#detailPesan1 table tr:nth-child(1) td:nth-child(2) table:nth-child(1) th,td{
+  padding-top: 10px;
+  padding-left: 30px;
+
+}
+
+body main center div#form div#detailPesan1 table tr:nth-child(2)> td h1{
+  color:rgb(175, 25, 25);
+  text-shadow: 3px 3px 3px silver;
+  margin-left: 10px;
+} 
+
+body main center div#form div#detailPesan1 table tr:nth-child(2)> td:nth-child(2) table tr,td{
+  padding-top: 10px;
+  padding: 5px;
+  padding-left: 20px;
+}
+
+body main center div#form div#detailPesan1 table tr:nth-child(2)> td:nth-child(2) {
+  margin-left: -20px;
+}
+
+
+
+body main div#form div#detailPesan2 table tr td>b{
+  font-size: 30px;
+  text-shadow: 3px 3px 3px silver;
+  text-align: center;
+  color: rgb(172, 17, 17);
+  margin-right: 80px;
+}
+
+
+/* body main center div#form div#detailpesan1 table div#tiketkonser tr td:nth-child(1) h1{
+  text-align: center;
+} */
+
+
+/*
+
+
+.detailPesan {
+  border: 1px;
+  border-radius: 3%;
+  background-color: whitesmoke;
+  box-shadow: 1px 7px 5px 3px grey;
+  padding-bottom: 5%;
+  /* padding-top: -20%; */
+  /* margin: 20%;
+}
+
+.detailPesan1 {
+  border: 1px;
+  border-radius: 3%;
+  background-color: whitesmoke;
+  box-shadow: 1px 7px 5px 3px grey;
+  padding-bottom: 2%;
+  padding-top: 1%;
+  margin: 20%;
+  margin-top: -15%;
+} */
+
+/* .detailPesan2 {
+  border: 1px;
+  border-radius: 3%;
+  background-color: whitesmoke;
+  box-shadow: 1px 7px 5px 3px grey;
+  padding-bottom: 15%;
+  padding-top: 0.1%;
+  margin: 20%;
+  margin-top: -15%;
+} */
+
+/* .gambarDuduk {
+  /* margin-top: 10%; */
+  /* margin-right: 40%;  */
+  /* border: 10px outset white; */
+  /* object-fit: contain; */
+/* } */ */
+
+/* .judul {
+  text-align: left;
+  padding-top: 3%;
+  padding-left: 2%;
+  font-size: large;
+} */
+
+/* .pesanan {
+  /* font-size: small;  */
+  /* font-size: large;
+} */ */
+
+/* input::placeholder {
+  /* font-size: small; */
+  /* font-size: large;
+} */ */
+
+/* .penjelasan {
+  /* font-size: x-small; */
+  /* font-size: large;
+  color: rgb(131, 131, 131);
+} */
+
+/* .check {
+  display: flex;
+  align-items: center; */
+/* } */ */
+
+/* .tiket {
+  display: flex;
+  align-items: center;
+} */
+
+/* input[type="text"] { */
+  /* font-size: x-small; */
+  /* font-size: large;
+  font-family: "Times New Roman", Times, serif;
+} */
+
+/* input[type="number"] { */
+  /* font-size: x-small; */
+  /* font-size: large;
+  font-family: "Times New Roman", Times, serif;
+} */
+
+/* input[type="date"] { */
+  /* font-size: x-small; */
+  /* font-size: large;
+  font-family: "Times New Roman", Times, serif;
+} */
+
+/* input[type="submit"] { */
+  /* font-size: x-small; */
+  /* font-size: large;
+  margin-left: 80%;
+} */
+
+/* input[type="reset"] { */
+  /* font-size: x-small; */
+  /* font-size: large;
+  margin-left: 80%;
+} */
+
+/* input[type="checkbox"] {
+  width: 6%;
+  height: 6%; */
+/* } */
+
+/* select { */
+  /* font-size: x-small; */
+  /* font-size: large;
+  font-family: "Times New Roman", Times, serif;
+} */
+/* 
+footer {
+  text-align: center; */
+  /* margin-top: 30%; */
+  /* font-size: large;
+  margin-top: -10%;
+} */
+
+/* p#satu { */
+  /* border-radius: 15%; */
+  /* font-size: x-small; */
+  /* font-size: large;
+  background-color: aquamarine;
+} */
+
+/* .pembayaran {
+  text-align: left;
+  padding-left: 2%;
+  font-size: large;
+}
+
+p.detailTiket {
+  border: 1px solid;
+  border-radius: 10px;
+  padding: 5%;
+  margin-left: 5%;
+  margin-right: 5%;
+  text-align: left; */
+  /* font-size: x-small; */
+  /* font-size: large;
+} */
+
+
+
+
+
+
+
+
+
+footer div#rincianfooter div#footerdata{
+    margin-left: -2%;   
+   
+   }
+
+
+   
+footer div#rincianfooter div#footerdata table tr td{
+       padding-left:50px;  
+       padding-right: 50px; 
+       padding-bottom: 20px;
+   }
+   
+   
+   
+   
+   footer div#rincianfooter ul{
+       list-style: none;
+       
+   
+   }
+   
+   footer div#rincianfooter ul li:first-child{
+       padding-bottom: 25px;
+       font-weight: bold;
+   }
+   
+   footer div#rincianfooter{
+       background-color: lightblue;
+       margin-right: -15px;
+       margin-left: -10px;
+       
+   }
+   
+   
+   
+   
+   footer div#rincianfooter>table{
+       margin-left: 35%;
+       
+       
+   }
+   
+   footer div#rincianfooter>table tr td{
+       padding-left: 40px;
+       padding-bottom: 15px;
+       text-align: center;
+   
+   }
+   
+   
+   footer div#rincianfooter>table tr td i{
+       color:black;
+       font-size: 20px;
+       margin-left:200%;
+   }
+   
+   footer div#rincianfooter>table tr td a:hover i{
+       color:white;
+   }
+   
+   
+   footer div#nav{
+       background-color:rgb(96, 151, 170);
+       padding:0.1px;
+       text-align: center;
+       padding-top: 20px;
+       margin-right: -15px;
+       margin-left: -10px;
+   }
+   
+   
+   footer div#nav nav a{
+       color:black;
+       text-decoration: none;
+       padding:5px;
+       
+   }
+   
+   footer div#nav nav a:hover{
+       color:whitesmoke;
+       
+   }
+   
+   /* footer */
+   footer>p{
+       text-align: center;
+       letter-spacing: 15px;
+       font-size: 12px;
+       background-color:rgb(96, 151, 170);
+       padding-bottom: 20px;
+       padding-top: 20px;
+       margin:0;
+       margin-bottom: -15px;
+       margin-right: -15px;
+       font-weight: bold;
+       margin-left: -10px;
+   }
+   
+   
+   /* footer */
