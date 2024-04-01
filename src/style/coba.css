@@ -1,0 +1,306 @@
+body {
+    background-color: whitesmoke;
+}
+
+#hyperlink {
+    border: 1px solid rgb(96, 151, 170);
+    border-color: rgb(96, 151, 170);
+    background-color: rgb(96, 151, 170);
+    padding: 1%;
+    text-align: right;
+    margin: -1% -1% 0 1%;
+}
+
+#hyperlink a {
+    text-decoration: none;
+    padding-left: 0.5%;
+    font-size: 1.2em; /* Saya ubah ke ukuran relatif */
+    font-weight: bold;
+    color: black;
+}
+
+#hyperlink a:hover {
+    color: rgb(48, 48, 48);
+    text-decoration: underline;
+}
+
+header {
+    position: sticky;
+    top: -1px;
+}
+
+header h1 {
+    text-align: left;
+    font-size: 2.5vw; /* Saya sarankan menggunakan unit yang lebih fleksibel seperti em atau persen */
+}
+
+#navbar {
+    border: 1px solid lightblue;
+    background-color: lightblue;
+    margin: 0 -1% 0 -1%;
+    border-radius: 0 0 2%;
+    border-bottom: 0.5% solid rgb(114, 169, 188);
+    border-top: 0.5% solid rgb(114, 169, 188);
+    width: 102%;
+    height: 10%;
+    box-shadow: 0 1% 0 0 rgb(114, 169, 188);
+}
+
+#navbar img {
+    position: relative;
+    top: -10%; /* Saya asumsikan ini untuk penyesuaian */
+    width: 30%; /* Saya asumsikan ini untuk penyesuaian */
+    height: auto; /* Saya asumsikan ini untuk penyesuaian */
+}
+
+#navbar#form > td {
+    margin-left: 10%;
+}
+
+#bt1 input {
+    position: relative;
+    width: 40%;
+    padding-right: 10%;
+    border-radius: 5px; /* Tambahan untuk estetika */
+    height: 35px;
+    line-height: 35px;
+    background-color: whitesmoke;
+    font-size: 0.875em;
+    color: black;
+    border: 3px solid rgb(96, 151, 170);
+}
+
+#bt2 button,
+#bt3 button,
+#bt4 button {
+    position: relative;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: rgb(96, 151, 170);
+}
+
+.container {
+    box-sizing: border-box;
+    border: 3px solid whitesmoke;
+    background-color: white;
+    box-shadow: 2px 5px 9px rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    padding: 1%;
+    margin: 2% auto;
+    width: 40%;
+    font-size: 1em;
+    color: black;
+}
+
+.container:hover {
+    border: 3px solid rgb(218, 216, 216);
+    background-color: rgb(237, 233, 233);
+    box-shadow: 1.5% 1.5% 1.5% rgba(0, 0, 0, 0.3);
+}
+
+.container,
+a {
+    text-decoration: none;
+}
+body {
+    background-color: whitesmoke;
+}
+
+#hyperlink {
+    border: 1px solid rgb(96, 151, 170);
+    border-color: rgb(96, 151, 170);
+    background-color: rgb(96, 151, 170);
+    padding: 1.5%;
+    text-align: right;
+    margin: -1% -1% 0 1%;
+}
+
+#hyperlink a {
+    text-decoration: none;
+    padding-left: 0.5%;
+    font-size: 1.2vw; /* Tetap menggunakan vw untuk ukuran font agar tetap dinamis */
+    font-weight: bold;
+    color: black;
+}
+
+#hyperlink a:hover {
+    color: rgb(48, 48, 48);
+    text-decoration: underline;
+}
+
+header {
+    position: sticky;
+    top: -1px;
+}
+
+header h1 {
+    text-align: left;
+    font-size: 2.5vw;
+}
+
+#navbar {
+    border: 1px solid lightblue;
+    background-color: lightblue;
+    margin: 0 -1% 0 -1%;
+    border-radius: 0 0 1% 1%;
+    border-bottom: 0.5% solid rgb(114, 169, 188);
+    border-top: 0.5% solid rgb(114, 169, 188);
+    width: 102%;
+    height: 12%; /* Menggunakan persentase untuk tinggi */
+    box-shadow: 0 1% 0 0 rgb(114, 169, 188);
+}
+
+#navbar img {
+    position: relative;
+    top: -15%; /* Menggunakan persentase untuk penyesuaian posisi */
+    width: 18%; /* Menggunakan persentase untuk ukuran */
+    height: auto; /* Menggunakan auto agar proporsi gambar terjaga */
+}
+
+#navbar#form > td {
+    margin-left: 10%; /* Menggunakan persentase untuk margin */
+}
+
+#bt1 input {
+    position: relative;
+    width: 80%; /* Menggunakan persentase untuk lebar */
+    padding-right: 10%; /* Menggunakan persentase untuk padding */
+    border-radius: 8px;
+    height: 35px;
+    line-height: 35px;
+    background-color: whitesmoke;
+    font-size: 0.875rem;
+    color: black;
+    border: none;
+    top: -30px;
+    left: 25%;
+    border: 3px solid rgb(96, 151, 170);
+}
+
+#bt2 button,
+#bt3 button,
+#bt4 button {
+    position: relative;
+    top: -30px;
+    left: 165%; /* Menggunakan persentase untuk posisi */
+    padding: 1% 2%; /* Menggunakan persentase untuk padding */
+    font-size: 1.5vw; /* Tetap menggunakan vw untuk ukuran font agar tetap dinamis */
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: rgb(96, 151, 170);
+}
+
+.container {
+    box-sizing: border-box;
+    border: 3px solid whitesmoke;
+    background-color: white;
+    box-shadow: 2px 5px 9px rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    padding: 1.5%;
+    margin: 2% auto; /* Menggunakan persentase untuk margin */
+    width: 100%; /* Menggunakan persentase untuk lebar */
+    height: auto;
+    font-size: 1.5vw; /* Tetap menggunakan vw untuk ukuran font agar tetap dinamis */
+    color: black;
+}
+
+.container:hover {
+    box-sizing: border-box;
+    border: 3px solid rgb(218, 216, 216);
+    background-color: rgb(237, 233, 233);
+    box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.3);
+    padding: 1.5%;
+}
+
+.container,
+a {
+    text-decoration: none;
+}
+
+#gambar {
+    border-radius: 20px 20px 0 0;
+    width: 100%;
+    height: auto;
+    margin: -13px -12.5px;
+}
+
+#list td {
+    padding: 1.5%;
+}
+
+main {
+    background-color: whitesmoke;
+}
+
+main #gen {
+    margin: 0 -10px -20px 0;
+}
+
+footer div#rincianfooter div#footerdata {
+    margin-left: 10%;
+}
+
+footer div#rincianfooter div#footerdata table tr td {
+    padding: 2%;
+}
+
+footer div#rincianfooter ul {
+    list-style: none;
+}
+
+footer div#rincianfooter ul li:first-child {
+    padding-bottom: 2%;
+    font-weight: bold;
+}
+
+footer div#rincianfooter {
+    background-color: lightblue;
+}
+
+footer div#rincianfooter>table {
+    margin-left: 25%;
+}
+
+footer div#rincianfooter>table tr td {
+    padding-left: 2%;
+    padding-bottom: 1.5%;
+}
+
+footer div#rincianfooter>table tr td i {
+    color: black;
+    font-size: 20px;
+}
+
+footer div#rincianfooter>table tr td a:hover i {
+    color: white;
+}
+
+footer div#nav {
+    background-color: rgb(96, 151, 170);
+    padding: 0.1%;
+    text-align: center;
+    padding-top: 2%;
+}
+
+footer div#nav nav a {
+    color: black;
+    text-decoration: none;
+    padding: 1%;
+}
+
+footer div#nav nav a:hover {
+    color: white;
+}
+
+footer>p {
+    text-align: center;
+    letter-spacing: 0.15em;
+    font-size: 1.2vw; /* Tetap menggunakan vw untuk ukuran font agar tetap dinamis */
+    background-color: rgb(96, 151, 170);
+    padding-bottom: 2%;
+    padding-top: 2%;
+    margin: 0;
+    font-weight: bold;
+}
