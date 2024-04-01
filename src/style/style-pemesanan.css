@@ -18,6 +18,11 @@ header span > a {
   border-radius: 50px;
 }
 
+header > a:nth-child(3) {
+  background-color: rgb(74, 114, 127);
+  color: white;
+}
+
 header > a:hover {
   background-color: rgb(96, 151, 170);
   color: white;
@@ -167,6 +172,9 @@ body main center div#form div#detailPesan1 table tr:nth-child(2)> td:nth-child(2
   margin-left: -20px;
 }
 
+body main div#back nav a:hover{
+  color:red;
+}
 
 
 body main div#form div#detailPesan2 table tr td>b{

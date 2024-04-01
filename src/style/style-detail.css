@@ -20,6 +20,12 @@ header span>a{
 
 }
 
+header > a:nth-child(2) {
+    background-color: rgb(74, 114, 127);
+    color: white;
+  }
+
+
 header>a:hover{
     background-color: rgb(96, 151, 170);
     color:white;
