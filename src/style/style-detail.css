@@ -1,0 +1,256 @@
+
+/* header */
+header{
+    background-color: lightblue;
+    text-align: right;
+    padding: 30px;
+    margin: -10px -15px 0 -10px;
+}
+
+header> a{
+    text-decoration: none;
+    padding:20px;
+    border-radius: 50px;
+}
+
+header span>a{
+    text-decoration: none;
+    padding: 20px;
+    border-radius: 50px;
+
+}
+
+header>a:hover{
+    background-color: rgb(96, 151, 170);
+    color:white;
+}
+
+header span>a:hover{
+    background-color: rgb(96, 151, 170);
+    color:white;
+}
+
+/* header */
+
+
+
+/* body */
+body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color:whitesmoke;
+    margin-right: 0;
+    margin-left: 0;
+}
+
+body main div#detail{
+    background-color: white;
+}
+
+body main div#back{
+    margin-left: 70px;
+}
+
+
+body main div#back nav a:hover{
+    color:red;
+}
+
+body main div#back>a{
+    background-color: darkblue;
+    color:lightblue;
+    text-decoration: none;
+    padding: 20px;
+    border-radius: 50px;
+    margin-left: 1100px;
+    font-size: 15px;
+}
+
+body main div#back>a:hover{
+    background-color: rgb(133, 133, 232);
+    color:white;
+}
+
+/* divdetail */
+body main div#detail{
+    margin-bottom: 200px;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+body main div#detail img{
+    width:280px;
+    height:200px;
+    border-radius: 20px;
+    box-shadow: 0 3px 3px 3px silver;
+}
+
+body main div#detail table:nth-child(4) img{
+    margin-top: 70px;
+}
+
+body main div#detail h1{
+    padding-top: 50px;
+    padding-bottom: 20px;
+    text-shadow: 3px 3px 5px silver;
+}
+
+body main div#desk>p{
+    font-size: 15px;
+    text-indent: 35px;
+    padding-right: 50px;
+}
+
+
+
+
+
+body main table tr td>table tr:nth-child(1) td span a{
+    padding: 10px;
+    border-radius: 15px;
+    background-color: lightblue;
+    color:black;
+    text-decoration: none;
+}
+
+
+
+body main table tr td>table tr:nth-child(1) td span a:hover{
+    background-color: rgb(96, 151, 170);
+    color:white;
+}
+
+
+body main div#detail{
+    box-shadow: 1px 15px 24px 15px silver;
+    border-radius: 50px;
+}
+
+body main div#desk{
+    padding-left: 100px;
+}
+
+body main div#detail h1{
+    text-align: center;
+}
+
+
+body main div#detail>table:nth-child(2){
+    padding-left: 100px;
+    
+}
+
+body main div#detail>table:nth-child(4){
+    padding-left: 100px;
+    padding-bottom: 100px;
+}
+
+
+
+
+
+/* div detail */
+
+/* body */
+
+
+
+footer div#rincianfooter div#footerdata{
+ margin-left: -2%;   
+
+}
+
+
+footer div#rincianfooter div#footerdata table tr td{
+    padding-left:50px;  
+    padding-right: 50px; 
+    padding-bottom: 20px;
+}
+
+
+
+
+footer div#rincianfooter ul{
+    list-style: none;
+    
+
+}
+
+footer div#rincianfooter ul li:first-child{
+    padding-bottom: 25px;
+    font-weight: bold;
+}
+
+footer div#rincianfooter{
+    background-color: lightblue;
+    margin-right: -15px;
+    margin-left: -10px;
+    
+}
+
+
+
+
+footer div#rincianfooter>table{
+    margin-left: 35%;
+    
+    
+}
+
+footer div#rincianfooter>table tr td{
+    padding-left: 40px;
+    padding-bottom: 15px;
+    text-align: center;
+
+}
+
+
+footer div#rincianfooter>table tr td i{
+    color:black;
+    font-size: 20px;
+    margin-left:200%;
+}
+
+footer div#rincianfooter>table tr td a:hover i{
+    color:white;
+}
+
+
+footer div#nav{
+    background-color:rgb(96, 151, 170);
+    padding:0.1px;
+    text-align: center;
+    padding-top: 20px;
+    margin-right: -15px;
+    margin-left: -10px;
+}
+
+
+footer div#nav nav a{
+    color:black;
+    text-decoration: none;
+    padding:5px;
+    
+}
+
+footer div#nav nav a:hover{
+    color:whitesmoke;
+    
+}
+
+/* footer */
+footer>p{
+    text-align: center;
+    letter-spacing: 15px;
+    font-size: 12px;
+    background-color:rgb(96, 151, 170);
+    padding-bottom: 20px;
+    padding-top: 20px;
+    margin:0;
+    margin-bottom: -15px;
+    margin-right: -15px;
+    font-weight: bold;
+    margin-left: -10px;
+}
+
+
+/* footer */
