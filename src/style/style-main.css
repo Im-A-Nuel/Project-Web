@@ -173,11 +173,11 @@ header h1 {
   border-radius: 20px;
   padding: 10px;
   margin: 20px auto;
-  width: 250px;
-  height: auto;
+  width: 290px;
+  height: 340px;
   font-size: 15px;
   color: black;
-  margin-left: 20px;
+  margin-left: 40px;
 }
 
 .container:hover {
@@ -197,8 +197,8 @@ a {
 
 #gambar {
   border-radius: 20px 20px 0px 0px;
-  width: 250px;
-  height: 140px;
+  width: 290px;
+  height: 160px;
   margin: -13px -12.5px;
   /* height: 100%; */
 }
