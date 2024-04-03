@@ -68,7 +68,7 @@
 
       <center>
         <div id="form">
-          <form action="" method="get">
+          <form action="#popup1" method="get">
             <div id="detailPesan">
               <table>
                 <tr>
@@ -362,20 +362,25 @@
                           </td>
                         </tr>
                       </table>
-                      <input type="submit" value="kirim" />
+                      <input type="submit" value="kirim"/>
                       <input type="reset" value="reset" />
 
 
                     </td>
-                  </tr>
-                  
-                
-                
-              </table>
-
-              
+                  </tr>          
+              </table>              
             </div>
+            <!-- <button onclick="document.getElementById('notification').style.display = 'block';"></button> -->
           </form>
+        </div>
+        <div id="popup1" class="overlay">
+          <div class="popup">
+            <h2>BERHASIL!</h2>
+            <a class="close" href="#">&times;</a>
+            <div class="content">
+              Pembelian Tiket Konser Telah Berhasil Dilakukan!
+            </div>
+          </div>
         </div>
       </center>
     </main>
