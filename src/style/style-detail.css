@@ -36,11 +36,6 @@ header span>a:hover{
     color:white;
 } */
 
-header{
-  width: 98.6%;
-  margin-left: 0.55%;
-}
-
 #hyperlink {
     border: 1px solid rgb(96, 151, 170);
     border-color: rgb(96, 151, 170);
@@ -125,7 +120,7 @@ header{
   #bt2 button {
     position: relative;
     top: -95px;
-    left: -140.9%;
+    left: -140%;
     padding: 10px 20px;
     font-size: 16px;
     border: none;
@@ -144,7 +139,7 @@ header{
   #bt3 button {
     position: relative;
     top: -95px;
-    left: 280%;
+    left: 75%;
     padding: 10px 17px;
     font-size: 16px;
     border: none;
@@ -165,7 +160,7 @@ header{
   #bt4 button {
     position: relative;
     top: -95px;
-    left: 360%;
+    left: 100%;
     padding: 10px 17px;
     font-size: 16px;
     border: none;

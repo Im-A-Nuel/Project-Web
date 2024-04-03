@@ -126,7 +126,7 @@ header h1 {
 #bt3 button {
   position: relative;
   top: -95px;
-  left: 280%;
+  left: 75%;
   padding: 10px 17px;
   font-size: 16px;
   border: none;
@@ -147,7 +147,7 @@ header h1 {
 #bt4 button {
   position: relative;
   top: -95px;
-  left: 360%;
+  left: 100%;
   padding: 10px 17px;
   font-size: 16px;
   border: none;
