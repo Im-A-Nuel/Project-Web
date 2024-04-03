@@ -44,15 +44,15 @@
 
 #navbar img#logo1 {
   position: relative;
-  left: -195px;
-  top: -147px;
+  left: -237px;
+  top: -150.5px;
   width: 250px;
   height: 270px;
 }
 #navbar img#logo2 {
   position: relative;
-  left: -60px;
-  top: -127px;
+  left: -79px;
+  top: -130px;
   width: 300px;
   height: 140px;
 }
@@ -72,15 +72,15 @@
   font-size: 0.875rem;
   color: black;
   border: none;
-  top: -95px;
-  left: -85%;
+  top: -98.3px;
+  left: -109.8%;
   border: 3px solid rgb(96, 151, 170);
 }
 
 #bt2 button {
   position: relative;
-  top: -95px;
-  left: -140%;
+  top: -98.3px;
+  left: -238.9%;
   padding: 10px 20px;
   font-size: 16px;
   border: none;
@@ -98,8 +98,8 @@
 
 #bt3 button {
   position: relative;
-  top: -95px;
-  left: 75%;
+  top: -98.3px;
+  left: 168.9%;
   padding: 10px 17px;
   font-size: 16px;
   border: none;
@@ -119,8 +119,8 @@
 
 #bt4 button {
   position: relative;
-  top: -95px;
-  left: 100%;
+  top: -98.3px;
+  left: 190.9%;
   padding: 10px 17px;
   font-size: 16px;
   border: none;
