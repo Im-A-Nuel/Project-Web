@@ -1,7 +1,33 @@
 <?php
+require "koneksi.php";
+session_start();
 
+$pesan = "";
 
+if(isset($_SESSION['username']) && isset($_SESSION['password'])){
+    header("Location: mainPage.php");
+}
 
+if(isset($_POST["username"]) && isset($_POST["password"])){
+
+    $username = $_POST["username"];
+    $pass = $_POST["password"];
+    $query = "SELECT * FROM user WHERE username = '$username' and password = '$pass'";
+    $result = $connection->query($query);
+
+    if($result->num_rows > 0){
+        $row = $result->fetch_assoc();
+        
+        $_SESSION["username"] = $_POST["username"];
+        $_SESSION["firstname"] = $row["firstname"];
+    
+        $user = $_SESSION["username"];
+        
+        header("Location: mainPage.php");
+    }else{
+        $error =  "Username & password salah";
+    }
+    }
 
 ?>
 
@@ -17,7 +43,8 @@
 <body>
     <div class="container">
       <h1>Login</h1>
-      <form action="mainPage.html" id="login-form" method="post">
+      <?php if(isset($pesan)) { echo "<p class='error'>$pesan</p>"; } ?>
+      <form action="login.php" id="login-form" method="post">
         <label for="username">Username</label>
         <input type="text" id="username" name="username" required />
 
