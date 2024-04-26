@@ -1,3 +1,15 @@
+<?php
+
+require "koneksi.php";
+
+session_start();
+
+if (isset($_SESSION['id'])){
+
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -15,9 +27,9 @@
     <header>
 
       <div id="hyperlink">
-          <a href="mainPage.html">Beranda</a>
-          <a href="detailPage.html">Detail</a>
-          <a href="pemesananPage.html">Pemesanan</a>
+          <a href="mainPage.php">Beranda</a>
+          <a href="detailPage.php">Detail</a>
+          <a href="pemesananPage.php">Pemesanan</a>
           <a href="#">Blog</a>
           <a href="#">Hubungi Kami</a>
       </div>
@@ -47,13 +59,13 @@
 
       <div id="back">
         <nav>
-          <a href="mainPage.html">Beranda</a> >
-          <a href="detailPage.html">Detail</a>
+          <a href="mainPage.php">Beranda</a> >
+          <a href="detailPage.php">Detail</a>
         </nav>
         <br />
         <br />
 
-        <a href="mainPage.html">
+        <a href="mainPage.php">
           <i class="fas fa-undo"></i> <span>Kembali</span>
         </a>
       </div>
@@ -71,7 +83,7 @@
                   <tr>
                     <td>
                       <span
-                        ><a href="pemesananPage.html"
+                        ><a href="pemesananPage.php"
                           >PESAN TIKET DISINI</a
                         ></span
                       >
@@ -141,7 +153,7 @@
           <tr>
             <td colspan="2">Seating Plan</td>
             <td></td>
-            <td><img src="/src/img/tempatDuduk.jpeg" alt="" /></td>
+            <td><img src="../src/img/tempatDuduk.jpeg" alt="" /></td>
           </tr>
         </table>
       </div>
