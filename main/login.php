@@ -4,7 +4,9 @@ session_start();
 
 $pesan = "";
 
-if(isset($_SESSION['username']) && isset($_SESSION['password'])){
+if(!(isset($_SESSION['username'])) && !(isset($_SESSION['firstname']))){
+    
+}else{
     header("Location: mainPage.php");
 }
 
@@ -21,11 +23,9 @@ if(isset($_POST["username"]) && isset($_POST["password"])){
         $_SESSION["username"] = $_POST["username"];
         $_SESSION["firstname"] = $row["firstname"];
     
-        $user = $_SESSION["username"];
-        
         header("Location: mainPage.php");
     }else{
-        $error =  "Username & password salah";
+        $pesan =  "Username & password salah";
     }
     }
 
@@ -43,8 +43,8 @@ if(isset($_POST["username"]) && isset($_POST["password"])){
 <body>
     <div class="container">
       <h1>Login</h1>
-      <?php if(isset($pesan)) { echo "<p class='error'>$pesan</p>"; } ?>
-      <form action="login.php" id="login-form" method="post">
+      <?php if(isset($pesan)) { echo "<p class='error'>$pesan</p>";} ?>
+      <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" id="login-form" method="post">
         <label for="username">Username</label>
         <input type="text" id="username" name="username" required />
 

@@ -1,5 +1,10 @@
 <?php
 
+session_start();
+
+if(!(isset($_SESSION['username'])) && !(isset($_SESSION['firstname']))){
+    header("Location: login.php");
+}
 
 
 ?>
@@ -39,7 +44,7 @@
                             <td id="bt2"><button type="submit">search</button></td>
                         </form>
                         <td id="bt3"><button>Register</button></td>
-                        <td id="bt4"><button>Login</button></td>
+                        <td id="bt4" ><button><a href="logout.php">Logout</a></button></td>
                     </tr>
                 </tbody>
             </table>
