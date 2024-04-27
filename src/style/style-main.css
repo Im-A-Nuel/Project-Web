@@ -138,6 +138,7 @@ header h1 {
   box-shadow: 5px 2px 12px 1px rgba(0, 0, 0, 0.3);
 }
 
+
 #bt3 button:hover {
   background-color: rgb(138, 192, 210);
   box-shadow: 5px 2px 15px 1px rgba(0, 0, 0, 0.3);
@@ -157,6 +158,32 @@ header h1 {
   background-color: lightblue;
   font-weight: bold;
   box-shadow: 5px 2px 12px 1px rgba(0, 0, 0, 0.3);
+}
+#bt5 button {
+  position: relative;
+  top: -95px;
+  left: 960%;
+  padding: 10px 17px;
+  font-size: 16px;
+  border: none;
+  border: 1.5px solid rgb(103, 119, 121);
+  border-radius: 15px;
+  cursor: pointer;
+  background-color: lightblue;
+  font-weight: bold;
+  box-shadow: 5px 2px 12px 1px rgba(0, 0, 0, 0.3);
+}
+
+#name {
+  position: relative;
+  top: -95px;
+  left: 31%;
+  padding: 10px 17px;  
+  font-size: 16px;
+  border: none;
+  border-radius: 15px;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 #bt4 button:hover {

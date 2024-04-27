@@ -2,10 +2,9 @@
 
 session_start();
 
-if(!(isset($_SESSION['username'])) && !(isset($_SESSION['firstname']))){
-    header("Location: login.php");
-}
-
+// if(!(isset($_SESSION['username'])) && !(isset($_SESSION['firstname']))){
+//     header("Location: login.php");
+// }
 
 ?>
 
@@ -43,13 +42,20 @@ if(!(isset($_SESSION['username'])) && !(isset($_SESSION['firstname']))){
                             <td id="bt1"><input type="text" placeholder="Cari konser seru disini"></td>
                             <td id="bt2"><button type="submit">search</button></td>
                         </form>
-                        <td id="bt3"><button>Register</button></td>
-                        <td id="bt4" ><button><a href="logout.php">Logout</a></button></td>
+                        <?php 
+                        if(!(isset($_SESSION['username'])) && !(isset($_SESSION['firstname']))){
+                            echo '<td id="bt3"><a href=""><button>Register</button></a></td>';
+                            echo '<td id="bt4"><a href="login.php"><button>Login</button></a></td>';
+                        }else{
+                            echo '<td id="bt5"><a href="logout.php"><button>↩</button></a></td>';
+                            echo '<td id="name">'.$_SESSION['firstname'].'</td>';
+                        }
+                        ?>
                     </tr>
                 </tbody>
             </table>
         </div>
-
+        
 
     </header>
 
