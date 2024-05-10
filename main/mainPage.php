@@ -1,5 +1,7 @@
 <?php
 
+include 'koneksi.php';
+
 session_start();
 
 // if(!(isset($_SESSION['username'])) && !(isset($_SESSION['firstname']))){
@@ -7,6 +9,8 @@ session_start();
 // }
 
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -44,7 +48,7 @@ session_start();
                         </form>
                         <?php 
                         if(!(isset($_SESSION['username'])) && !(isset($_SESSION['firstname']))){
-                            echo '<td id="bt3"><a href=""><button>Register</button></a></td>';
+                            echo '<td id="bt3"><a href="register.php"><button>Register</button></a></td>';
                             echo '<td id="bt4"><a href="login.php"><button>Login</button></a></td>';
                         }else{
                             echo '<td id="bt5"><a href="logout.php"><button>↩</button></a></td>';
@@ -63,185 +67,51 @@ session_start();
 
         <h2>Daftar Tiket-Konser</h2>
 
-        <table id="list">
-            <tbody>
-                <tr>
-                    <td>
-                        <h3 id="gen">Pop-Rock</h3>
-                    </td>
-                <tr>
-                    <td colspan="4">
-                        <hr id="line1">
-                    </td>
-                </tr>
-                </tr>
-                <tr id="row1">
-                    <td>
-                        <a href="">
-                            <div class="container">
-                                <img id="gambar" src="../src/img/DewaPic.jpg" alt="">
-                                <h3>Konser Dewa19</h3>
-                                <p>19 Agustus 2023</p>
-                                <p>Bandung</p>
-                                <hr id="line2">
-                                <h4>Rp.1.000.000</h4>
-                            </div>
-                        </a>
-                    </td>
+<?php
 
-                    <td>
-                        <a href="">
-                            <div class="container">
-                                <img id="gambar" src="../src/img/KonserNoah.jpeg" alt="">
-                                <h3>Konser Noah</h3>
-                                <p>17 Mei 2024</p>
-                                <p>Jakarta</p>
-                                <hr id="line2">
-                                <h4>Rp.2.000.000</h4>
-                            </div>
-                        </a>
+$sql = "SELECT k.nama, k.tanggal, k.tempat, k.gambar, concat('Rp.',t.harga) as harga FROM konser k inner join tiket t on k.idKonser = t.idKonser";
 
-                    </td>
+$result = $connection->query($sql);
 
-                    <td>
-                        <a href="">
-                            <div class="container">
-                                <img id="gambar" src="../src/img/KonserAV7X.jpeg" alt="">
-                                <h3>Konser Avenged Sevenfold</h3>
-                                <p>25 Mei 2024</p>
-                                <p>Indonesia Madya Stadium, Jakarta</p>
-                                <hr id="line2">
-                                <h4>Rp 1.600.000 - Rp 2.600.000</h4>
-                            </div>
-                        </a>
+if ($result->num_rows > 0) {
+    echo "<table>";
+    $counter = 0;
+    while($row = $result->fetch_assoc()) {
+        if ($counter % 4 == 0) {
+            if ($counter != 0) {
+                echo "</tr>";
+            }
+            echo "<tr>";
+        }
+        echo "<td>";
+        echo "<a href=''>";
+        echo "<div class='container'>";
+        echo "<img id='gambar' src='" . $row['gambar'] . "' alt=''>";
+        echo "<h3>" . $row['nama'] . "</h3>";
+        echo "<p>" . $row['tanggal'] . "</p>";
+        echo "<p>" . $row['tempat'] . "</p>";
+        echo "<hr id='line2'>";
+        echo "<h4>" . $row['harga'] . "</h4>";
+        echo "</div>";
+        echo "</a>";
+        echo "</td>";
+        $counter++;
 
-                    </td>
+        if ($counter % 4 == 0) {
+            echo "</tr>";
+        }
+    }
+    if ($counter % 4 != 0) {
+        echo "</tr>";
+    }
+    echo "</table>";
+} else {
+    echo "0 hasil";
+}
 
-                    <td>
-                        <a href="">
-                            <div class="container">
-                                <img id="gambar" src="../src/img/KonserTulus.jpeg" alt="">
-                                <h3>Konser Tulus</h3>
-                                <p>15 Juni 2024</p>
-                                <p>Yogyakarta</p>
-                                <hr id="line2">
-                                <h4>Rp.1.000.000</h4>
-                            </div>
-                        </a>
-                    </td>
-
-                </tr>
-
-                <tr>
-                <tr>
-                    <td>
-                        <h3 id="gen">Festival Musik</h3>
-                    </td>
-                <tr>
-                    <td colspan="4">
-                        <hr id="line1">
-                    </td>
-                </tr>
-                </tr>
-
-                <td>
-                    <a href="">
-                        <div class="container">
-                            <img id="gambar" src="../src/img/FesKonserXdin.jpg" alt="">
-                            <h3>XDINARY HEROES: Break the Brake World Tour </h3>
-                            <p>16 Desember 2024</p>
-                            <p>The Kasablanka Hall, Jakarta</p>
-                            <hr id="line2">
-                            <h4>Rp 1.100.000 - Rp2.800.000
-                            </h4>
-                        </div>
-                    </a>
-                </td>
-
-                <td>
-                    <a href="">
-                        <div class="container">
-                            <img id="gambar" src="../src/img/FesKonserTVXQ.jpg" alt="">
-                            <h3>Konser TVXQ! br Asia <br> Tour 2024</h3>
-                            <p>20 April 2024</p>
-                            <p>Hall 5 ICE BSD</p>
-                            <hr id="line2">
-                            <h4>Rp 900.000 - Rp 2.950.000</h4>
-                        </div>
-                    </a>
-
-                </td>
-
-                <td>
-                    <a href="">
-                        <div class="container">
-                            <img id="gambar" src="../src/img/FesKonserTikum.jpg" alt="">
-                            <h3>Konser Titik Kumpul <br> Fest 2024</h3>
-                            <p>27 - 28 April 2024</p>
-                            <p>Stadion Madya GBK, Jakarta</p>
-                            <hr id="line2">
-                            <h4>Rp 149.000 - Rp 169.000</h4>
-                        </div>
-                    </a>
-
-                </td>
-
-                <td>
-                    <a href="">
-                        <div class="container">
-                            <img id="gambar" src="../src/img/FesLala.jpg" alt="">
-                            <h3>LaLaLa <br> Fest 2024</h3>
-                            <p>23-25 Agustus 2024</p>
-                            <p>Jakarta International Expo (JIEXPO)</p>
-                            <hr id="line2">
-                            <h4>Rp 1.300.000 - Rp 2.400.000</h4>
-                        </div>
-                    </a>
-                </td>
-
-                </tr>
-
-                <tr>
-                <tr>
-                    <td>
-                        <h3 id="gen">Jazz</h3>
-                    </td>
-                <tr>
-                    <td colspan="2">
-                        <hr id="line1">
-                    </td>
-                </tr>
-                </tr>
-                <td>
-                    <a href="">
-                        <div class="container">
-                            <img id="gambar" src="../src/img/KonserPrambananJazz.jpg" alt="">
-                            <h3>Prambanan Jazz 2024</h3>
-                            <p>5,6,7 Juli 2024</p>
-                            <p>Yogyakarta</p>
-                            <hr id="line2">
-                            <h4>Rp 250.000 - Rp 1.000.000</h4>
-                        </div>
-                    </a>
-                </td>
-
-                <td>
-                    <a href="">
-                        <div class="container">
-                            <img id="gambar" src="../src/img/KonserJavaJazz.jpg" alt="">
-                            <h3>Java Jazz Festival (JJF) 2024</h3>
-                            <p>24-26 Mei 2024</p>
-                            <p>JIEXpo Kemayoran, Jakarta</p>
-                            <hr id="line2">
-                            <h4>Rp 500.000 - Rp 1.500.000</h4>
-                        </div>
-                    </a>
-
-                </td>
-
-                </tr>
-            </tbody>
-        </table>
+$connection->close();
+?>
+        
 
     </main>
 

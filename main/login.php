@@ -56,7 +56,7 @@ if(isset($_POST["username"]) && isset($_POST["password"])){
         <button type="reset">Reset</button>
       </form>
 
-      <a href=>Belum punya akun ?</a>
+      <a href="register.php">Belum punya akun ?</a>
     </div>
   </body>
 </html>
