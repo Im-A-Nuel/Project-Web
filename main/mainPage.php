@@ -69,22 +69,43 @@ session_start();
 
 <?php
 
-$sql = "SELECT k.nama, k.tanggal, k.tempat, k.gambar, concat('Rp.',t.harga) as harga FROM konser k inner join tiket t on k.idKonser = t.idKonser";
+$sql = "SELECT g.nama as genre, k.idKonser ,k.nama, k.tanggal, k.tempat, k.gambar, CONCAT('Rp. ', FORMAT(t.harga, 0)) as harga 
+FROM konser k 
+INNER JOIN tiket t ON k.idKonser = t.idKonser 
+INNER JOIN band b ON k.idBand = b.idBand 
+INNER JOIN genre g ON b.idGenre = g.idGenre";
 
 $result = $connection->query($sql);
 
 if ($result->num_rows > 0) {
+    $current_genre = "";
     echo "<table>";
-    $counter = 0;
+    $concert_counter = 0; 
     while($row = $result->fetch_assoc()) {
-        if ($counter % 4 == 0) {
-            if ($counter != 0) {
-                echo "</tr>";
+        
+        if ($current_genre != $row['genre']) {
+            if ($current_genre != "") {
+            
+                while ($concert_counter % 4 != 0) {
+                    echo "<td></td>";
+                    $concert_counter++;
+                }
+                echo "</tr>"; 
             }
+           
             echo "<tr>";
+            echo "<td> <h3 id='gen'>" . $row['genre'] . "</h3></td>";
+            echo "</tr>";
+            echo "<tr>";
+            echo "<td colspan='4'><hr id='line1'></td>";
+            echo "</tr>";
+            echo "<tr>";
+            $current_genre = $row['genre'];
+            $concert_counter = 0;
         }
+    
         echo "<td>";
-        echo "<a href=''>";
+        echo "<a href='detailPage.php?idKonser=" . $row['idKonser'] . "'>";
         echo "<div class='container'>";
         echo "<img id='gambar' src='" . $row['gambar'] . "' alt=''>";
         echo "<h3>" . $row['nama'] . "</h3>";
@@ -95,21 +116,25 @@ if ($result->num_rows > 0) {
         echo "</div>";
         echo "</a>";
         echo "</td>";
-        $counter++;
+        $concert_counter++; 
 
-        if ($counter % 4 == 0) {
-            echo "</tr>";
+        if ($concert_counter % 4 == 0) {
+            echo "</tr><tr>";
         }
     }
-    if ($counter % 4 != 0) {
-        echo "</tr>";
+    
+    while ($concert_counter % 4 != 0) {
+        echo "<td></td>";
+        $concert_counter++;
     }
+    echo "</tr>";
     echo "</table>";
 } else {
     echo "0 hasil";
 }
 
 $connection->close();
+
 ?>
         
 
