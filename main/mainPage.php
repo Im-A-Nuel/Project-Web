@@ -29,7 +29,7 @@ session_start();
     <header>
 
         <div id="hyperlink">
-            <a href="#">Beranda</a>
+            <a href="mainPage.php">Beranda</a>
             <a href="#">Tentang Tiket</a>
             <a href="#">Biaya</a>
             <a href="#">Blog</a>
@@ -42,8 +42,8 @@ session_start();
                     <tr>
                         <td><img id="logo2" src="../src/img/logo_ticket_new.png" alt=""></td>
                         <td><img id="logo1" src="../src/img/E-Ticket.png" alt=""></td>
-                        <form id="form" action="#">
-                            <td id="bt1"><input type="text" placeholder="Cari konser seru disini"></td>
+                        <form id="form" action="search.php" method="get">
+                            <td id="bt1"><input type="text" name="search" placeholder="Cari konser seru disini"></td>
                             <td id="bt2"><button type="submit">search</button></td>
                         </form>
                         <?php 
@@ -51,7 +51,7 @@ session_start();
                             echo '<td id="bt3"><a href="register.php"><button>Register</button></a></td>';
                             echo '<td id="bt4"><a href="login.php"><button>Login</button></a></td>';
                         }else{
-                            echo '<td id="bt5"><a href="logout.php"><button>↩</button></a></td>';
+                            echo '<td id="bt5"><a href="logout.php"><button>Logout</button></a></td>';
                             echo '<td id="name">'.$_SESSION['firstname'].'</td>';
                         }
                         ?>

@@ -162,7 +162,7 @@ header h1 {
 #bt5 button {
   position: relative;
   top: -95px;
-  left: 960%;
+  left: 550%;
   padding: 10px 17px;
   font-size: 16px;
   border: none;
@@ -177,7 +177,7 @@ header h1 {
 #name {
   position: relative;
   top: -95px;
-  left: 31%;
+  left: 29%;
   padding: 10px 17px;  
   font-size: 16px;
   border: none;
