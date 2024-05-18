@@ -1,5 +1,10 @@
 <?php
 
+session_start();
+
+if((isset($_SESSION['username'])) && (isset($_SESSION['firstname']))){
+    header("Location: MainPage.php");
+}
 
 include "koneksi.php";
 
