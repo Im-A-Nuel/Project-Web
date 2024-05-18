@@ -69,11 +69,7 @@ session_start();
 
 <?php
 
-$sql = "SELECT g.nama as genre, k.idKonser ,k.nama, DATE_FORMAT(k.tanggal, '%d %M %Y') as tanggal, k.tempat, k.gambar, CONCAT('Rp. ', FORMAT(t.harga, 0)) as harga 
-FROM konser k 
-INNER JOIN tiket t ON k.idKonser = t.idKonser 
-INNER JOIN band b ON k.idBand = b.idBand 
-INNER JOIN genre g ON b.idGenre = g.idGenre";
+$sql = "SELECT k.nama, k.tanggal, k.tempat, k.gambar, concat('Rp.',t.harga) as harga FROM konser k inner join tiket t on k.idKonser = t.idKonser";
 
 $result = $connection->query($sql);
 
