@@ -65,72 +65,63 @@ session_start();
 
     <main>
 
-        <h2>Daftar Tiket-Konser</h2>
+        <h2>Hasil Pencarian....</h2>
 
 <?php
 
-$sql = "SELECT g.nama as genre, k.idKonser ,k.nama, DATE_FORMAT(k.tanggal, '%d %M %Y') as tanggal, k.tempat, k.gambar, CONCAT('Rp. ', FORMAT(t.harga, 0)) as harga 
-FROM konser k 
-INNER JOIN tiket t ON k.idKonser = t.idKonser 
-INNER JOIN band b ON k.idBand = b.idBand 
-INNER JOIN genre g ON b.idGenre = g.idGenre";
+if(isset($_GET["search"])){
+    $query = $_GET["search"];
 
-$result = $connection->query($sql);
+    $sql = $connection->prepare("SELECT k.idKonser, k.nama, DATE_FORMAT(k.tanggal, '%d %M %Y') as tanggal, k.tempat, k.gambar, CONCAT('Rp. ', FORMAT(t.harga, 0)) as harga 
+    FROM konser k 
+    INNER JOIN tiket t ON k.idKonser = t.idKonser 
+    INNER JOIN band b ON k.idBand = b.idBand 
+    INNER JOIN genre g ON b.idGenre = g.idGenre
+    WHERE k.nama LIKE ? OR k.tempat LIKE ? OR k.tanggal LIKE ?");
 
-if ($result->num_rows > 0) {
-    $current_genre = "";
-    echo "<table>";
-    $concert_counter = 0; 
-    while($row = $result->fetch_assoc()) {
-        
-        if ($current_genre != $row['genre']) {
-            if ($current_genre != "") {
-            
-                while ($concert_counter % 4 != 0) {
-                    echo "<td></td>";
-                    $concert_counter++;
+    $likeQuery = "%" . $query . "%";
+    $sql->bind_param("sss", $likeQuery, $likeQuery, $likeQuery);
+    $sql->execute();
+    $result = $sql->get_result();
+
+    if ($result->num_rows > 0) {
+        echo "<table>";
+        $counter = 0;
+        while($row = $result->fetch_assoc()) {
+            if ($counter % 4 == 0) {
+                if ($counter != 0) {
+                    echo "</tr>";
                 }
-                echo "</tr>"; 
+                echo "<tr>";
             }
-           
-            echo "<tr>";
-            echo "<td> <h3 id='gen'>" . $row['genre'] . "</h3></td>";
-            echo "</tr>";
-            echo "<tr>";
-            echo "<td colspan='4'><hr id='line1'></td>";
-            echo "</tr>";
-            echo "<tr>";
-            $current_genre = $row['genre'];
-            $concert_counter = 0;
-        }
+            echo "<td>";
+            echo "<a href='detailPage.php?idKonser=" . $row['idKonser'] . "'>";
+            echo "<div class='container'>";
+            echo "<img id='gambar' src='" . $row['gambar'] . "' alt=''>";
+            echo "<h3>" . $row['nama'] . "</h3>";
+            echo "<p>" . $row['tanggal'] . "</p>";
+            echo "<p>" . $row['tempat'] . "</p>";
+            echo "<hr id='line2'>";
+            echo "<h4>" . $row['harga'] . "</h4>";
+            echo "</div>";
+            echo "</a>";
+            echo "</td>";
+            $counter++;
     
-        echo "<td>";
-        echo "<a href='detailPage.php?idKonser=" . $row['idKonser'] . "'>";
-        echo "<div class='container'>";
-        echo "<img id='gambar' src='" . $row['gambar'] . "' alt=''>";
-        echo "<h3>" . $row['nama'] . "</h3>";
-        echo "<p>" . $row['tanggal'] . "</p>";
-        echo "<p>" . $row['tempat'] . "</p>";
-        echo "<hr id='line2'>";
-        echo "<h4>" . $row['harga'] . "</h4>";
-        echo "</div>";
-        echo "</a>";
-        echo "</td>";
-        $concert_counter++; 
-
-        if ($concert_counter % 4 == 0) {
-            echo "</tr><tr>";
+            if ($counter % 4 == 0) {
+                echo "</tr>";
+            }
         }
+        if ($counter % 4 != 0) {
+            echo "</tr>";
+        }
+        echo "</table>";
+    } else {
+        echo "0 hasil";
     }
-    
-    while ($concert_counter % 4 != 0) {
-        echo "<td></td>";
-        $concert_counter++;
-    }
-    echo "</tr>";
-    echo "</table>";
-} else {
-    echo "0 hasil";
+}else if(!isset($_GET["search"])){
+    $query = "";
+    header("Location: mainPage.php");
 }
 
 $connection->close();

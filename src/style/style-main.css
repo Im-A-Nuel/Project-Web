@@ -162,7 +162,7 @@ header h1 {
 #bt5 button {
   position: relative;
   top: -95px;
-  left: 960%;
+  left: 550%;
   padding: 10px 17px;
   font-size: 16px;
   border: none;
@@ -177,7 +177,7 @@ header h1 {
 #name {
   position: relative;
   top: -95px;
-  left: 31%;
+  left: 29%;
   padding: 10px 17px;  
   font-size: 16px;
   border: none;
@@ -331,8 +331,8 @@ footer > p {
 #line1 {
   height: 2px;
   background-color: rgb(64, 68, 69);
-  margin-bottom: -15px;
-  margin-top: 15px;
+  margin-bottom: -5px;
+  margin-top: 25px;
   border: 1px solid rgb(64, 68, 69);
   border-radius: 5px;
   box-shadow: 2px 4px 7px rgb(74, 74, 74);
