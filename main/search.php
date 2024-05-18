@@ -72,9 +72,8 @@ session_start();
 if(isset($_GET["search"])){
     $query = $_GET["search"];
 
-    $sql = $connection->prepare("SELECT k.idKonser, k.nama, DATE_FORMAT(k.tanggal, '%d %M %Y') as tanggal, k.tempat, k.gambar, CONCAT('Rp. ', FORMAT(t.harga, 0)) as harga 
+    $sql = $connection->prepare("SELECT k.idKonser, k.nama, DATE_FORMAT(k.tanggal, '%d %M %Y') as tanggal, k.tempat, k.gambar, CONCAT('Rp. ', FORMAT(k.hargaReguler, 0)) as harga 
     FROM konser k 
-    INNER JOIN tiket t ON k.idKonser = t.idKonser 
     INNER JOIN band b ON k.idBand = b.idBand 
     INNER JOIN genre g ON b.idGenre = g.idGenre
     WHERE k.nama LIKE ? OR k.tempat LIKE ? OR k.tanggal LIKE ?");
