@@ -1,3 +1,14 @@
+<?php
+
+include "koneksi.php";
+
+session_start();
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -17,8 +28,8 @@
   <body>
     <header>
       <div id="hyperlink">
-        <a href="mainPage.html">Beranda</a>
-        <a href="detailPage.html">Detail</a>
+        <a href="mainPage.php">Beranda</a>
+        <a href="detailPage.php">Detail</a>
         <a href="pemesananPage.html">Pemesanan</a>
         <a href="#">Blog</a>
         <a href="#">Hubungi Kami</a>
@@ -34,9 +45,16 @@
                         <td id="bt1"><input type="text" placeholder="Cari konser seru disini"></td>
                         <td id="bt2"><button type="submit">search</button></td>
                     </form>
-                    <td id="bt3"><button>Register</button></td>
-                    <td id="bt4"><button>Login</button></td>
-                </tr>
+                    <?php 
+                        if(!(isset($_SESSION['username'])) && !(isset($_SESSION['firstname']))){
+                            echo '<td id="bt3"><a href="register.php"><button>Register</button></a></td>';
+                            echo '<td id="bt4"><a href="login.php"><button>Login</button></a></td>';
+                        }else{
+                            echo '<td id="bt5"><a href="logout.php"><button>Logout</button></a></td>';
+                            echo '<td id="name1">'.$_SESSION['firstname'].'</td>';
+                        }
+                        ?>
+                    </tr>
             </tbody>
         </table>
     </div>
@@ -47,29 +65,16 @@
     <div id="back">
       <nav>
         <br>
-        <a href="mainPage.html">Beranda ></a>
-        <a href="detailPage.html">Detail ></a>
-        <a href="pemesananPage.html">Pemesanan</a>
+        <a href="mainPage.php">Beranda ></a>
+        <a href="detailPage.php">Detail ></a>
+        <a href="pemesananPage.php">Pemesanan</a>
       </nav>
     </div>
-    
+
+
     <main>
 
-      <center>
-        <div id="gambar">
-          <table>
-            <tr>
-              <td><img src="../src/img/dewa19baru1.png" alt="gambardewa" /></td>
-              <td><img src="../src/img/DEWA-19pakai.png" alt="dewa" /></td>
-            </tr>
-          </table>
-        </div>
-      </center>
-
-      <center>
-        <div id="form">
-          <form action="#popup1" method="get">
-            <div id="detailPesan">
+    <div id="detailPesan">
               <table>
                 <tr>
                   <td>
@@ -224,120 +229,67 @@
             </div>
 
 
-
-            <div id="detailPesan1">
-              <table>
-                <tr>
-                  <td>
-                    <img
-                      src="/src/img/tempatDuduk.jpeg"
-                      alt=""
-                    />
-                  </td>
-
-                  <td>
-                    <h3>Pilih Tempat Duduk</h3>
-                    <h2>Posisi beserta Harga</h2>
+  <?php
+    if(isset($_GET["idKonser"])){
+      $id = $_GET["idKonser"];
+    }else{
+      // header("Location: mainPage.php");
+    }
 
 
-                    <table>
-                      <tr>
-                        <th>A</th>
-                        <th>B</th>
-                        <th>Cat1</th>
-                        <th>Cat2</th>
-                      </tr>
+      $sql = "SELECT t.idTiket, t.idKonser, tk.deskripsi, tk.harga, tk.stok 
+      FROM tiket t 
+      JOIN tiketkategori tk ON t.idTicketKategori = tk.idTicketKategori WHERE t.idKonser =".$id."";
+      $result = $connection->query($sql);
 
-                      <tr>
-                        <td>(Rp.50.000)</td>
-                        <td>(Rp.40.000)</td>
-                        <td>(Rp.30.000)</td>
-                        <td>(Rp.20.000)</td>
-                      </tr>
+      $paket_tiket = [];
+      if ($result->num_rows > 0) {
+      while($row = $result->fetch_assoc()) {
+      $paket_tiket[] = $row;
+      }
+      }
+  
+  ?>
 
-                      <tr>
-                        <td><input type="radio" name="sama" id="" />A1</td>
-                        <td><input type="radio" name="sama" id="" />B1</td>
-                        <td><input type="radio" name="sama" id="" />Cat1A</td>
-                        <td><input type="radio" name="sama" id="" />Cat2</td>
-                      </tr>
-
-                      <tr>
-                        <td><input type="radio" name="sama" id="" />A2</td>
-                        <td><input type="radio" name="sama" id="" />B2</td>
-                        <td><input type="radio" name="sama" id="" />Cat1B</td>
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
-
-
-
-
-                <tr>
-                  <td><h1>PILIH TIKET KONSER ANDA</h1></td>
-
-                  <td>
-                    <table>
-                      <tr>
+<div id="detailPesan1">
+    <table>
+        <tr>
+            <td><h1>PILIH TIKET KONSER ANDA</h1></td>
+            <td>
+                <table>
+                    <tr>
                         <td><h5>REGULER</h5></td>
-                      </tr>
-                      <tr>
+                    </tr>
+                    <tr>
                         <td>
-                          1 Ticket/Rp.200.000<input type="checkbox" name="1" />
+                            1 Ticket/Rp.200.000 <input type="checkbox" name="reguler" />
                         </td>
-                      </tr>
-                      <tr>
+                    </tr>
+                    <tr>
                         <td>
-                          <input type="number" step="1" min="0" max="100" />
+                            <input type="number" step="1" min="0" max="100" name="qty_reguler" />
                         </td>
-                      </tr>
-
-                      <tr>
+                    </tr>
+                    
+                    <tr>
                         <td><h5>PAKET</h5></td>
-                      </tr>
-                      <tr>
-                        <td>Bronze <input type="checkbox" name="2" /></td>
-                        <td>Gold <input type="checkbox" name="3" /></td>
-                        <td>VIP <input type="checkbox" name="4" /></td>
-                        <td>VVIP <input type="checkbox" name="5" /></td>
-                      </tr>
-
-                      <tr>
-                        <td>Rp.500.000/3</td>
-                        <td>Rp.1000.000/5</td>
-                        <td>Rp.1500.000/7</td>
-                        <td>Rp.2.000.000/12</td>
-                      </tr>
-
-                      <tr>
-                        <td>Tersedia 18</td>
-                        <td>Tersedia 18</td>
-                        <td>Tersedia 18</td>
-                        <td>Tersedia 18</td>
-                      </tr>
-
-                      <tr>
-                        <td>
-                          <input type="number" step="1" min="0" max="100" />
-                        </td>
-                        <td>
-                          <input type="number" step="1" min="0" max="100" />
-                        </td>
-                        <td>
-                          <input type="number" step="1" min="0" max="100" />
-                        </td>
-                        <td>
-                          <input type="number" step="1" min="0" max="100" />
-                        </td>
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
-              </table>
-            </div>
-            
-            <div id="detailPesan2">
+                    </tr>
+                    <?php foreach ($paket_tiket as $paket) : ?>
+                        <tr>
+                            <td><?php echo $paket['deskripsi']; ?> <input type="checkbox" name="paket[]" value="<?php echo $paket['idTiket']; ?>" /></td>
+                            <td>Rp.<?php echo number_format($paket['harga'], 0, ',', '.'); ?></td>
+                            <td>Tersedia <?php echo $paket['stok']; ?></td>
+                            <td>
+                                <input type="number" step="1" min="0" max="<?php echo $paket['stok']; ?>" name="qty_<?php echo $paket['idTiket']; ?>" />
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </table>
+            </td>
+        </tr>
+    </table>
+    </div>
+    <div id="detailPesan2">
               <table>
                 
                   <tr>
@@ -370,21 +322,12 @@
                   </tr>          
               </table>              
             </div>
-            <!-- <button onclick="document.getElementById('notification').style.display = 'block';"></button> -->
-          </form>
-        </div>
-        <div id="popup1" class="overlay">
-          <div class="popup">
-            <h2>BERHASIL!</h2>
-            <a class="close" href="#">&times;</a>
-            <div class="content">
-              Pembelian Tiket Konser Telah Berhasil Dilakukan!
-            </div>
-          </div>
-        </div>
-      </center>
+
+
     </main>
 
+
+    
     <footer>
       <div id="rincianfooter">
         <center>

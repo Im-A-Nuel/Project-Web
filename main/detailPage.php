@@ -121,7 +121,7 @@ while($baris = $hasil_paket->fetch_assoc()) {
             <tr>
               <td>
                 <span
-                  ><a href="pemesananPage.html"
+                  ><a href="pemesananPage.php?idKonser=<?php echo $konser['idKonser']; ?>"
                     >PESAN TIKET DISINI</a
                   ></span
                 >
