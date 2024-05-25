@@ -4,6 +4,33 @@ include "koneksi.php";
 
 session_start();
 
+if(isset($_GET["idKonser"])){
+  $id = $_GET["idKonser"];
+}else{
+  // header("Location: mainPage.php");
+}
+
+
+$sql1 = "SELECT nama from konser WHERE idKonser = ".$id."";
+$hasil = $connection->query($sql1);
+while($new = $hasil->fetch_assoc()){
+  $nama = $new["nama"];
+}
+
+
+
+  $sql = "SELECT t.idTiket, t.idKonser, tk.deskripsi, tk.harga, tk.stok
+  FROM tiket t 
+  INNER JOIN tiketkategori tk ON t.idTicketKategori = tk.idTicketKategori WHERE t.idKonser =".$id."";
+  $result = $connection->query($sql);
+
+  $paket_tiket = [];
+  if ($result->num_rows > 0) {
+  while($row = $result->fetch_assoc()) {
+  $paket_tiket[] = $row;
+  }
+  }
+
 
 
 ?>
@@ -15,7 +42,7 @@ session_start();
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pemesanan</title>
-    <link rel="stylesheet" href="..\src\style\style-pemesanan.css" />
+    <link rel="stylesheet" href="..\src\style\stylebar.css" />
 
     <link rel="icon" href="../src/img/logo-removebg-preview.png" type="image/x-icon" />
     <link
@@ -30,7 +57,7 @@ session_start();
       <div id="hyperlink">
         <a href="mainPage.php">Beranda</a>
         <a href="detailPage.php">Detail</a>
-        <a href="pemesananPage.html">Pemesanan</a>
+        <a href="pemesananPage.php">Pemesanan</a>
         <a href="#">Blog</a>
         <a href="#">Hubungi Kami</a>
     </div>
@@ -72,8 +99,26 @@ session_start();
     </div>
 
 
+
+    
     <main>
 
+    <center>
+        <div id="gambar">
+          <table>
+            <tr>
+              <td><img src="../src/img/dewa19baru1.png" alt="gambardewa" /></td>
+              <!-- <td><img src="../src/img/DEWA-19pakai.png" alt="dewa" /></td> -->
+            </tr>
+          </table>
+        </div>
+      </center>
+
+
+
+      <center>
+      <div id="form">
+<form action="" method="post">
     <div id="detailPesan">
               <table>
                 <tr>
@@ -83,7 +128,7 @@ session_start();
                         <td><h5>Detail Pemesanan Tiket</h5></td>
                       </tr>
                       <tr>
-                        <td><p>Tiket Dewa 19</p></td>
+                        <td><p><?php echo $nama;?></p></td>
                       </tr>
                     </table>
                   </td>
@@ -229,27 +274,6 @@ session_start();
             </div>
 
 
-  <?php
-    if(isset($_GET["idKonser"])){
-      $id = $_GET["idKonser"];
-    }else{
-      // header("Location: mainPage.php");
-    }
-
-
-      $sql = "SELECT t.idTiket, t.idKonser, tk.deskripsi, tk.harga, tk.stok 
-      FROM tiket t 
-      JOIN tiketkategori tk ON t.idTicketKategori = tk.idTicketKategori WHERE t.idKonser =".$id."";
-      $result = $connection->query($sql);
-
-      $paket_tiket = [];
-      if ($result->num_rows > 0) {
-      while($row = $result->fetch_assoc()) {
-      $paket_tiket[] = $row;
-      }
-      }
-  
-  ?>
 
 <div id="detailPesan1">
     <table>
@@ -316,14 +340,15 @@ session_start();
                       </table>
                       <input type="submit" value="kirim"/>
                       <input type="reset" value="reset" />
-
+                      
 
                     </td>
                   </tr>          
               </table>              
             </div>
-
-
+          </form>
+          </div>
+          </center>
     </main>
 
 

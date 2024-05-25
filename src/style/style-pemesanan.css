@@ -188,16 +188,15 @@ body {
 
 body main div#gambar{
     margin-top: 60px;
-}
+} */
 
-body main div#gambar table tr td img{
-    width: 550px;
-    height:350px;
+body main center div#gambar table tr td img{
+    width: 1000px;
+    height:400px;
     border-radius: 30px;
     padding:1px;
     margin-left: 15px;
-    box-shadow: 1px 20px 20px 1px silver;
-    
+    box-shadow: 1px 20px 20px 1px silver;   
 }
 
 
