@@ -19,7 +19,7 @@ if(isset($_POST["username"]) && isset($_POST["password"])){
 
     if($result->num_rows > 0){
         $row = $result->fetch_assoc();
-        
+        $_SESSION["idUser"] = $row["idUser"];
         $_SESSION["username"] = $_POST["username"];
         $_SESSION["firstname"] = $row["firstname"];
     

@@ -188,11 +188,11 @@ body {
 
 body main div#gambar{
     margin-top: 60px;
-} */
+} 
 
 body main center div#gambar table tr td img{
-    width: 1000px;
-    height:400px;
+    width: 800px;
+    height:500px;
     border-radius: 30px;
     padding:1px;
     margin-left: 15px;

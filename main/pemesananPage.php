@@ -4,6 +4,10 @@ include "koneksi.php";
 
 session_start();
 
+if(isset($_SESSION["idUser"])){
+  $idUser = $_SESSION["idUser"];
+}
+
 if(isset($_GET["idKonser"])){
   $id = $_GET["idKonser"];
 }else{
@@ -11,10 +15,12 @@ if(isset($_GET["idKonser"])){
 }
 
 
-$sql1 = "SELECT nama from konser WHERE idKonser = ".$id."";
+$sql1 = "SELECT idKonser, nama, gambar from konser WHERE idKonser = ".$id."";
 $hasil = $connection->query($sql1);
 while($new = $hasil->fetch_assoc()){
+  $idKonser = $new['idKonser'];
   $nama = $new["nama"];
+  $gambar = $new["gambar"];
 }
 
 
@@ -42,7 +48,7 @@ while($new = $hasil->fetch_assoc()){
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pemesanan</title>
-    <link rel="stylesheet" href="..\src\style\stylebar.css" />
+    <link rel="stylesheet" href="..\src\style\style-pemesanan.css" />
 
     <link rel="icon" href="../src/img/logo-removebg-preview.png" type="image/x-icon" />
     <link
@@ -68,10 +74,10 @@ while($new = $hasil->fetch_assoc()){
                 <tr>
                     <td><img id="logo2" src="../src/img/logo_ticket_new.png" alt=""></td>
                     <td><img id="logo1" src="../src/img/E-Ticket.png" alt=""></td>
-                    <form id="form" action="#">
-                        <td id="bt1"><input type="text" placeholder="Cari konser seru disini"></td>
-                        <td id="bt2"><button type="submit">search</button></td>
-                    </form>
+                    <form id="form" action="search.php" method="get">
+                          <td id="bt1"><input type="text" name="search" placeholder="Cari konser seru disini"></td>
+                          <td id="bt2"><button type="submit">search</button></td>
+                        </form>
                     <?php 
                         if(!(isset($_SESSION['username'])) && !(isset($_SESSION['firstname']))){
                             echo '<td id="bt3"><a href="register.php"><button>Register</button></a></td>';
@@ -93,7 +99,7 @@ while($new = $hasil->fetch_assoc()){
       <nav>
         <br>
         <a href="mainPage.php">Beranda ></a>
-        <a href="detailPage.php">Detail ></a>
+        <a href="detailPage.php?idKonser=<?php echo $idKonser?>">Detail ></a>
         <a href="pemesananPage.php">Pemesanan</a>
       </nav>
     </div>
@@ -107,7 +113,7 @@ while($new = $hasil->fetch_assoc()){
         <div id="gambar">
           <table>
             <tr>
-              <td><img src="../src/img/dewa19baru1.png" alt="gambardewa" /></td>
+              <td><img src="<?php echo $gambar ?>" alt="gambardewa" /></td>
               <!-- <td><img src="../src/img/DEWA-19pakai.png" alt="dewa" /></td> -->
             </tr>
           </table>
@@ -250,20 +256,17 @@ while($new = $hasil->fetch_assoc()){
                             <td>
                               <label for="kelamindata" style="font-weight:bold;">Jenis Kelamin</label>
                               <br />
-                              <select name="" id="kelamindata" required>
-                                <option value="">pilih</option>
-                                <option value="">Laki-Laki</option>
-                                <option value="">perempuan</option>
+                              <select name="kelamindata" id="kelamindata" required>
+                                  <option value="">pilih</option>
+                                  <option value="Laki-Laki">Laki-Laki</option>
+                                  <option value="Perempuan">Perempuan</option>
                               </select>
-                            </td>
                           
                           
                         </tr>
                       </tbody>
                     
                     </table>
-
-
                     <p>
                       Pastikan Data Diri Yang Anda Isi Sudah Sesuai
                     </p>
@@ -286,25 +289,25 @@ while($new = $hasil->fetch_assoc()){
                     </tr>
                     <tr>
                         <td>
-                            1 Ticket/Rp.200.000 <input type="checkbox" name="reguler" />
+                            1 Ticket/Rp.200.000 <input type="checkbox" name="reguler" id="reguler" />
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <input type="number" step="1" min="0" max="100" name="qty_reguler" />
+                            <input type="number" step="1" min="0" max="100" name="qty_reguler" id="qty_reguler" value="0" />
                         </td>
                     </tr>
-                    
+
                     <tr>
                         <td><h5>PAKET</h5></td>
                     </tr>
                     <?php foreach ($paket_tiket as $paket) : ?>
                         <tr>
-                            <td><?php echo $paket['deskripsi']; ?> <input type="checkbox" name="paket[]" value="<?php echo $paket['idTiket']; ?>" /></td>
+                            <td><?php echo $paket['deskripsi']; ?> <input type="checkbox" name="paket[]" value="<?php echo $paket['idTiket']; ?>" class="paket" data-harga="<?php echo $paket['harga']; ?>" /></td>
                             <td>Rp.<?php echo number_format($paket['harga'], 0, ',', '.'); ?></td>
                             <td>Tersedia <?php echo $paket['stok']; ?></td>
                             <td>
-                                <input type="number" step="1" min="0" max="<?php echo $paket['stok']; ?>" name="qty_<?php echo $paket['idTiket']; ?>" />
+                                <input type="number" step="1" min="0" max="<?php echo $paket['stok']; ?>" name="qty_<?php echo $paket['idTiket']; ?>" class="qty_paket" value="0" />
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -312,45 +315,178 @@ while($new = $hasil->fetch_assoc()){
             </td>
         </tr>
     </table>
-    </div>
-    <div id="detailPesan2">
-              <table>
-                
-                  <tr>
-                    <td><b>Pembayaran</b></td>
-                    <td>
-                      <table>
-                        <tr class="pesanan">
-                          <td><input type="radio" name="bayar" id="" />E-Money</td>
-                        </tr>
-                        <tr class="pesanan">
-                          <td><input type="radio" name="bayar" id="" />Debit</td>
-                        </tr>
-                        <tr class="pesanan">
-                          <td><input type="radio" name="bayar" id="" />Indomaret</td>
-                        </tr>
-                        <tr>
-                          <td>
+</div>
+<div id="detailPesan2">
+    <table>
+        <tr>
+            <td><b>Pembayaran</b></td>
+            <td>
+                <table>
+                    <tr class="pesanan">
+                        <td><input type="radio" name="bayar" id="" />E-Money</td>
+                    </tr>
+                    <tr class="pesanan">
+                        <td><input type="radio" name="bayar" id="" />Debit</td>
+                    </tr>
+                    <tr class="pesanan">
+                        <td><input type="radio" name="bayar" id="" />Indomaret</td>
+                    </tr>
+                    <tr>
+                        <td>
                             <p>
-                              <b>Harga Total</b>
+                                <b>Harga Total</b>
                             </p>
-                            <p>Rp 5.200.000</p>
-                          </td>
-                        </tr>
-                      </table>
-                      <input type="submit" value="kirim"/>
-                      <input type="reset" value="reset" />
-                      
-
-                    </td>
-                  </tr>          
-              </table>              
-            </div>
+                            <p id="totalHarga">Rp 0</p>
+                        </td>
+                    </tr>
+                </table>
+                <input type="submit" value="kirim"/>
+                <input type="reset" value="reset" onclick="resetForm()"/>
+            </td>
+        </tr>
+    </table>
+</div>
           </form>
           </div>
           </center>
     </main>
 
+    <script>
+function calculateTotal() {
+    let total = 0;
+
+    // Reguler ticket
+    const regulerCheckbox = document.getElementById('reguler');
+    if (regulerCheckbox.checked) {
+        const qtyReguler = parseInt(document.getElementById('qty_reguler').value) || 0;
+        total += 200000 * qtyReguler;
+    }
+
+    // Paket tickets
+    const paketCheckboxes = document.querySelectorAll('.paket');
+    paketCheckboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+            const id = checkbox.value;
+            const harga = parseInt(checkbox.dataset.harga);
+            const qtyPaket = parseInt(document.querySelector(`input[name="qty_${id}"]`).value) || 0;
+            total += harga * qtyPaket;
+        }
+    });
+
+    document.getElementById('totalHarga').innerText = 'Rp ' + total.toLocaleString('id-ID');
+}
+
+function resetForm() {
+    document.getElementById('totalHarga').innerText = 'Rp 0';
+}
+
+document.querySelectorAll('input[type="checkbox"], input[type="number"]').forEach(input => {
+    input.addEventListener('change', calculateTotal);
+});
+
+</script>
+
+<?php
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  // Ambil data dari form
+  $nama_lengkap = $_POST['namaPesan'];
+  $no_telp = $_POST['nomerPesan'];
+  $email = $_POST['e-mailPesan'];
+  $nik = $_POST['nikPesan'];
+  $tanggal_lahir = $_POST['tanggalLahirPesan'];
+  $jenis_kelamin = isset($_POST['kelamindata']) ? $_POST['kelamindata'] : null;
+  $pembayaran = $_POST['bayar'];
+  $total_harga = 0; // Inisialisasi harga total
+
+  // Hitung total harga dan update stok
+  if (isset($_POST['reguler']) && $_POST['qty_reguler'] > 0) {
+      $qty_reguler = (int)$_POST['qty_reguler'];
+      $harga_reguler = 200000;
+      $total_harga += $qty_reguler * $harga_reguler;
+
+      // Update stok reguler (assuming idTicketKategori = 'reguler')
+      $stmt = $connection->prepare("UPDATE tiketkategori SET stok = stok - ? WHERE idTicketKategori = 'reguler'");
+      $stmt->bind_param("i", $qty_reguler);
+      if (!$stmt->execute()) {
+          echo "Error updating reguler ticket stock: " . $stmt->error;
+      }
+      $stmt->close();
+  }
+
+  if (isset($_POST['paket'])) {
+      foreach ($_POST['paket'] as $paket_id) {
+          $qty_paket = (int)$_POST['qty_' . $paket_id];
+          if ($qty_paket > 0) {
+              $stmt = $connection->prepare("SELECT harga, stok FROM tiketkategori WHERE idTicketKategori = ?");
+              $stmt->bind_param("s", $paket_id);
+              $stmt->execute();
+              $stmt->bind_result($harga_paket, $stok_paket);
+              $stmt->fetch();
+              $stmt->close();
+
+              $total_harga += $qty_paket * $harga_paket;
+
+              // Update stok paket
+              $stmt = $connection->prepare("UPDATE tiketkategori SET stok = stok - ? WHERE idTicketKategori = ?");
+              $stmt->bind_param("is", $qty_paket, $paket_id);
+              if (!$stmt->execute()) {
+                  echo "Error updating paket ticket stock: " . $stmt->error;
+              }
+              $stmt->close();
+          }
+      }
+  }
+
+  // Insert data pemesanan ke database
+  $stmt = $connection->prepare("INSERT INTO pemesanan (nama_lengkap, no_telp, email, nik, tanggal_lahir, jenis_kelamin, pembayaran, total_harga) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+  $stmt->bind_param("sssssssi", $nama_lengkap, $no_telp, $email, $nik, $tanggal_lahir, $jenis_kelamin, $pembayaran, $total_harga);
+  if (!$stmt->execute()) {
+      echo "Error inserting pemesanan: " . $stmt->error;
+  }
+  $stmt->close();
+
+  // Retrieve last inserted id
+  $last_id = $connection->insert_id;
+
+  // Assume the user ID is available from session or other means
+
+  $idUserOrder = $idUser; // Ambil idUser dari sesi pengguna yang sedang login
+
+  // Insert data pembelian to pembelian table
+  if (isset($_POST['reguler']) && $_POST['qty_reguler'] > 0) {
+      $qty_reguler = (int)$_POST['qty_reguler'];
+      for ($i = 0; $i < $qty_reguler; $i++) {
+          $stmt = $connection->prepare("INSERT INTO pembelian (idTiket, idUserOrder) VALUES (?, ?)");
+          $stmt->bind_param("ii", $last_id, $idUserOrder);
+          if (!$stmt->execute()) {
+              echo "Error inserting pembelian reguler: " . $stmt->error;
+          }
+          $stmt->close();
+      }
+  }
+
+  if (isset($_POST['paket'])) {
+      foreach ($_POST['paket'] as $paket_id) {
+          $qty_paket = (int)$_POST['qty_' . $paket_id];
+          if ($qty_paket > 0) {
+              for ($i = 0; $i < $qty_paket; $i++) {
+                  $stmt = $connection->prepare("INSERT INTO pembelian (idTiket, idUserOrder) VALUES (?, ?)");
+                  $stmt->bind_param("ii", $last_id, $idUserOrder);
+                  if (!$stmt->execute()) {
+                      echo "Error inserting pembelian paket: " . $stmt->error;
+                  }
+                  $stmt->close();
+              }
+          }
+      }
+  }
+
+  echo "Pemesanan berhasil!";
+}
+
+// $connection->close();
+?>
 
     
     <footer>
