@@ -376,13 +376,14 @@ function calculateTotal() {
     document.getElementById('totalHarga').innerText = 'Rp ' + total.toLocaleString('id-ID');
 }
 
-function resetForm() {
-    document.getElementById('totalHarga').innerText = 'Rp 0';
-}
+// function resetForm() {
+//     document.getElementById('totalHarga').innerText = 'Rp 0';
+// }
 
 document.querySelectorAll('input[type="checkbox"], input[type="number"]').forEach(input => {
     input.addEventListener('change', calculateTotal);
 });
+
 
 </script>
 
@@ -399,13 +400,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $pembayaran = $_POST['bayar'];
   $total_harga = 0; // Inisialisasi harga total
 
-  // Hitung total harga dan update stok
+  // Periksa dan hitung total harga tiket reguler
   if (isset($_POST['reguler']) && $_POST['qty_reguler'] > 0) {
       $qty_reguler = (int)$_POST['qty_reguler'];
       $harga_reguler = 200000;
       $total_harga += $qty_reguler * $harga_reguler;
 
-      // Update stok reguler (assuming idTicketKategori = 'reguler')
+      // Update stok reguler
       $stmt = $connection->prepare("UPDATE tiketkategori SET stok = stok - ? WHERE idTicketKategori = 'reguler'");
       $stmt->bind_param("i", $qty_reguler);
       if (!$stmt->execute()) {
@@ -414,6 +415,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $stmt->close();
   }
 
+  // Periksa dan hitung total harga paket tiket
   if (isset($_POST['paket'])) {
       foreach ($_POST['paket'] as $paket_id) {
           $qty_paket = (int)$_POST['qty_' . $paket_id];
@@ -450,7 +452,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $last_id = $connection->insert_id;
 
   // Assume the user ID is available from session or other means
-
   $idUserOrder = $idUser; // Ambil idUser dari sesi pengguna yang sedang login
 
   // Insert data pembelian to pembelian table
