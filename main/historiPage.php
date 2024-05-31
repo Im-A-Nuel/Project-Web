@@ -20,7 +20,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tiket-Konser</title>
     <link rel="icon" href="../src/img/logo-removebg-preview.png">
-    <link rel="stylesheet" href="..\src\style\style-main.css">
+    <link rel="stylesheet" href="..\src\style\style-histori.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
@@ -65,76 +65,6 @@ session_start();
 
     <main>
 
-        <h2>Daftar Tiket-Konser</h2>
-
-<?php
-
-$sql = "SELECT g.nama as genre, k.idKonser ,k.nama, DATE_FORMAT(k.tanggal, '%d %M %Y') as tanggal, k.tempat, k.gambar, CONCAT('Rp. ', FORMAT(k.hargaReguler, 0)) as harga 
-FROM konser k 
-INNER JOIN band b ON k.idBand = b.idBand 
-INNER JOIN genre g ON b.idGenre = g.idGenre";
-
-$result = $connection->query($sql);
-
-if ($result->num_rows > 0) {
-    $current_genre = "";
-    echo "<table>";
-    $concert_counter = 0; 
-    while($row = $result->fetch_assoc()) {
-        
-        if ($current_genre != $row['genre']) {
-            if ($current_genre != "") {
-            
-                while ($concert_counter % 4 != 0) {
-                    echo "<td></td>";
-                    $concert_counter++;
-                }
-                echo "</tr>"; 
-            }
-           
-            echo "<tr>";
-            echo "<td> <h3 id='gen'>" . $row['genre'] . "</h3></td>";
-            echo "</tr>";
-            echo "<tr>";
-            echo "<td colspan='4'><hr id='line1'></td>";
-            echo "</tr>";
-            echo "<tr>";
-            $current_genre = $row['genre'];
-            $concert_counter = 0;
-        }
-    
-        echo "<td>";
-        echo "<a href='detailPage.php?idKonser=" . $row['idKonser'] . "'>";
-        echo "<div class='container'>";
-        echo "<img id='gambar' src='" . $row['gambar'] . "' alt=''>";
-        echo "<h3>" . $row['nama'] . "</h3>";
-        echo "<p>" . $row['tanggal'] . "</p>";
-        echo "<p>" . $row['tempat'] . "</p>";
-        echo "<hr id='line2'>";
-        echo "<h4>" . $row['harga'] . "</h4>";
-        echo "</div>";
-        echo "</a>";
-        echo "</td>";
-        $concert_counter++; 
-
-        if ($concert_counter % 4 == 0) {
-            echo "</tr><tr>";
-        }
-    }
-    
-    while ($concert_counter % 4 != 0) {
-        echo "<td></td>";
-        $concert_counter++;
-    }
-    echo "</tr>";
-    echo "</table>";
-} else {
-    echo "0 hasil";
-}
-
-$connection->close();
-
-?>
         
 
     </main>
