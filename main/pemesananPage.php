@@ -62,7 +62,7 @@ while($new = $hasil->fetch_assoc()){
     <header>
       <div id="hyperlink">
         <a href="mainPage.php">Beranda</a>
-        <a href="detailPage.php">Detail</a>
+        <a href="detailPage.php?">Detail</a>
         <a href="pemesananPage.php">Pemesanan</a>
         <a href="#">Blog</a>
         <a href="#">Hubungi Kami</a>
@@ -285,22 +285,21 @@ while($new = $hasil->fetch_assoc()){
             <td>
                 <table>
                     <tr>
-                        <td><h5>REGULER</h5></td>
+                        <td><h5>PAKET</h5></td>
                     </tr>
                     <tr>
                         <td>
-                            1 Ticket/Rp.200.000 <input type="checkbox" name="reguler" id="reguler" />
+                            1 Ticket <input type="checkbox" name="reguler" id="reguler" />
                         </td>
-                    </tr>
-                    <tr>
+                        <td>
+                            Rp.200.000
+                        </td>
+                        <td></td>
                         <td>
                             <input type="number" step="1" min="0" max="100" name="qty_reguler" id="qty_reguler" value="0" />
                         </td>
                     </tr>
 
-                    <tr>
-                        <td><h5>PAKET</h5></td>
-                    </tr>
                     <?php foreach ($paket_tiket as $paket) : ?>
                         <tr>
                             <td><?php echo $paket['deskripsi']; ?> <input type="checkbox" name="paket[]" value="<?php echo $paket['idTiket']; ?>" class="paket" data-harga="<?php echo $paket['harga']; ?>" /></td>
@@ -323,13 +322,13 @@ while($new = $hasil->fetch_assoc()){
             <td>
                 <table>
                     <tr class="pesanan">
-                        <td><input type="radio" name="bayar" id="" />E-Money</td>
+                        <td><input type="radio" name="bayar" value="E-Money" />E-Money</td>
                     </tr>
                     <tr class="pesanan">
-                        <td><input type="radio" name="bayar" id="" />Debit</td>
+                        <td><input type="radio" name="bayar" value="Debit" />Debit</td>
                     </tr>
                     <tr class="pesanan">
-                        <td><input type="radio" name="bayar" id="" />Indomaret</td>
+                        <td><input type="radio" name="bayar" value="Indomaret" />Indomaret</td>
                     </tr>
                     <tr>
                         <td>
@@ -340,7 +339,7 @@ while($new = $hasil->fetch_assoc()){
                         </td>
                     </tr>
                 </table>
-                <input type="submit" value="kirim"/>
+                <input type="submit" value="Simpan"/>
                 <input type="reset" value="reset" onclick="resetForm()"/>
             </td>
         </tr>
@@ -355,14 +354,14 @@ while($new = $hasil->fetch_assoc()){
 function calculateTotal() {
     let total = 0;
 
-    // Reguler ticket
+    // tiket reguler
     const regulerCheckbox = document.getElementById('reguler');
     if (regulerCheckbox.checked) {
         const qtyReguler = parseInt(document.getElementById('qty_reguler').value) || 0;
         total += 200000 * qtyReguler;
     }
 
-    // Paket tickets
+    // tiket paket
     const paketCheckboxes = document.querySelectorAll('.paket');
     paketCheckboxes.forEach(checkbox => {
         if (checkbox.checked) {
@@ -419,9 +418,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (isset($_POST['paket'])) {
       foreach ($_POST['paket'] as $paket_id) {
           $qty_paket = (int)$_POST['qty_' . $paket_id];
+          $x = $nama;
+          $parts = explode(" ", $x);
+          $last_part = end($parts);
+          $tiket = $last_part.$paket_id;
           if ($qty_paket > 0) {
               $stmt = $connection->prepare("SELECT harga, stok FROM tiketkategori WHERE idTicketKategori = ?");
-              $stmt->bind_param("s", $paket_id);
+              $stmt->bind_param("s", $tiket);
               $stmt->execute();
               $stmt->bind_result($harga_paket, $stok_paket);
               $stmt->fetch();
@@ -431,7 +434,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
               // Update stok paket
               $stmt = $connection->prepare("UPDATE tiketkategori SET stok = stok - ? WHERE idTicketKategori = ?");
-              $stmt->bind_param("is", $qty_paket, $paket_id);
+              $stmt->bind_param("is", $qty_paket, $tiket);
               if (!$stmt->execute()) {
                   echo "Error updating paket ticket stock: " . $stmt->error;
               }
@@ -448,20 +451,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
   $stmt->close();
 
-  // Retrieve last inserted id
-  $last_id = $connection->insert_id;
-
-  // Assume the user ID is available from session or other means
   $idUserOrder = $idUser; // Ambil idUser dari sesi pengguna yang sedang login
+
+  if ($idUserOrder == null){
+    echo "<center> <h1> Silahkan login dahulu </h1> </center>";
+  }
 
   // Insert data pembelian to pembelian table
   if (isset($_POST['reguler']) && $_POST['qty_reguler'] > 0) {
       $qty_reguler = (int)$_POST['qty_reguler'];
       for ($i = 0; $i < $qty_reguler; $i++) {
           $stmt = $connection->prepare("INSERT INTO pembelian (idTiket, idUserOrder) VALUES (?, ?)");
-          $stmt->bind_param("ii", $last_id, $idUserOrder);
+          $stmt->bind_param("ii", $id, $idUserOrder);
           if (!$stmt->execute()) {
-              echo "Error inserting pembelian reguler: " . $stmt->error;
+              echo "gagal pembelian reguler: " . $stmt->error;
           }
           $stmt->close();
       }
@@ -473,9 +476,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           if ($qty_paket > 0) {
               for ($i = 0; $i < $qty_paket; $i++) {
                   $stmt = $connection->prepare("INSERT INTO pembelian (idTiket, idUserOrder) VALUES (?, ?)");
-                  $stmt->bind_param("ii", $last_id, $idUserOrder);
+                  $stmt->bind_param("ii", $id, $idUserOrder);
                   if (!$stmt->execute()) {
-                      echo "Error inserting pembelian paket: " . $stmt->error;
+                      echo "gagal pembelian paket: " . $stmt->error;
                   }
                   $stmt->close();
               }
@@ -483,7 +486,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       }
   }
 
-  echo "Pemesanan berhasil!";
+  echo "<center> <h1> Pemesanan berhasil! </h1> </center>";
 }
 
 // $connection->close();
