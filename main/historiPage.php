@@ -31,7 +31,7 @@ session_start();
         <div id="hyperlink">
             <a href="mainPage.php">Beranda</a>
             <a href="#">Tentang Tiket</a>
-            <a href="historiPage.php">Histori</a>
+            <a href="historiPage.php">Histori Pemesanan</a>
             <a href="#">Blog</a>
             <a href="#">Hubungi Kami</a>
         </div>
@@ -64,6 +64,181 @@ session_start();
     </header>
 
     <main>
+
+    
+<center>
+    
+    <h1>Histori Pemesanan</h1>
+    
+        <br>
+        <br>
+        <br>
+    <a href="mainPage.php">Kembali ke halaman utama </a>
+    
+    
+    <div id="detailhistory">
+    
+    <table>
+        <tr>
+            <th>STATUS: SUDAH BAYAR ||</th>
+            <th>WAKTU PEMESANAN: 9.30 29 juni 2024</th>
+        </tr>
+    </table>
+    
+    <p>User Account: Imanuel</p>
+    <p>Nama Lengkap: Imanuel putra faot</p>
+    <p>No telp: 12312312312</p>
+    <p>email: imanuel@gmail.com</p>
+            
+        
+    <table>
+    <tr>
+        <th>(jenis/paket) Tiket</th>
+        <th>jumlah Pesanan</th>
+        <th>harga satuan</th>
+    </tr>    
+    <tr>
+        <td>reguler</td>
+        <td>2</td>
+        <td>20.000</td>
+    </tr>
+    
+    <tr>
+        <td>VIP</td>
+        <td>3</td>
+        <td>30.000</td>
+    </tr>
+    <tr>
+        <td>VVIP</td>
+        <td>5</td>
+        <td>20.000</td>
+    </tr>
+    <tr>
+        <td>GOLD</td>
+        <td>10</td>
+        <td>50.000</td>
+    </tr>
+    
+    </table>
+    
+    
+    <p>waktu Pembayaran: 10.30 29 juni 2024</p>
+    <p>metode Pembayaran: Gopay</p>
+    <p>Total Pembayaran: Rp. 1.000.000</p>
+            
+    </div>
+    
+    
+    
+    
+    <div id="detailhistory">
+    
+    <table>
+        <tr>
+            <th>STATUS: SUDAH BAYAR ||</th>
+            <th>WAKTU PEMESANAN: 9.30 29 juni 2024</th>
+        </tr>
+    </table>
+    
+    <p>User Account: Imanuel</p>
+    <p>Nama Lengkap: Imanuel putra faot</p>
+    <p>No telp: 12312312312</p>
+    <p>email: imanuel@gmail.com</p>
+            
+        
+    <table>
+    <tr>
+        <th>(jenis/paket) Tiket</th>
+        <th>jumlah Pesanan</th>
+        <th>harga satuan</th>
+    </tr>    
+    <tr>
+        <td>reguler</td>
+        <td>2</td>
+        <td>20.000</td>
+    </tr>
+    
+    <tr>
+        <td>VIP</td>
+        <td>3</td>
+        <td>30.000</td>
+    </tr>
+    <tr>
+        <td>VVIP</td>
+        <td>5</td>
+        <td>20.000</td>
+    </tr>
+    <tr>
+        <td>GOLD</td>
+        <td>10</td>
+        <td>50.000</td>
+    </tr>
+    
+    </table>
+    
+    
+    <p>waktu Pembayaran: 10.30 29 juni 2024</p>
+    <p>metode Pembayaran: Gopay</p>
+    <p>Total Pembayaran: Rp. 1.000.000</p>
+            
+    </div>
+    
+    
+    
+    
+    
+    <div id="detailhistory">
+    
+    <table>
+        <tr>
+            <th>STATUS: SUDAH BAYAR ||</th>
+            <th>WAKTU PEMESANAN: 9.30 29 juni 2024</th>
+        </tr>
+    </table>
+    
+    <p>User Account: Imanuel</p>
+    <p>Nama Lengkap: Imanuel putra faot</p>
+    <p>No telp: 12312312312</p>
+    <p>email: imanuel@gmail.com</p>
+            
+        
+    <table>
+    <tr>
+        <th>(jenis/paket) Tiket</th>
+        <th>jumlah Pesanan</th>
+        <th>harga satuan</th>
+    </tr>    
+    <tr>
+        <td>reguler</td>
+        <td>2</td>
+        <td>20.000</td>
+    </tr>
+    
+    <tr>
+        <td>VIP</td>
+        <td>3</td>
+        <td>30.000</td>
+    </tr>
+    <tr>
+        <td>VVIP</td>
+        <td>5</td>
+        <td>20.000</td>
+    </tr>
+    <tr>
+        <td>GOLD</td>
+        <td>10</td>
+        <td>50.000</td>
+    </tr>
+    
+    </table>
+    
+    
+    <p>waktu Pembayaran: 10.30 29 juni 2024</p>
+    <p>metode Pembayaran: Gopay</p>
+    <p>Total Pembayaran: Rp. 1.000.000</p>
+            
+    </div>
+    </center>
 
         
 

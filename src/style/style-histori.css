@@ -242,6 +242,63 @@ body {
   main #gen {
     margin: 0px -10px -20px 0px;
   }
+
+  /* UTAMA HISTORY */
+
+  center h1 {
+    color : orange;
+    background-color: lightgoldenrodyellow;
+    margin-right: 200px;
+    margin-left: 200px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    border-radius:50px ;
+
+  }
+
+
+  body center a{
+    background-color : lightblue;
+    color:black;
+    font-weight: bold;
+    margin-left: 1000px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 50px;
+    padding-right: 10px;
+    padding-left: 10px;
+    box-shadow: 0 1px 1px 3px silver;
+
+
+    
+  }
+
+  body center a:hover{
+  background-color: lavender;
+
+  }
+
+
+  center div#detailhistory {
+    background-color: white;
+    margin-top: 20px;
+    margin-bottom: 100px;
+    margin-right: 400px;
+    margin-left: 400px;
+    box-shadow: 0 3px 5px 8px silver;
+    border-radius: 50px;
+    padding-top: 20px;
+    padding-bottom: 30px;
+  }
+
+
+
+
+
+
+
+  /* UTAMA History */
+  
   
   footer div#rincianfooter div#footerdata {
     margin-left: 27%;
