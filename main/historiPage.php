@@ -93,9 +93,9 @@ session_start();
         
     <table>
     <tr>
-        <th>(jenis/paket) Tiket</th>
-        <th>jumlah Pesanan</th>
-        <th>harga satuan</th>
+        <td><b>(jenis/paket) Tiket</b></td>
+        <td><b>jumlah Pesanan</b></td>
+        <td><b>harga satuan</b></td>
     </tr>    
     <tr>
         <td>reguler</td>
@@ -148,9 +148,9 @@ session_start();
         
     <table>
     <tr>
-        <th>(jenis/paket) Tiket</th>
-        <th>jumlah Pesanan</th>
-        <th>harga satuan</th>
+        <td><b>(jenis/paket) Tiket</b></td>
+        <td><b>jumlah Pesanan</b></td>
+        <td><b>harga satuan</b></td>
     </tr>    
     <tr>
         <td>reguler</td>
@@ -182,6 +182,7 @@ session_start();
     <p>Total Pembayaran: Rp. 1.000.000</p>
             
     </div>
+    
     
     
     
@@ -204,9 +205,9 @@ session_start();
         
     <table>
     <tr>
-        <th>(jenis/paket) Tiket</th>
-        <th>jumlah Pesanan</th>
-        <th>harga satuan</th>
+        <td><b>(jenis/paket) Tiket</b></td>
+        <td><b>jumlah Pesanan</b></td>
+        <td><b>harga satuan</b></td>
     </tr>    
     <tr>
         <td>reguler</td>
@@ -238,6 +239,7 @@ session_start();
     <p>Total Pembayaran: Rp. 1.000.000</p>
             
     </div>
+    
     </center>
 
         
