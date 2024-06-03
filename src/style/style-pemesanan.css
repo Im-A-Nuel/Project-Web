@@ -30,6 +30,11 @@
   color:white;
 }
 
+header {
+  position: sticky;
+  top: -1px;
+}
+
 #navbar {
   border: 1px solid lightblue;
   background-color: lightblue;

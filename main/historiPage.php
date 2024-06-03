@@ -4,9 +4,9 @@ include 'koneksi.php';
 
 session_start();
 
-// if(!(isset($_SESSION['username'])) && !(isset($_SESSION['firstname']))){
-//     header("Location: login.php");
-// }
+if(!(isset($_SESSION['username'])) && !(isset($_SESSION['firstname']))){
+    header("Location: login.php");
+}
 
 ?>
 

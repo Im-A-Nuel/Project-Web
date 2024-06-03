@@ -32,7 +32,7 @@ session_start();
         <div id="hyperlink">
             <a href="mainPage.php">Beranda</a>
             <a href="#">Tentang Tiket</a>
-            <a href="#">Biaya</a>
+            <a href="#">Pemesanan</a>
             <a href="#">Blog</a>
             <a href="#">Hubungi Kami</a>
         </div>

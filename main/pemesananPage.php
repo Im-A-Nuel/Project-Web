@@ -4,6 +4,10 @@ include "koneksi.php";
 
 session_start();
 
+if(!(isset($_SESSION['username'])) && !(isset($_SESSION['firstname']))){
+    header("Location: login.php");
+}
+
 if(isset($_SESSION["idUser"])){
   $idUser = $_SESSION["idUser"];
 }
@@ -37,8 +41,6 @@ while($new = $hasil->fetch_assoc()){
   }
   }
 
-
-
 ?>
 
 
@@ -62,7 +64,7 @@ while($new = $hasil->fetch_assoc()){
     <header>
       <div id="hyperlink">
         <a href="mainPage.php">Beranda</a>
-        <a href="detailPage.php?">Detail</a>
+        <a href="detailPage.php?">Tentang Tiket</a>
         <a href="pemesananPage.php">Pemesanan</a>
         <a href="#">Blog</a>
         <a href="#">Hubungi Kami</a>
