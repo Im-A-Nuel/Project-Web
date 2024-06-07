@@ -79,10 +79,9 @@ if(isset($_SESSION["idUser"])){
 <a href="mainPage.php">Kembali ke halaman utama </a>
 
 <?php
-$sql = "SELECT DISTINCT p.*
-FROM pemesanan p
-INNER JOIN pembelian b ON p.idUserOrder = b.idUserOrder
-WHERE b.idUserOrder = ".$idUser;
+    $sql = "SELECT p.id, p.nama_lengkap, p.no_telp, p.email, p.pembayaran, p.total_harga, p.waktu_pembayaran, p.waktu_pembelian, p.status_pembayaran, p.jumlah, t.deskripsi, t.harga 
+    FROM pemesanan p INNER JOIN tiketkategori t ON p.idTiketKategori = t.idTiketKategori WHERE p.idUserOrder = '$idUser' ORDER BY p.waktu_pembelian DESC";
+    
 $result = $connection->query($sql);
 
 if ($result->num_rows > 0) {
@@ -115,24 +114,9 @@ if ($result->num_rows > 0) {
                     <td><b>harga satuan</b></td>
                 </tr>    
                 <tr>
-                    <td>reguler</td>
-                    <td>2</td>
-                    <td>20.000</td>
-                </tr>
-                <tr>
-                    <td>VIP</td>
-                    <td>3</td>
-                    <td>30.000</td>
-                </tr>
-                <tr>
-                    <td>VVIP</td>
-                    <td>5</td>
-                    <td>20.000</td>
-                </tr>
-                <tr>
-                    <td>GOLD</td>
-                    <td>10</td>
-                    <td>50.000</td>
+                    <td><?php echo $row['deskripsi']; ?></td>
+                    <td><?php echo $row['jumlah']; ?></td>
+                    <td>Rp. <?php echo number_format($row['harga'], 0, ',', '.'); ?></td>
                 </tr>
             </table>
             
@@ -163,11 +147,10 @@ if ($result->num_rows > 0) {
         <?php
     }
 } else {
-    echo "No records found.";
+    echo "<h2> No records found. </h2>";
 }
 
 ?>
-    
     
     
     </center>

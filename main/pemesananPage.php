@@ -31,7 +31,7 @@ while($new = $hasil->fetch_assoc()){
 
   $sql = "SELECT t.idTiket, t.idKonser, tk.deskripsi, tk.harga, tk.stok
   FROM tiket t 
-  INNER JOIN tiketkategori tk ON t.idTicketKategori = tk.idTicketKategori WHERE t.idKonser =".$id."";
+  INNER JOIN tiketkategori tk ON t.idTiketKategori = tk.idTiketKategori WHERE t.idKonser =".$id."";
   $result = $connection->query($sql);
 
   $paket_tiket = [];
@@ -408,7 +408,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $total_harga += $qty_reguler * $harga_reguler;
 
       // Update stok reguler
-      $stmt = $connection->prepare("UPDATE tiketkategori SET stok = stok - ? WHERE idTicketKategori = 'reguler'");
+      $stmt = $connection->prepare("UPDATE tiketkategori SET stok = stok - ? WHERE idTiketKategori = 'reguler'");
       $stmt->bind_param("i", $qty_reguler);
       if (!$stmt->execute()) {
           echo "Error updating reguler ticket stock: " . $stmt->error;
@@ -425,7 +425,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           $last_part = end($parts);
           $tiket = $last_part.$paket_id;
           if ($qty_paket > 0) {
-              $stmt = $connection->prepare("SELECT harga, stok FROM tiketkategori WHERE idTicketKategori = ?");
+              $stmt = $connection->prepare("SELECT harga, stok FROM tiketkategori WHERE idTiketKategori = ?");
               $stmt->bind_param("s", $tiket);
               $stmt->execute();
               $stmt->bind_result($harga_paket, $stok_paket);
@@ -435,7 +435,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               $total_harga += $qty_paket * $harga_paket;
 
               // Update stok paket
-              $stmt = $connection->prepare("UPDATE tiketkategori SET stok = stok - ? WHERE idTicketKategori = ?");
+              $stmt = $connection->prepare("UPDATE tiketkategori SET stok = stok - ? WHERE idTiketKategori = ?");
               $stmt->bind_param("is", $qty_paket, $tiket);
               if (!$stmt->execute()) {
                   echo "Error updating paket ticket stock: " . $stmt->error;
@@ -445,13 +445,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       }
   }
 
-  // Insert data pemesanan ke database
-  $stmt = $connection->prepare("INSERT INTO pemesanan (idUserOrder,nama_lengkap, no_telp, email, nik, tanggal_lahir, jenis_kelamin, pembayaran, total_harga) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-  $stmt->bind_param("isssssssi",$idUser, $nama_lengkap, $no_telp, $email, $nik, $tanggal_lahir, $jenis_kelamin, $pembayaran, $total_harga);
-  if (!$stmt->execute()) {
-      echo "Error inserting pemesanan: " . $stmt->error;
-  }
-  $stmt->close();
+  // // Insert data pemesanan ke database
+  // $stmt = $connection->prepare("INSERT INTO pemesanan (idUserOrder,nama_lengkap, no_telp, email, nik, tanggal_lahir, jenis_kelamin, pembayaran, jumlah, total_harga) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+  // $stmt->bind_param("isssssssii",$idUser, $nama_lengkap, $no_telp, $email, $nik, $tanggal_lahir, $jenis_kelamin, $pembayaran, $jumlah, $total_harga);
+  // if (!$stmt->execute()) {
+  //     echo "Error inserting pemesanan: " . $stmt->error;
+  // }
+  // $stmt->close();
 
   $idUserOrder = $idUser; // Ambil idUser dari sesi pengguna yang sedang login
 
@@ -476,15 +476,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       foreach ($_POST['paket'] as $paket_id) {
           $qty_paket = (int)$_POST['qty_' . $paket_id];
           if ($qty_paket > 0) {
-              for ($i = 0; $i < $qty_paket; $i++) {
-                  $stmt = $connection->prepare("INSERT INTO pembelian (idTiketKategori, idUserOrder) VALUES (?, ?)");
-                  $stmt->bind_param("si", $tiket, $idUserOrder);
-                  if (!$stmt->execute()) {
-                      echo "gagal pembelian paket: " . $stmt->error;
-                  }
-                  $stmt->close();
+              // Insert data pemesanan ke database
+              $stmt = $connection->prepare("INSERT INTO pemesanan (idUserOrder,nama_lengkap, no_telp, email, nik, tanggal_lahir, jenis_kelamin, pembayaran, idTiketKategori, jumlah, total_harga) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?)");
+              $stmt->bind_param("issssssssii",$idUser, $nama_lengkap, $no_telp, $email, $nik, $tanggal_lahir, $jenis_kelamin, $pembayaran, $tiket, $qty_paket, $total_harga);
+              if (!$stmt->execute()) {
+                  echo "Error inserting pemesanan: " . $stmt->error;
               }
-          }
+              $stmt->close();
+              // for ($i = 0; $i < $qty_paket; $i++) {
+                  // $stmt = $connection->prepare("INSERT INTO pembelian (idTiketKategori, idUserOrder) VALUES (?, ?)");
+                  // $stmt->bind_param("si", $tiket, $idUserOrder);
+                  // if (!$stmt->execute()) {
+                  //     echo "gagal pembelian paket: " . $stmt->error;
+                  // }
+                  // $stmt->close();
+              }
+          // }
       }
   }
 
