@@ -483,15 +483,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   echo "Error inserting pemesanan: " . $stmt->error;
               }
               $stmt->close();
-              // for ($i = 0; $i < $qty_paket; $i++) {
-                  // $stmt = $connection->prepare("INSERT INTO pembelian (idTiketKategori, idUserOrder) VALUES (?, ?)");
-                  // $stmt->bind_param("si", $tiket, $idUserOrder);
-                  // if (!$stmt->execute()) {
-                  //     echo "gagal pembelian paket: " . $stmt->error;
-                  // }
-                  // $stmt->close();
               }
-          // }
       }
   }
 

@@ -68,14 +68,11 @@ if(isset($_SESSION["idUser"])){
 
     <main>
 
+        <h2>Histori Pemesanan</h2>
     
-<center>
+        <center>
 
-<h1>Histori Pemesanan</h1>
-    
-    <br>
-    <br>
-    <br>
+
 <a href="mainPage.php">Kembali ke halaman utama </a>
 
 <?php
