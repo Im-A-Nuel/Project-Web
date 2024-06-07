@@ -7,6 +7,9 @@ session_start();
 if(!(isset($_SESSION['username'])) && !(isset($_SESSION['firstname']))){
     header("Location: login.php");
 }
+if(isset($_SESSION["idUser"])){
+    $idUser = $_SESSION["idUser"];
+  }
 
 ?>
 
@@ -67,178 +70,105 @@ if(!(isset($_SESSION['username'])) && !(isset($_SESSION['firstname']))){
 
     
 <center>
+
+<h1>Histori Pemesanan</h1>
     
-    <h1>Histori Pemesanan</h1>
-    
-        <br>
-        <br>
-        <br>
-    <a href="mainPage.php">Kembali ke halaman utama </a>
-    
-    
-    <div id="detailhistory">
-    
-    <table>
-        <tr>
-            <th>STATUS: SUDAH BAYAR ||</th>
-            <th>WAKTU PEMESANAN: 9.30 29 juni 2024</th>
-        </tr>
-    </table>
-    
-    <p>User Account: Imanuel</p>
-    <p>Nama Lengkap: Imanuel putra faot</p>
-    <p>No telp: 12312312312</p>
-    <p>email: imanuel@gmail.com</p>
-            
-        
-    <table>
-    <tr>
-        <td><b>(jenis/paket) Tiket</b></td>
-        <td><b>jumlah Pesanan</b></td>
-        <td><b>harga satuan</b></td>
-    </tr>    
-    <tr>
-        <td>reguler</td>
-        <td>2</td>
-        <td>20.000</td>
-    </tr>
-    
-    <tr>
-        <td>VIP</td>
-        <td>3</td>
-        <td>30.000</td>
-    </tr>
-    <tr>
-        <td>VVIP</td>
-        <td>5</td>
-        <td>20.000</td>
-    </tr>
-    <tr>
-        <td>GOLD</td>
-        <td>10</td>
-        <td>50.000</td>
-    </tr>
-    
-    </table>
-    
-    
-    <p>waktu Pembayaran: 10.30 29 juni 2024</p>
-    <p>metode Pembayaran: Gopay</p>
-    <p>Total Pembayaran: Rp. 1.000.000</p>
-            
-    </div>
-    
-    
-    
+    <br>
+    <br>
+    <br>
+<a href="mainPage.php">Kembali ke halaman utama </a>
+
+<?php
+$sql = "SELECT DISTINCT p.*
+FROM pemesanan p
+INNER JOIN pembelian b ON p.idUserOrder = b.idUserOrder
+WHERE b.idUserOrder = ".$idUser;
+$result = $connection->query($sql);
+
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        $waktu_pembelian = new DateTime($row['waktu_pembelian']);
+        $waktu_pembayaran = $row['waktu_pembayaran'];
+        ?>
     
     <div id="detailhistory">
     
-    <table>
-        <tr>
-            <th>STATUS: SUDAH BAYAR ||</th>
-            <th>WAKTU PEMESANAN: 9.30 29 juni 2024</th>
-        </tr>
-    </table>
-    
-    <p>User Account: Imanuel</p>
-    <p>Nama Lengkap: Imanuel putra faot</p>
-    <p>No telp: 12312312312</p>
-    <p>email: imanuel@gmail.com</p>
+            <table>
+                <tr>
+                    <th>STATUS: <?php echo $row['status_pembayaran']; ?> ||</th>
+                    <th>WAKTU PEMESANAN: <?php echo $waktu_pembelian->format('H:i d M Y'); ?></th>
+                </tr>
+            </table>
+
+            <tr>
+                <td><p>Nama Lengkap: <?php echo $row['nama_lengkap']; ?></p></td>
+                <td><p>No telp: <?php echo $row['no_telp']; ?></p></td>
+                <td><p>email: <?php echo $row['email']; ?></p></td>
+            </tr>
             
+            
+           
+            <table border="1">
+                <tr>
+                    <td><b>(jenis/paket) Tiket</b></td>
+                    <td><b>jumlah Pesanan</b></td>
+                    <td><b>harga satuan</b></td>
+                </tr>    
+                <tr>
+                    <td>reguler</td>
+                    <td>2</td>
+                    <td>20.000</td>
+                </tr>
+                <tr>
+                    <td>VIP</td>
+                    <td>3</td>
+                    <td>30.000</td>
+                </tr>
+                <tr>
+                    <td>VVIP</td>
+                    <td>5</td>
+                    <td>20.000</td>
+                </tr>
+                <tr>
+                    <td>GOLD</td>
+                    <td>10</td>
+                    <td>50.000</td>
+                </tr>
+            </table>
+            
+            <?php
+                if($waktu_pembayaran != null){
+                    ?>
+                    <p>waktu Pembayaran: <?php echo $waktu_pembayaran->format('H:i d M Y'); ?></p>
+            <?php   
+                }else{ ?>
+                    <p>waktu Pembayaran: - </p>
+            <?php
+                }
+            ?>
         
-    <table>
-    <tr>
-        <td><b>(jenis/paket) Tiket</b></td>
-        <td><b>jumlah Pesanan</b></td>
-        <td><b>harga satuan</b></td>
-    </tr>    
-    <tr>
-        <td>reguler</td>
-        <td>2</td>
-        <td>20.000</td>
-    </tr>
-    
-    <tr>
-        <td>VIP</td>
-        <td>3</td>
-        <td>30.000</td>
-    </tr>
-    <tr>
-        <td>VVIP</td>
-        <td>5</td>
-        <td>20.000</td>
-    </tr>
-    <tr>
-        <td>GOLD</td>
-        <td>10</td>
-        <td>50.000</td>
-    </tr>
-    
-    </table>
+            <p>metode Pembayaran: <?php echo $row['pembayaran']; ?></p>
+            <p>Total Pembayaran: Rp. <?php echo number_format($row['total_harga'], 0, ',', '.'); ?></p>
+
+            <div class="buttons">
+                <button class="edit-button">Edit</button>
+                <button class="delete-button">Hapus</button>
+                <button class="bayar-button">Bayar</button>
+            </div>
+                    
+        </div>
+
+        </body>
+        </html>
+        <?php
+    }
+} else {
+    echo "No records found.";
+}
+
+?>
     
     
-    <p>waktu Pembayaran: 10.30 29 juni 2024</p>
-    <p>metode Pembayaran: Gopay</p>
-    <p>Total Pembayaran: Rp. 1.000.000</p>
-            
-    </div>
-    
-    
-    
-    
-    
-    
-    <div id="detailhistory">
-    
-    <table>
-        <tr>
-            <th>STATUS: SUDAH BAYAR ||</th>
-            <th>WAKTU PEMESANAN: 9.30 29 juni 2024</th>
-        </tr>
-    </table>
-    
-    <p>User Account: Imanuel</p>
-    <p>Nama Lengkap: Imanuel putra faot</p>
-    <p>No telp: 12312312312</p>
-    <p>email: imanuel@gmail.com</p>
-            
-        
-    <table>
-    <tr>
-        <td><b>(jenis/paket) Tiket</b></td>
-        <td><b>jumlah Pesanan</b></td>
-        <td><b>harga satuan</b></td>
-    </tr>    
-    <tr>
-        <td>reguler</td>
-        <td>2</td>
-        <td>20.000</td>
-    </tr>
-    
-    <tr>
-        <td>VIP</td>
-        <td>3</td>
-        <td>30.000</td>
-    </tr>
-    <tr>
-        <td>VVIP</td>
-        <td>5</td>
-        <td>20.000</td>
-    </tr>
-    <tr>
-        <td>GOLD</td>
-        <td>10</td>
-        <td>50.000</td>
-    </tr>
-    
-    </table>
-    
-    
-    <p>waktu Pembayaran: 10.30 29 juni 2024</p>
-    <p>metode Pembayaran: Gopay</p>
-    <p>Total Pembayaran: Rp. 1.000.000</p>
-            
-    </div>
     
     </center>
 

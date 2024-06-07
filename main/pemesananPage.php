@@ -446,8 +446,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 
   // Insert data pemesanan ke database
-  $stmt = $connection->prepare("INSERT INTO pemesanan (nama_lengkap, no_telp, email, nik, tanggal_lahir, jenis_kelamin, pembayaran, total_harga) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-  $stmt->bind_param("sssssssi", $nama_lengkap, $no_telp, $email, $nik, $tanggal_lahir, $jenis_kelamin, $pembayaran, $total_harga);
+  $stmt = $connection->prepare("INSERT INTO pemesanan (idUserOrder,nama_lengkap, no_telp, email, nik, tanggal_lahir, jenis_kelamin, pembayaran, total_harga) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+  $stmt->bind_param("isssssssi",$idUser, $nama_lengkap, $no_telp, $email, $nik, $tanggal_lahir, $jenis_kelamin, $pembayaran, $total_harga);
   if (!$stmt->execute()) {
       echo "Error inserting pemesanan: " . $stmt->error;
   }
@@ -463,8 +463,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (isset($_POST['reguler']) && $_POST['qty_reguler'] > 0) {
       $qty_reguler = (int)$_POST['qty_reguler'];
       for ($i = 0; $i < $qty_reguler; $i++) {
-          $stmt = $connection->prepare("INSERT INTO pembelian (idTiket, idUserOrder) VALUES (?, ?)");
-          $stmt->bind_param("ii", $id, $idUserOrder);
+          $stmt = $connection->prepare("INSERT INTO pembelian (idTiketKategori, idUserOrder) VALUES (?, ?)");
+          $stmt->bind_param("si", $tiket, $idUserOrder);
           if (!$stmt->execute()) {
               echo "gagal pembelian reguler: " . $stmt->error;
           }
@@ -477,8 +477,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           $qty_paket = (int)$_POST['qty_' . $paket_id];
           if ($qty_paket > 0) {
               for ($i = 0; $i < $qty_paket; $i++) {
-                  $stmt = $connection->prepare("INSERT INTO pembelian (idTiket, idUserOrder) VALUES (?, ?)");
-                  $stmt->bind_param("ii", $id, $idUserOrder);
+                  $stmt = $connection->prepare("INSERT INTO pembelian (idTiketKategori, idUserOrder) VALUES (?, ?)");
+                  $stmt->bind_param("si", $tiket, $idUserOrder);
                   if (!$stmt->execute()) {
                       echo "gagal pembelian paket: " . $stmt->error;
                   }
