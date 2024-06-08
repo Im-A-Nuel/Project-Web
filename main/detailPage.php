@@ -21,6 +21,7 @@ session_start();
     <title>Tiket-Konser</title>
     <link rel="icon" href="../src/img/logo-removebg-preview.png">
     <link rel="stylesheet" href="..\src\style\style-detail.css">
+    <script src="login.js"></script>
     <!-- <link rel="stylesheet" href="..\src\style\style-main.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>

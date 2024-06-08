@@ -1,40 +1,36 @@
-<!-- <?php
+<?php
 
-require "koneksi.php"
+include 'koneksi.php';
+
+session_start();
+
+if(!(isset($_SESSION['username'])) && !(isset($_SESSION['firstname']))){
+    header("Location: login.php");
+}
+if(isset($_SESSION["idUser"])){
+    $idUser = $_SESSION["idUser"];
+  }
+
+  if(isset($_POST["idOrder"])){
+    $id = $_POST["idOrder"];
+  }
 
 
+
+?>
+ 
+
+<?php
+    $sql = "SELECT p.id, p.nama_lengkap, p.no_telp, p.email, p.pembayaran, p.total_harga, p.waktu_pembayaran, p.waktu_pembelian, p.status_pembayaran, p.jumlah, t.deskripsi, t.harga, k.nama, k.tanggal, k.gambar 
+    FROM pemesanan p INNER JOIN tiketkategori t ON p.idTiketKategori = t.idTiketKategori 
+    INNER JOIN konser k ON t.idKonser = k.idKonser WHERE p.id=".$id;
+    
+$result = $connection->query($sql);
 ?>
 
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NOTA PEMBELIAN</title>
-    <link rel="stylesheet" href="../src/style/style-nota.css">
-</head>
-<body>
-
-    <div id="nota">
-    <ul>
-        <li><p></p></li>
-        <li><p></p></li>
-        <li></li>
-        <li></li>
-        <li></li>
-    </ul>
-
-    </div>
-
-
     
-</body>
-</html> -->
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,6 +41,12 @@ require "koneksi.php"
     <link rel="stylesheet" href="../src/style/style-tiket.css">
 </head>
 <body>
+    
+<?php
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        for($i = 1; $i <= $row["jumlah"];$i++){
+    ?>
     <div class="nota">
 
     <table>
@@ -54,42 +56,19 @@ require "koneksi.php"
         </tr>
     </table>
     
-        <h2>TIKET <p>DEWA 19</p></h2>
+        <h2>TIKET <p><?php echo $row['nama']; ?></p></h2>
 
-        <img src="../src/img/DEWA-19pakai.png" alt="ini gambar">
-        <p><span class="keterangan">Nama Konser: </span> Konser Mahadewa 19 ke 20 tahun</p>
-        <p><span class="keterangan">Tanggal Konser:</span> 2024-06-08</p>
+        <img src="<?php echo $row['gambar']; ?>" alt="ini gambar">
+        <p><span class="keterangan">Nama Konser: </span> <?php echo $row['nama']; ?></p>
+        <p><span class="keterangan">Tanggal Konser:</span> <?php echo $row['tanggal']; ?></p>
         
-        <!-- <table>
-            <thead>
-                <tr>
-                    <th>Jenis/ Paket Tiket</th>
-                    <th>Jumlah</th>
-                    <th>Harga</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>VVIP</td>
-                    <td>1</td>
-                    <td>Rp 20,000</td>
-                </tr>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="2">Total</td>
-                    <td>Rp 20,000</td>
-                </tr>
-            </tfoot>
-        </table> -->
         <br>
         <p><span class="keterangan">JENIS TIKET</span></p> 
 
-        <h1>VVIP</h1>
-
-
+        <h1><?php echo $row['deskripsi'];?></h1>
 
         <p><span class="keterangan">Terima Kasih Sudah Membeli Tiket.</span></p>
     </div>
+    <?php }}}?>
 </body>
 </html>

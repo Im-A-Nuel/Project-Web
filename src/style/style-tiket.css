@@ -46,6 +46,9 @@ body .nota table tr td img{
     height: 70px;
     border-radius: 0%;
     box-shadow: none;
+    margin-left: -40px;
+    padding-right: 150px;
+    margin-bottom: 10px;
 }
 
 body .nota table tr td:nth-child(2) img{
@@ -53,7 +56,10 @@ body .nota table tr td:nth-child(2) img{
     height: 90px;
     border-radius: 0%;
     box-shadow: none;
+    margin-left: -240px;
 }
+
+
 
 
 body .nota table tr td{
@@ -66,13 +72,14 @@ body .nota table tr td{
 .nota h2 {
     margin-bottom: 20px;
     color : whitesmoke;
-    text-shadow: 0 2px 3px white;
+    text-shadow: 0 2px 3px goldenrod;
 }
 
 .nota p {
     margin: 5px 0;
     color : whitesmoke;
-    text-shadow: 0 2px 3px white;
+    text-shadow: 0 2px 3px goldenrod;
+
 }
 
 .nota img{
@@ -116,4 +123,5 @@ h1{
 
 h2{
     margin-top: -30px;
+
 }
