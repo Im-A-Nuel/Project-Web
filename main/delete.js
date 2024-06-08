@@ -1,5 +1,5 @@
 function confirmDelete(id) {
-    if (confirm("Are you sure you want to delete this record?")) {
+    if (confirm("Apakah anda ingin membatalkan pemesanan?")) {
         // Perform AJAX request to delete the record
         var xhr = new XMLHttpRequest();
         xhr.open("POST", "delete.php", true);
@@ -9,10 +9,10 @@ function confirmDelete(id) {
                 if (xhr.status === 200) {
                     console.log("Response received: " + xhr.responseText);
                     if (xhr.responseText.trim() === "success") {
-                        alert("Record successfully deleted.");
+                        alert("Pesanan berhasil dibatalkan.");
                         refreshPage();
                     } else {
-                        alert("Error deleting record: " + xhr.responseText);
+                        alert("Pesanan gagal dibatalkan: " + xhr.responseText);
                     }
                 } else {
                     console.log("AJAX request failed: " + xhr.status);
@@ -40,7 +40,6 @@ function confirmPayment(id) {
                     console.log("Response received: " + xhr.responseText);
                     if (xhr.responseText.trim() === "success") {
                         alert("Pembayaran berhasil!");
-                        window.location.href = "historiPage.php"; // Redirect ke historiPage.php setelah pembayaran berhasil
                     } else {
                         alert("Error: " + xhr.responseText);
                     }
@@ -51,8 +50,10 @@ function confirmPayment(id) {
             }
         };
         xhr.send("id=" + id); // Kirim ID ke bayar.php
+        refreshPage();
     } else {
         // Jika pengguna menekan tombol Cancel pada alert
         alert("Pembayaran dibatalkan.");
     }
+    refreshPage();
 }

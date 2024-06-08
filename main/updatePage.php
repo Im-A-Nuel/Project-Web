@@ -39,6 +39,7 @@ if ($result->num_rows > 0) {
     <title>Update Data Pemesanan</title>
     <link rel="icon" href="../src/img/logo-removebg-preview.png">
     <link rel="stylesheet" href="../src/style/style-updatePage.css">
+    <script src="update.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
@@ -200,8 +201,8 @@ if ($result->num_rows > 0) {
                     </table>
                     <p>Pastikan Data Diri Yang Anda Isi Sudah Sesuai</p>
                     <div id=inputdata>
-                        <input type="submit" value="Simpan">
-                        <input type="reset" value="Batal">
+                        <input type="submit" value="Simpan" id="tombolsimpan">
+                        <input type="reset" value="Batal" id="tombolbatal">
                     </div>
                 </td>
             </tr>
@@ -211,6 +212,7 @@ if ($result->num_rows > 0) {
 </div>
 </center>
 </main>
+
 
 
 <footer>

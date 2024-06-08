@@ -446,10 +446,17 @@ body {
     margin-right: 10px;
     border: none;
     cursor: pointer;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 1);
 }
 
 .buttons .edit-button {
-    background-color: #4CAF50;
+    background-color: #55bd59;
+    color: white;
+    border-radius: 15px;
+  }
+
+.buttons .edit-button:hover {
+    background-color: #378539;
     color: white;
     border-radius: 15px;
   }
@@ -459,8 +466,21 @@ body {
     color: white;
     border-radius: 15px;
 }
+
+  .buttons .delete-button:hover {
+    background-color: #b83229;
+    color: white;
+    border-radius: 15px;
+}
+
   .buttons .bayar-button {
     background-color: #2190d1;
+    color: white;
+    border-radius: 15px;
+}
+
+  .buttons .bayar-button:hover {
+    background-color: #1072ab;
     color: white;
     border-radius: 15px;
 }
@@ -471,4 +491,8 @@ body {
   font-size: 15px;
   font-weight: 500;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+table#detail{
+  border-collapse: collapse;
 }

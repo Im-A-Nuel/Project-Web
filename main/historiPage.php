@@ -130,12 +130,12 @@ if ($result->num_rows > 0) {
                 <td><p> <span class="keterangan">Nama Lengkap: </span> <?php echo $row['nama_lengkap']; ?></p></td>
                 <td><p><span class="keterangan">No telp: </span> <?php echo $row['no_telp']; ?></p></td>
                 <td><p><span class="keterangan">email: </span> <?php echo $row['email']; ?></p></td>
-                <td><p>Nama Konser : <?php echo $row['nama']; ?></p></td>
+                <td><p><span class="keterangan">Nama Konser : </span><?php echo $row['nama']; ?></p></td>
             </tr>
             
             
            
-            <table>
+            <table id="detail">
                 <tr>
                     <td><b>(jenis/paket) Tiket</b></td>
                     <td><b>jumlah Pesanan</b></td>
@@ -170,7 +170,7 @@ if ($result->num_rows > 0) {
 
                 if($row['status_pembayaran'] == "Sudah Bayar"){?>
 
-                    <form action="cetak.php" method="post">
+                    <form action="tiketPage.php" method="post">
                         <input type="hidden" name="idOrder" value="<?php echo $row['id']; ?>">
                         <button type="submit" class="bayar-button">Cetak</button>
                     </form>
@@ -198,7 +198,7 @@ if ($result->num_rows > 0) {
         <?php
     }
 } else {
-    echo "<h2> No records found. </h2>";
+    echo "<h2> Tidak ada pemesanan! </h2>";
 }
 
 ?>

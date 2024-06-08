@@ -254,11 +254,23 @@ padding-left: 10px;
 body main div#form form div#detailPesan div#inputdata input{
     margin-bottom: 30px;
     background-color:lightblue;
-    color:blue;
+    color:rgb(0, 0, 0);
     font-size: 15px;
     border-radius: 15px;
     padding: 10px 30px;
 }
+
+body main div#form form div#detailPesan div#inputdata input:hover{
+    margin-bottom: 30px;
+    background-color:rgb(63, 122, 142);
+    color:rgb(255, 255, 255);
+    font-size: 15px;
+    border-radius: 15px;
+    padding: 10px 30px;
+    cursor: pointer;
+}
+
+
 
 body main div#form form div#detailPesan table tr:nth-child(1)>td:nth-child(2) h5{
   font-size: 20px;
