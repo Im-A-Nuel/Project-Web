@@ -51,7 +51,7 @@ while($new = $hasil->fetch_assoc()){
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pemesanan</title>
     <link rel="stylesheet" href="..\src\style\style-pemesanan.css" />
-
+    <script src="paket.js"></script>
     <link rel="icon" href="../src/img/logo-removebg-preview.png" type="image/x-icon" />
     <link
       rel="stylesheet"
