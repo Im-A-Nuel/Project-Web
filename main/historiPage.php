@@ -110,7 +110,7 @@ if ($result->num_rows > 0) {
             
             
            
-            <table border="1">
+            <table>
                 <tr>
                     <td><b>(jenis/paket) Tiket</b></td>
                     <td><b>jumlah Pesanan</b></td>
@@ -157,10 +157,7 @@ if ($result->num_rows > 0) {
                         <button type="submit" class="edit-button">Edit</button>
                     </form>
 
-                    <form action="bayar.php" method="post">
-                        <input type="hidden" name="idOrder" value="<?php echo $row['id']; ?>">
-                        <button type="submit" class="bayar-button">Bayar</button>
-                    </form>
+                    <button class="bayar-button" onclick="confirmPayment(<?php echo $row['id']; ?>)">Bayar</button>
                 <?php
                 }
 
