@@ -46,14 +46,21 @@ require "koneksi.php"
 </head>
 <body>
     <div class="nota">
-        
+
+    <table>
+        <tr>
+            <td><img id="logo2" src="../src/img/logo_ticket_new.png" alt=""></td>
+            <td><img id="logo1" src="../src/img/E-Ticket.png" alt=""></td>
+        </tr>
+    </table>
+    
         <h2>TIKET <p>DEWA 19</p></h2>
 
         <img src="../src/img/DEWA-19pakai.png" alt="ini gambar">
         <p><span class="keterangan">Nama Konser: </span> Konser Mahadewa 19 ke 20 tahun</p>
         <p><span class="keterangan">Tanggal Konser:</span> 2024-06-08</p>
         
-        <table>
+        <!-- <table>
             <thead>
                 <tr>
                     <th>Jenis/ Paket Tiket</th>
@@ -74,7 +81,14 @@ require "koneksi.php"
                     <td>Rp 20,000</td>
                 </tr>
             </tfoot>
-        </table>
+        </table> -->
+        <br>
+        <p><span class="keterangan">JENIS TIKET</span></p> 
+
+        <h1>VVIP</h1>
+
+
+
         <p><span class="keterangan">Terima Kasih Sudah Membeli Tiket.</span></p>
     </div>
 </body>
