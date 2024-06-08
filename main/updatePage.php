@@ -1,6 +1,32 @@
 <?php
 include "koneksi.php";
 
+session_start();
+
+
+if(isset($_POST['idOrder'])){
+  $idOrder = $_POST['idOrder']; // Get the user ID from the URL or session
+}else{
+  header("Location: mainPage.php");
+}
+
+// Fetch user data from the database
+$sql = "SELECT id, nama_lengkap, no_telp, email, nik, tanggal_lahir, jenis_kelamin FROM pemesanan WHERE id='$idOrder'";
+$result = $connection->query($sql);
+
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $id = $row['id'];
+    $nama = $row['nama_lengkap'];
+    $no_telp = $row['no_telp'];
+    $email = $row['email'];
+    $nik = $row['nik'];
+    $tanggal_lahir = $row['tanggal_lahir'];
+    $jenis_kelamin = $row['jenis_kelamin'];
+} else {
+    echo "No user data found.";
+    exit;
+}
 
 ?>
 
@@ -11,7 +37,9 @@ include "koneksi.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Data Pemesanan</title>
+    <link rel="icon" href="../src/img/logo-removebg-preview.png">
     <link rel="stylesheet" href="../src/style/style-updatePage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
@@ -53,182 +81,138 @@ include "koneksi.php";
 
 
 <main>
-
-
 <center>
-<div id="form">
-<form action="" method="post">
-    <div id="detailPesan">
-              <table>
-                <tr>
-                  <td>
-                    <table>
-                      <tr>
-                        <td><h5>Detail Pemesanan Tiket</h5></td>
-                      </tr>
-                      <tr>
-                        <td><p><?php echo $nama;?></p></td>
-                      </tr>
-                    </table>
-                  </td>
 
-                  <td>
+<div id="backk">
+<a id="back" href="historiPage.php">
+    <i class="fas fa-undo"></i> <span>Kembali</span>
+  </a>
+  </div>
+
+<div id="form">
+<form action="update.php" method="post">
+    <div id="detailPesan">
+        <table>
+            <tr>
+                <td>
+                    <table>
+                        <tr>
+                            <td><h5>Detail Pemesanan Tiket</h5></td>
+                        </tr>
+                        <tr>
+                            <!-- <td><p><?php //echo $nama;?></p></td> -->
+                        </tr>
+                    </table>
+                </td>
+                <td>
                     <h5>Isi Data Diri</h5>
                     <p class="namaTiket"> isi data diri anda dengan lengkap</p>
-
                     <table>
-                      <tbody>
-                        <tr>
-
-
-                          
-                            <td>
-                              <label for="datanama" style="font-weight:bold;">Nama Lengkap</label>
-                              <br>
-                              <label for="datanama">masukkan nama sesuai data diri anda</label>
-                              <br>
-                              <input
-                                type="text"
-                                name="namaPesan"
-                                id="datanama"
-                                placeholder="masukkan nama anda"
-                                required/>
-                            </td>
-
-                        </tr>
-                        <tr>
-                          
-                          
-
-                            <td>
-                              <label for="notelpdata" style="font-weight:bold;">No Telp</label>
-                              <br>
-                              <label for="notelpdata">Nomor Telepon yang dapat dihubungi</label>
-                              
-                              <br />
-                              <input
-                                type="number"
-                                name="nomerPesan"
-                                id="notelpdata"
-                                placeholder="masukkan nomor anda"
-                                required
-                              />
-  
-                              <br />
-                              <label for="WAID">
-                                <input type="checkbox" name="" id="WAID" />
-                                kirimkan ke whatsapp
-                              </label>
-                            </td>
-                          
-                          
-                          
-                        </tr>
-
-                        <tr>
-                          
-                          
-                            <td>
-                              <label for="dataemailform" style="font-weight:bold;">E-Mail</label>
-                              <br>
-                              <label for="dataemailform">E-Mail konfirmasi</label>
-                              <br />
-                              <input
-                                type="text"
-                                name="e-mailPesan"
-                                id="dataemailform"
-                                placeholder="masukkan E-Mail anda"
-                                required
-                              />
-                            </td>
-
-                          
-                          
-                          
-                        
-                          
-                        </tr>
-                        <tr>
-                          
-                            <td>
-                              <label for="dataNIK" style="font-weight:bold">NIK</label>
-                              <br />
-                              <label for="dataNIK">masukkan NIK sesuai KTP anda</label>
-                              <br />
-                              <input
-                                type="number"
-                                name="nikPesan"
-                                id="dataNIK"
-                                placeholder="masukkan NIK anda"
-                                required
-                              />
-                            </td>
-                         
-
-                        </tr>
-                        
-                        <tr>
-                          
-                            <td>
-                              <label for="datatanggal" style="font-weight:bold;">Tanggal Lahir</label>
-                              <br />
-                              <input type="date" name="tanggalLahirPesan" id="datatanggal" />
-                            </td>
-                         
-                          
-                        </tr>
-
-                        <tr>
-                        
-                            <td>
-                              <label for="kelamindata" style="font-weight:bold;">Jenis Kelamin</label>
-                              <br />
-                              <select name="kelamindata" id="kelamindata" required>
-                                  <option value="">pilih</option>
-                                  <option value="Laki-Laki">Laki-Laki</option>
-                                  <option value="Perempuan">Perempuan</option>
-                              </select>
-                          
-                          
-                        </tr>
-                      </tbody>
-                    
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <label for="datanama">Nama Lengkap</label>
+                                    <br>
+                                    <input type="hidden" name="idOrder" value="<?php echo $id; ?>">
+                                    <label for="datanama">masukkan nama sesuai data diri anda</label>
+                                    <br>
+                                    <input
+                                        type="text"
+                                        name="namaPesan"
+                                        id="datanama"
+                                        placeholder="masukkan nama anda"
+                                        value="<?php echo htmlspecialchars($nama); ?>"
+                                        required/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="notelpdata">No Telp</label>
+                                    <br>
+                                    <label for="notelpdata">Nomor Telepon yang dapat dihubungi</label>
+                                    <br />
+                                    <input
+                                        type="number"
+                                        name="nomerPesan"
+                                        id="notelpdata"
+                                        placeholder="masukkan nomor anda"
+                                        value="<?php echo htmlspecialchars($no_telp); ?>"
+                                        required
+                                    />
+                                    <br />
+                                    <label for="WAID">
+                                        <input type="checkbox" name="" id="WAID" />
+                                        kirimkan ke whatsapp
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="dataemailform">E-Mail</label>
+                                    <br>
+                                    <label for="dataemailform">E-Mail konfirmasi</label>
+                                    <br />
+                                    <input
+                                        type="text"
+                                        name="e-mailPesan"
+                                        id="dataemailform"
+                                        placeholder="masukkan E-Mail anda"
+                                        value="<?php echo htmlspecialchars($email); ?>"
+                                        required
+                                    />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="dataNIK">NIK</label>
+                                    <br />
+                                    <label for="dataNIK">masukkan NIK sesuai KTP anda</label>
+                                    <br />
+                                    <input
+                                        type="number"
+                                        name="nikPesan"
+                                        id="dataNIK"
+                                        placeholder="masukkan NIK anda"
+                                        value="<?php echo htmlspecialchars($nik); ?>"
+                                        required
+                                    />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="datatanggal">Tanggal Lahir</label>
+                                    <br />
+                                    <input type="date" name="tanggalLahirPesan" id="datatanggal" value="<?php echo htmlspecialchars($tanggal_lahir); ?>" required />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="kelamindata">Jenis Kelamin</label>
+                                    <br />
+                                    <select name="kelamindata" id="kelamindata" required>
+                                        <option value="">pilih</option>
+                                        <option value="Laki-Laki" <?php echo ($jenis_kelamin == 'Laki-Laki') ? 'selected' : ''; ?>>Laki-Laki</option>
+                                        <option value="Perempuan" <?php echo ($jenis_kelamin == 'Perempuan') ? 'selected' : ''; ?>>Perempuan</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
                     </table>
-                    
-                    <p>
-                      Pastikan Data Diri Yang Anda Isi Sudah Sesuai
-                    </p>
-
+                    <p>Pastikan Data Diri Yang Anda Isi Sudah Sesuai</p>
                     <div id=inputdata>
-                        <input type="submit" value="kirim">
-                        <input type="reset" value="batal">
+                        <input type="submit" value="Simpan">
+                        <input type="reset" value="Batal">
                     </div>
-                    
-                  </td>
-                </tr>
-              </table>
-            </div>
-        </form>
+                </td>
+            </tr>
+        </table>
     </div>
-
+</form>
+</div>
 </center>
-
-
-
-
-
-
-
 </main>
 
 
-
-
-
-
-
-
-   
 <footer>
       <div id="rincianfooter">
         <center>
