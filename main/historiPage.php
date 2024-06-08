@@ -79,8 +79,9 @@ if(isset($_SESSION["idUser"])){
   </a>
 
 <?php
-    $sql = "SELECT p.id, p.nama_lengkap, p.no_telp, p.email, p.pembayaran, p.total_harga, p.waktu_pembayaran, p.waktu_pembelian, p.status_pembayaran, p.jumlah, t.deskripsi, t.harga 
-    FROM pemesanan p INNER JOIN tiketkategori t ON p.idTiketKategori = t.idTiketKategori WHERE p.idUserOrder = '$idUser' ORDER BY p.waktu_pembelian DESC";
+    $sql = "SELECT p.id, p.nama_lengkap, p.no_telp, p.email, p.pembayaran, p.total_harga, p.waktu_pembayaran, p.waktu_pembelian, p.status_pembayaran, p.jumlah, t.deskripsi, t.harga, k.nama 
+    FROM pemesanan p INNER JOIN tiketkategori t ON p.idTiketKategori = t.idTiketKategori 
+    INNER JOIN konser k ON t.idKonser = k.idKonser WHERE p.idUserOrder = '$idUser' ORDER BY p.waktu_pembelian DESC";
     
 $result = $connection->query($sql);
 
@@ -101,9 +102,10 @@ if ($result->num_rows > 0) {
             </table>
 
             <tr>
-                <td><p>Nama Lengkap: <?php echo $row['nama_lengkap']; ?></p></td>
-                <td><p>No telp: <?php echo $row['no_telp']; ?></p></td>
-                <td><p>email: <?php echo $row['email']; ?></p></td>
+                <td><p>Nama Lengkap : <?php echo $row['nama_lengkap']; ?></p></td>
+                <td><p>No telp : <?php echo $row['no_telp']; ?></p></td>
+                <td><p>email : <?php echo $row['email']; ?></p></td>
+                <td><p>Nama Konser : <?php echo $row['nama']; ?></p></td>
             </tr>
             
             
@@ -143,20 +145,20 @@ if ($result->num_rows > 0) {
 
                 if($row['status_pembayaran'] == "Sudah Bayar"){?>
                     <form action="cetak.php" method="post">
-                        <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                        <input type="hidden" name="idOrder" value="<?php echo $row['id']; ?>">
                         <button type="submit" class="bayar-button">Cetak</button>
                     </form>
                 
                 <?php    
                 }else{
                 ?>
-                    <form action="updatepage.php" method="post">
-                        <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                    <form action="updatePage.php" method="post">
+                        <input type="hidden" name="idOrder" value="<?php echo $row['id']; ?>">
                         <button type="submit" class="edit-button">Edit</button>
                     </form>
 
                     <form action="bayar.php" method="post">
-                        <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                        <input type="hidden" name="idOrder" value="<?php echo $row['id']; ?>">
                         <button type="submit" class="bayar-button">Bayar</button>
                     </form>
                 <?php

@@ -10,7 +10,7 @@ function confirmDelete(id) {
                     console.log("Response received: " + xhr.responseText);
                     if (xhr.responseText.trim() === "success") {
                         alert("Record successfully deleted.");
-                        window.location.href = "historiPage.php"; // Redirect to historiPage.php after successful deletion
+                        refreshPage();
                     } else {
                         alert("Error deleting record: " + xhr.responseText);
                     }
@@ -22,4 +22,8 @@ function confirmDelete(id) {
         };
         xhr.send("id=" + id);
     }
+}
+
+function refreshPage() {
+    window.location.reload();
 }
