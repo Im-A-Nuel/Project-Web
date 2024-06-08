@@ -282,7 +282,7 @@ body {
   center div#detailhistory {
     background-color: white;
     margin-top: 20px;
-    margin-bottom: 100px;
+    margin-bottom: 70px;
     margin-right: 400px;
     margin-left: 400px;
     box-shadow: 0 3px 5px 8px silver;
@@ -305,6 +305,31 @@ body {
 
 
   /* UTAMA History */
+
+
+
+  /* status bayar */
+  body main center a#back{
+    padding: 30px 20px;
+  }
+
+  body main center a#back:hover{
+    background-color: #2190d1;
+
+  }
+
+  div#detailhistory table tr th:nth-child(1){
+    color:darkcyan;
+  }  
+  
+  span.keterangan{
+    font-weight: bold;
+  }
+    
+  
+
+
+  /* status bayar */
   
   
   footer div#rincianfooter div#footerdata {
