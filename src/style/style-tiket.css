@@ -1,0 +1,70 @@
+ 
+
+
+/* html {
+    background-color:black;
+    margin:1px;
+
+
+}  */
+
+
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+
+
+span.keterangan{
+ font-weight: bold;   
+}
+
+.nota {
+    width: 380px;
+    /* margin: 0 auto; */
+
+    margin:20px;
+
+    padding: 20px;
+    border: 1px solid #000;
+    text-align: center;
+}
+
+.nota h2 {
+    margin-bottom: 20px;
+}
+
+.nota p {
+    margin: 5px 0;
+}
+
+.nota img{
+    width: 180px;
+    height: 110px;
+}
+
+.nota table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.nota table th, .nota table td {
+    border: 1px solid #000;
+    padding: 5px;
+    text-align: left;
+}
+
+.nota table th {
+    background-color: #f2f2f2;
+}
+
+.nota table tfoot td {
+    font-weight: bold;
+    border-top: 2px solid #000;
+}
+
+.nota p:last-of-type {
+    margin-top: 20px;
+}

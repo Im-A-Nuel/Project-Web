@@ -95,15 +95,40 @@ if ($result->num_rows > 0) {
     
             <table>
                 <tr>
-                    <th>STATUS: <?php echo $row['status_pembayaran']; ?> ||</th>
-                    <th>WAKTU PEMESANAN: <?php echo $waktu_pembelian->format('H:i d M Y'); ?></th>
+                    <th> <span class="keterangan">STATUS:</span> 
+                    
+
+                    <?php
+
+                    if($row['status_pembayaran'] == "Sudah Bayar"){
+                    
+                    
+                        echo "<span style='color:rgb(23, 201, 23);'>".$row['status_pembayaran']."</span>";
+                
+                    }
+
+                    else{
+                        echo "<span style='color:red;'>".$row['status_pembayaran']."</span>";
+                    }
+
+                    ?>
+                    
+                    
+                    
+                    </th>
+
+                    
+
+
+
+                    <th><span class="keterangan">|| WAKTU PEMESANAN:</span> <?php echo $waktu_pembelian->format('H:i d M Y'); ?></th>
                 </tr>
             </table>
 
             <tr>
-                <td><p>Nama Lengkap: <?php echo $row['nama_lengkap']; ?></p></td>
-                <td><p>No telp: <?php echo $row['no_telp']; ?></p></td>
-                <td><p>email: <?php echo $row['email']; ?></p></td>
+                <td><p> <span class="keterangan">Nama Lengkap: </span> <?php echo $row['nama_lengkap']; ?></p></td>
+                <td><p><span class="keterangan">No telp: </span> <?php echo $row['no_telp']; ?></p></td>
+                <td><p><span class="keterangan">email: </span> <?php echo $row['email']; ?></p></td>
             </tr>
             
             
@@ -125,16 +150,16 @@ if ($result->num_rows > 0) {
                 if($waktu_pembayaran != null){
                     ?>
                     <!-- <p>waktu Pembayaran: <?php //echo $waktu_pembayaran->format('H:i d M Y');?></p> -->
-                    <p>waktu Pembayaran: <?php echo $waktu_pembayaran?></p>
+                    <p><span class="keterangan">waktu Pembayaran: </span> <?php echo $waktu_pembayaran?></p>
             <?php   
                 }else{ ?>
-                    <p>waktu Pembayaran: - </p>
+                    <p><span class="keterangan">waktu Pembayaran: </span> - </p>
             <?php
                 }
             ?>
         
-            <p>Metode Pembayaran: <?php echo $row['pembayaran']; ?></p>
-            <p>Total Pembayaran: Rp. <?php echo number_format($row['total_harga'], 0, ',', '.'); ?></p>
+            <p><span class="keterangan">Metode Pembayaran: </span> <?php echo $row['pembayaran']; ?></p>
+            <p><span class="keterangan">Total Pembayaran:</span> Rp. <?php echo number_format($row['total_harga'], 0, ',', '.'); ?></p>
 
             <div class="buttons">
                 <button class="delete-button" onclick="confirmDelete(<?php echo $row['id']; ?>)">Batal</button>
@@ -142,6 +167,7 @@ if ($result->num_rows > 0) {
                 <?php
 
                 if($row['status_pembayaran'] == "Sudah Bayar"){?>
+
                     <form action="cetak.php" method="post">
                         <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
                         <button type="submit" class="bayar-button">Cetak</button>

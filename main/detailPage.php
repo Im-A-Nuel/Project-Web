@@ -25,6 +25,54 @@ session_start();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
+
+
+
+
+
+
+
+
+
+<?php 
+
+if(isset($_GET["idKonser"])){
+    $id = $_GET["idKonser"];
+}else{
+    header("Location: mainPage.php");
+}
+
+
+$sql_konser = "SELECT k.idKonser ,k.nama, b.namaBand , DATE_FORMAT(k.tanggal, '%d %M %Y') as tanggal, k.tempat, k.gambar, k.deskripsi, k.seatPlan
+FROM konser k 
+INNER JOIN tiket t ON k.idKonser = t.idKonser 
+INNER JOIN band b ON k.idBand = b.idBand
+WHERE k.idKonser =".$id."";
+$hasil_konser = $connection->query($sql_konser);
+$konser = $hasil_konser->fetch_assoc();
+
+$sql_paket = "SELECT deskripsi, stok FROM tiketkategori WHERE idKonser =".$id."";
+$hasil_paket = $connection->query($sql_paket);
+$paket_tiket = [];
+while($baris = $hasil_paket->fetch_assoc()) {
+    $paket_tiket[] = $baris;
+}
+
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <body>
 
     <header>
@@ -32,7 +80,10 @@ session_start();
         <div id="hyperlink">
             <a href="mainPage.php">Beranda</a>
             <a href="#">Tentang Tiket</a>
-            <a href="#">Pemesanan</a>
+            <!-- <a href="pemesananPage.php"></a> -->
+
+            <a href="pemesananPage.php?idKonser=<?php echo $konser['idKonser']; ?>"> Pemesanan</a>
+
             <a href="#">Blog</a>
             <a href="#">Hubungi Kami</a>
         </div>
@@ -81,31 +132,6 @@ session_start();
   </a>
 </div>
 
-<?php 
-
-if(isset($_GET["idKonser"])){
-    $id = $_GET["idKonser"];
-}else{
-    header("Location: mainPage.php");
-}
-
-
-$sql_konser = "SELECT k.idKonser ,k.nama, b.namaBand , DATE_FORMAT(k.tanggal, '%d %M %Y') as tanggal, k.tempat, k.gambar, k.deskripsi, k.seatPlan
-FROM konser k 
-INNER JOIN tiket t ON k.idKonser = t.idKonser 
-INNER JOIN band b ON k.idBand = b.idBand
-WHERE k.idKonser =".$id."";
-$hasil_konser = $connection->query($sql_konser);
-$konser = $hasil_konser->fetch_assoc();
-
-$sql_paket = "SELECT deskripsi, stok FROM tiketkategori WHERE idKonser =".$id."";
-$hasil_paket = $connection->query($sql_paket);
-$paket_tiket = [];
-while($baris = $hasil_paket->fetch_assoc()) {
-    $paket_tiket[] = $baris;
-}
-
-?>
 
 
 <div id="detail">
