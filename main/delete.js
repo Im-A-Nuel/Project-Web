@@ -10,7 +10,7 @@ function confirmDelete(id) {
                     console.log("Response received: " + xhr.responseText);
                     if (xhr.responseText.trim() === "success") {
                         alert("Record successfully deleted.");
-                        location.reload(); // Reload the page to reflect the changes
+                        window.location.href = "historiPage.php"; // Redirect to historiPage.php after successful deletion
                     } else {
                         alert("Error deleting record: " + xhr.responseText);
                     }

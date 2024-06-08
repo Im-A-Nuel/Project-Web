@@ -87,6 +87,7 @@ $result = $connection->query($sql);
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
         $waktu_pembelian = new DateTime($row['waktu_pembelian']);
+        // $waktu_pembayaran = new DateTime($row['waktu_pembayaran']);
         $waktu_pembayaran = $row['waktu_pembayaran'];
         ?>
     
@@ -123,7 +124,8 @@ if ($result->num_rows > 0) {
             <?php
                 if($waktu_pembayaran != null){
                     ?>
-                    <p>waktu Pembayaran: <?php echo $waktu_pembayaran->format('H:i d M Y'); ?></p>
+                    <!-- <p>waktu Pembayaran: <?php //echo $waktu_pembayaran->format('H:i d M Y');?></p> -->
+                    <p>waktu Pembayaran: <?php echo $waktu_pembayaran?></p>
             <?php   
                 }else{ ?>
                     <p>waktu Pembayaran: - </p>
@@ -131,19 +133,37 @@ if ($result->num_rows > 0) {
                 }
             ?>
         
-            <p>metode Pembayaran: <?php echo $row['pembayaran']; ?></p>
+            <p>Metode Pembayaran: <?php echo $row['pembayaran']; ?></p>
             <p>Total Pembayaran: Rp. <?php echo number_format($row['total_harga'], 0, ',', '.'); ?></p>
 
             <div class="buttons">
-                <form action="edit.php" method="post">
-                    <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
-                    <button type="submit" class="edit-button">Edit</button>
-                </form>
-                <button class="delete-button" onclick="confirmDelete(<?php echo $row['id']; ?>)">Hapus</button>
-                <form action="pay.php" method="post">
-                    <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
-                    <button type="submit" class="bayar-button">Bayar</button>
-                </form>
+                <button class="delete-button" onclick="confirmDelete(<?php echo $row['id']; ?>)">Batal</button>
+
+                <?php
+
+                if($row['status_pembayaran'] == "Sudah Bayar"){?>
+                    <form action="cetak.php" method="post">
+                        <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                        <button type="submit" class="bayar-button">Cetak</button>
+                    </form>
+                
+                <?php    
+                }else{
+                ?>
+                    <form action="updatepage.php" method="post">
+                        <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                        <button type="submit" class="edit-button">Edit</button>
+                    </form>
+
+                    <form action="bayar.php" method="post">
+                        <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                        <button type="submit" class="bayar-button">Bayar</button>
+                    </form>
+                <?php
+                }
+
+                ?>
+
             </div>
                     
         </div>
