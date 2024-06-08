@@ -24,6 +24,7 @@ if(isset($_SESSION["idUser"])){
     <title>Tiket-Konser</title>
     <link rel="icon" href="../src/img/logo-removebg-preview.png">
     <link rel="stylesheet" href="..\src\style\style-histori.css">
+    <script src="delete.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
@@ -73,7 +74,9 @@ if(isset($_SESSION["idUser"])){
         <center>
 
 
-<a href="mainPage.php">Kembali ke halaman utama </a>
+<a id="back" href="mainPage.php">
+    <i class="fas fa-undo"></i> <span>Kembali</span>
+  </a>
 
 <?php
     $sql = "SELECT p.id, p.nama_lengkap, p.no_telp, p.email, p.pembayaran, p.total_harga, p.waktu_pembayaran, p.waktu_pembelian, p.status_pembayaran, p.jumlah, t.deskripsi, t.harga 
@@ -132,9 +135,15 @@ if ($result->num_rows > 0) {
             <p>Total Pembayaran: Rp. <?php echo number_format($row['total_harga'], 0, ',', '.'); ?></p>
 
             <div class="buttons">
-                <button class="edit-button">Edit</button>
-                <button class="delete-button">Hapus</button>
-                <button class="bayar-button">Bayar</button>
+                <form action="edit.php" method="post">
+                    <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                    <button type="submit" class="edit-button">Edit</button>
+                </form>
+                <button class="delete-button" onclick="confirmDelete(<?php echo $row['id']; ?>)">Hapus</button>
+                <form action="pay.php" method="post">
+                    <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                    <button type="submit" class="bayar-button">Bayar</button>
+                </form>
             </div>
                     
         </div>

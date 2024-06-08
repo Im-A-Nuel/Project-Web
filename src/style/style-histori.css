@@ -414,6 +414,9 @@ body {
   .buttons {
     margin-top: 20px;
 }
+  .buttons form{
+    display: inline;
+}
 
 .buttons button {
     padding: 10px 20px;
@@ -437,4 +440,12 @@ body {
     background-color: #2190d1;
     color: white;
     border-radius: 15px;
+}
+
+#back{
+  background-color: darkblue;
+  color: lightblue;
+  font-size: 15px;
+  font-weight: 500;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
