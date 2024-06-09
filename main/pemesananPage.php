@@ -1,3 +1,49 @@
+<?php
+
+include "koneksi.php";
+
+session_start();
+
+if(!(isset($_SESSION['username'])) && !(isset($_SESSION['firstname']))){
+    header("Location: login.php");
+}
+
+if(isset($_SESSION["idUser"])){
+  $idUser = $_SESSION["idUser"];
+}
+
+if(isset($_GET["idKonser"])){
+  $id = $_GET["idKonser"];
+}else{
+  header("Location: mainPage.php");
+}
+
+
+$sql1 = "SELECT idKonser, nama, gambar from konser WHERE idKonser = ".$id."";
+$hasil = $connection->query($sql1);
+while($new = $hasil->fetch_assoc()){
+  $idKonser = $new['idKonser'];
+  $nama = $new["nama"];
+  $gambar = $new["gambar"];
+}
+
+
+
+  $sql = "SELECT t.idTiket, t.idKonser, tk.deskripsi, tk.harga, tk.stok
+  FROM tiket t 
+  INNER JOIN tiketkategori tk ON t.idTiketKategori = tk.idTiketKategori WHERE t.idKonser =".$id."";
+  $result = $connection->query($sql);
+
+  $paket_tiket = [];
+  if ($result->num_rows > 0) {
+  while($row = $result->fetch_assoc()) {
+  $paket_tiket[] = $row;
+  }
+  }
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,7 +51,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pemesanan</title>
     <link rel="stylesheet" href="..\src\style\style-pemesanan.css" />
-
+    <script src="pemesanan.js"></script>
+    <script src="paket.js"></script>
+    <script src="login.js"></script>
     <link rel="icon" href="../src/img/logo-removebg-preview.png" type="image/x-icon" />
     <link
       rel="stylesheet"
@@ -17,9 +65,9 @@
   <body>
     <header>
       <div id="hyperlink">
-        <a href="mainPage.html">Beranda</a>
-        <a href="detailPage.html">Detail</a>
-        <a href="pemesananPage.html">Pemesanan</a>
+        <a href="mainPage.php">Beranda</a>
+        <a href="detailPage.php?">Tentang Tiket</a>
+        <a href="pemesananPage.php">Pemesanan</a>
         <a href="#">Blog</a>
         <a href="#">Hubungi Kami</a>
     </div>
@@ -30,13 +78,20 @@
                 <tr>
                     <td><img id="logo2" src="../src/img/logo_ticket_new.png" alt=""></td>
                     <td><img id="logo1" src="../src/img/E-Ticket.png" alt=""></td>
-                    <form id="form" action="#">
-                        <td id="bt1"><input type="text" placeholder="Cari konser seru disini"></td>
-                        <td id="bt2"><button type="submit">search</button></td>
-                    </form>
-                    <td id="bt3"><button>Register</button></td>
-                    <td id="bt4"><button>Login</button></td>
-                </tr>
+                    <form id="form" action="search.php" method="get">
+                          <td id="bt1"><input type="text" name="search" placeholder="Cari konser seru disini"></td>
+                          <td id="bt2"><button type="submit">search</button></td>
+                        </form>
+                    <?php 
+                        if(!(isset($_SESSION['username'])) && !(isset($_SESSION['firstname']))){
+                            echo '<td id="bt3"><a href="register.php"><button>Register</button></a></td>';
+                            echo '<td id="bt4"><a href="login.php"><button>Login</button></a></td>';
+                        }else{
+                            echo '<td id="bt5"><a href="logout.php"><button>Logout</button></a></td>';
+                            echo '<td id="name1">'.$_SESSION['firstname'].'</td>';
+                        }
+                        ?>
+                    </tr>
             </tbody>
         </table>
     </div>
@@ -44,32 +99,38 @@
 
     </header>
 
-    <main>
-      <div id="back">
-        <nav>
-          <br>
-          <a href="mainPage.html">Beranda ></a>
-          <a href="detailPage.html">Detail ></a>
-          <a href="pemesananPage.html">Pemesanan</a>
-        </nav>
-      </div>
-      
+    <div id="back">
+      <nav>
+        <br>
+        <a href="mainPage.php">Beranda ></a>
+        <a href="detailPage.php?idKonser=<?php echo $idKonser?>">Detail ></a>
+        <a href="pemesananPage.php">Pemesanan</a>
+      </nav>
+    </div>
 
-      <center>
+
+
+    
+    <main>
+
+    <center>
         <div id="gambar">
           <table>
             <tr>
-              <td><img src="../src/img/dewa19baru1.png" alt="gambardewa" /></td>
-              <td><img src="../src/img/DEWA-19pakai.png" alt="dewa" /></td>
+              <td><img src="<?php echo $gambar ?>" alt="gambardewa" /></td>
+              <!-- <td><img src="../src/img/DEWA-19pakai.png" alt="dewa" /></td> -->
             </tr>
           </table>
         </div>
       </center>
 
+
+
       <center>
-        <div id="form">
-          <form action="#popup1" method="get">
-            <div id="detailPesan">
+      <div id="form">
+<form action="prosesPemesanan.php" method="post" onsubmit="return validateForm()">
+    <div id="detailPesan">
+    <input type="hidden" name="idK" value="<?php echo $id; ?>">
               <table>
                 <tr>
                   <td>
@@ -78,7 +139,7 @@
                         <td><h5>Detail Pemesanan Tiket</h5></td>
                       </tr>
                       <tr>
-                        <td><p>Tiket Dewa 19</p></td>
+                        <td><p><?php echo $nama;?></p></td>
                       </tr>
                     </table>
                   </td>
@@ -200,20 +261,17 @@
                             <td>
                               <label for="kelamindata" style="font-weight:bold;">Jenis Kelamin</label>
                               <br />
-                              <select name="" id="kelamindata" required>
-                                <option value="">pilih</option>
-                                <option value="">Laki-Laki</option>
-                                <option value="">perempuan</option>
+                              <select name="kelamindata" id="kelamindata" required>
+                                  <option value="">pilih</option>
+                                  <option value="Laki-Laki">Laki-Laki</option>
+                                  <option value="Perempuan">Perempuan</option>
                               </select>
-                            </td>
                           
                           
                         </tr>
                       </tbody>
                     
                     </table>
-
-
                     <p>
                       Pastikan Data Diri Yang Anda Isi Sudah Sesuai
                     </p>
@@ -225,166 +283,97 @@
 
 
 
-            <div id="detailPesan1">
-              <table>
-                <tr>
-                  <td>
-                    <img
-                      src="/src/img/tempatDuduk.jpeg"
-                      alt=""
-                    />
-                  </td>
-
-                  <td>
-                    <h3>Pilih Tempat Duduk</h3>
-                    <h2>Posisi beserta Harga</h2>
-
-
-                    <table>
-                      <tr>
-                        <th>A</th>
-                        <th>B</th>
-                        <th>Cat1</th>
-                        <th>Cat2</th>
-                      </tr>
-
-                      <tr>
-                        <td>(Rp.50.000)</td>
-                        <td>(Rp.40.000)</td>
-                        <td>(Rp.30.000)</td>
-                        <td>(Rp.20.000)</td>
-                      </tr>
-
-                      <tr>
-                        <td><input type="radio" name="sama" id="" />A1</td>
-                        <td><input type="radio" name="sama" id="" />B1</td>
-                        <td><input type="radio" name="sama" id="" />Cat1A</td>
-                        <td><input type="radio" name="sama" id="" />Cat2</td>
-                      </tr>
-
-                      <tr>
-                        <td><input type="radio" name="sama" id="" />A2</td>
-                        <td><input type="radio" name="sama" id="" />B2</td>
-                        <td><input type="radio" name="sama" id="" />Cat1B</td>
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
-
-
-
-
-                <tr>
-                  <td><h1>PILIH TIKET KONSER ANDA</h1></td>
-
-                  <td>
-                    <table>
-                      <tr>
-                        <td><h5>REGULER</h5></td>
-                      </tr>
-                      <tr>
-                        <td>
-                          1 Ticket/Rp.200.000<input type="checkbox" name="1" />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <input type="number" step="1" min="0" max="100" />
-                        </td>
-                      </tr>
-
-                      <tr>
+<div id="detailPesan1">
+    <table>
+        <tr>
+            <td><h1>PILIH TIKET KONSER ANDA</h1></td>
+            <td>
+                <table>
+                    <tr>
                         <td><h5>PAKET</h5></td>
-                      </tr>
-                      <tr>
-                        <td>Bronze <input type="checkbox" name="2" /></td>
-                        <td>Gold <input type="checkbox" name="3" /></td>
-                        <td>VIP <input type="checkbox" name="4" /></td>
-                        <td>VVIP <input type="checkbox" name="5" /></td>
-                      </tr>
+                    </tr>
 
-                      <tr>
-                        <td>Rp.500.000/3</td>
-                        <td>Rp.1000.000/5</td>
-                        <td>Rp.1500.000/7</td>
-                        <td>Rp.2.000.000/12</td>
-                      </tr>
-
-                      <tr>
-                        <td>Tersedia 18</td>
-                        <td>Tersedia 18</td>
-                        <td>Tersedia 18</td>
-                        <td>Tersedia 18</td>
-                      </tr>
-
-                      <tr>
-                        <td>
-                          <input type="number" step="1" min="0" max="100" />
-                        </td>
-                        <td>
-                          <input type="number" step="1" min="0" max="100" />
-                        </td>
-                        <td>
-                          <input type="number" step="1" min="0" max="100" />
-                        </td>
-                        <td>
-                          <input type="number" step="1" min="0" max="100" />
-                        </td>
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
-              </table>
-            </div>
-            
-            <div id="detailPesan2">
-              <table>
-                
-                  <tr>
-                    <td><b>Pembayaran</b></td>
-                    <td>
-                      <table>
-                        <tr class="pesanan">
-                          <td><input type="radio" name="bayar" id="" />E-Money</td>
-                        </tr>
-                        <tr class="pesanan">
-                          <td><input type="radio" name="bayar" id="" />Debit</td>
-                        </tr>
-                        <tr class="pesanan">
-                          <td><input type="radio" name="bayar" id="" />Indomaret</td>
-                        </tr>
+                    <?php foreach ($paket_tiket as $paket) : ?>
                         <tr>
-                          <td>
-                            <p>
-                              <b>Harga Total</b>
-                            </p>
-                            <p>Rp 5.200.000</p>
-                          </td>
+                            <td><?php echo $paket['deskripsi']; ?> <input type="checkbox" name="paket[]" value="<?php echo $paket['idTiket']; ?>" class="paket" data-harga="<?php echo $paket['harga']; ?>" /></td>
+                            <td>Rp.<?php echo number_format($paket['harga'], 0, ',', '.'); ?></td>
+                            <td>Tersedia <?php echo $paket['stok']; ?></td>
+                            <td>
+                                <input type="number" step="1" min="0" max="<?php echo $paket['stok']; ?>" name="qty_<?php echo $paket['idTiket']; ?>" class="qty_paket" value="0" />
+                            </td>
                         </tr>
-                      </table>
-                      <input type="submit" value="kirim"/>
-                      <input type="reset" value="reset" />
-
-
-                    </td>
-                  </tr>          
-              </table>              
-            </div>
-            <!-- <button onclick="document.getElementById('notification').style.display = 'block';"></button> -->
+                    <?php endforeach; ?>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="detailPesan2">
+    <table>
+        <tr>
+            <td><b>Pembayaran</b></td>
+            <td>
+                <table>
+                    <tr class="pesanan">
+                        <td><input type="radio" name="bayar" value="E-Money" />E-Money</td>
+                    </tr>
+                    <tr class="pesanan">
+                        <td><input type="radio" name="bayar" value="Debit" />Debit</td>
+                    </tr>
+                    <tr class="pesanan">
+                        <td><input type="radio" name="bayar" value="Indomaret" />Indomaret</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>
+                                <b>Harga Total</b>
+                            </p>
+                            <p id="totalHarga">Rp 0</p>
+                        </td>
+                    </tr>
+                </table>
+                <input type="submit" value="Simpan" id="tombolsimpan"/>
+                <input type="reset" value="reset" onclick="resetForm()"/>
+            </td>
+        </tr>
+    </table>
+</div>
           </form>
-        </div>
-        <div id="popup1" class="overlay">
-          <div class="popup">
-            <h2>BERHASIL!</h2>
-            <a class="close" href="#">&times;</a>
-            <div class="content">
-              Pembelian Tiket Konser Telah Berhasil Dilakukan!
-            </div>
           </div>
-        </div>
-      </center>
+          </center>
     </main>
 
+    <script>
+function calculateTotal() {
+    let total = 0;
+
+
+    // tiket paket
+    const paketCheckboxes = document.querySelectorAll('.paket');
+    paketCheckboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+            const id = checkbox.value;
+            const harga = parseInt(checkbox.dataset.harga);
+            const qtyPaket = parseInt(document.querySelector(`input[name="qty_${id}"]`).value) || 0;
+            total += harga * qtyPaket;
+        }
+    });
+
+    document.getElementById('totalHarga').innerText = 'Rp ' + total.toLocaleString('id-ID');
+}
+
+// function resetForm() {
+//     document.getElementById('totalHarga').innerText = 'Rp 0';
+// }
+
+document.querySelectorAll('input[type="checkbox"], input[type="number"]').forEach(input => {
+    input.addEventListener('change', calculateTotal);
+});
+
+
+</script>
+
+    
     <footer>
       <div id="rincianfooter">
         <center>

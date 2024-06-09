@@ -21,6 +21,7 @@ session_start();
     <title>Tiket-Konser</title>
     <link rel="icon" href="../src/img/logo-removebg-preview.png">
     <link rel="stylesheet" href="..\src\style\style-main.css">
+    <script src="login.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
@@ -31,7 +32,7 @@ session_start();
         <div id="hyperlink">
             <a href="mainPage.php">Beranda</a>
             <a href="#">Tentang Tiket</a>
-            <a href="#">Biaya</a>
+            <a href="historiPage.php">Histori Pemesanan</a>
             <a href="#">Blog</a>
             <a href="#">Hubungi Kami</a>
         </div>
@@ -69,7 +70,7 @@ session_start();
 
 <?php
 
-$sql = "SELECT g.nama as genre, k.idKonser ,k.nama, DATE_FORMAT(k.tanggal, '%d %M %Y') as tanggal, k.tempat, k.gambar, CONCAT('Rp. ', FORMAT(k.hargaReguler, 0)) as harga 
+$sql = "SELECT g.nama as genre, k.idKonser ,k.nama, DATE_FORMAT(k.tanggal, '%d %M %Y') as tanggal, k.tempat, k.gambar, k.hargaReguler as harga 
 FROM konser k 
 INNER JOIN band b ON k.idBand = b.idBand 
 INNER JOIN genre g ON b.idGenre = g.idGenre";
@@ -111,7 +112,7 @@ if ($result->num_rows > 0) {
         echo "<p>" . $row['tanggal'] . "</p>";
         echo "<p>" . $row['tempat'] . "</p>";
         echo "<hr id='line2'>";
-        echo "<h4>" . $row['harga'] . "</h4>";
+        echo "<h4>Rp. " . number_format($row['harga'], 0, ',', '.') . "</h4>";
         echo "</div>";
         echo "</a>";
         echo "</td>";

@@ -30,6 +30,11 @@
   color:white;
 }
 
+header {
+  position: sticky;
+  top: -1px;
+}
+
 #navbar {
   border: 1px solid lightblue;
   background-color: lightblue;
@@ -137,6 +142,34 @@
   box-shadow: 5px 2px 15px 1px rgba(0, 0, 0, 0.3);
 }
 
+#bt5 button {
+  position: relative;
+  top: -95px;
+  left: 420%;
+  padding: 10px 17px;
+  font-size: 16px;
+  border: none;
+  border: 1.5px solid rgb(103, 119, 121);
+  border-radius: 15px;
+  cursor: pointer;
+  background-color: lightblue;
+  font-weight: bold;
+  box-shadow: 5px 2px 12px 1px rgba(0, 0, 0, 0.3);
+}
+
+#name1 {
+  position: relative;
+  top: -95px;
+  left: 16.5%;
+  padding: 10px 17px;  
+  font-size: 16px;
+  border: none;
+  border-radius: 15px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+
 /* header */
 
 
@@ -160,16 +193,15 @@ body {
 
 body main div#gambar{
     margin-top: 60px;
-}
+} 
 
-body main div#gambar table tr td img{
-    width: 550px;
-    height:350px;
+body main center div#gambar table tr td img{
+    width: 800px;
+    height:500px;
     border-radius: 30px;
     padding:1px;
     margin-left: 15px;
-    box-shadow: 1px 20px 20px 1px silver;
-    
+    box-shadow: 1px 20px 20px 1px silver;   
 }
 
 

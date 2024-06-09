@@ -76,7 +76,7 @@ if(isset($_GET["search"])){
     FROM konser k 
     INNER JOIN band b ON k.idBand = b.idBand 
     INNER JOIN genre g ON b.idGenre = g.idGenre
-    WHERE k.nama LIKE ? OR k.tempat LIKE ? OR k.tanggal LIKE ?");
+    WHERE k.nama LIKE ? OR k.tempat LIKE ? OR k.tanggal LIKE ? ORDER BY k.tanggal DESC");
 
     $likeQuery = "%" . $query . "%";
     $sql->bind_param("sss", $likeQuery, $likeQuery, $likeQuery);
