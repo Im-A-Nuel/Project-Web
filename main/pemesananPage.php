@@ -347,12 +347,6 @@ while($new = $hasil->fetch_assoc()){
 function calculateTotal() {
     let total = 0;
 
-    // tiket reguler
-    const regulerCheckbox = document.getElementById('reguler');
-    if (regulerCheckbox.checked) {
-        const qtyReguler = parseInt(document.getElementById('qty_reguler').value) || 0;
-        total += 200000 * qtyReguler;
-    }
 
     // tiket paket
     const paketCheckboxes = document.querySelectorAll('.paket');
