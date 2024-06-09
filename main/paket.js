@@ -1,6 +1,6 @@
-// Tunggu hingga konten halaman selesai dimuat
+
 document.addEventListener('DOMContentLoaded', function() {
-    // Pilih semua kotak centang paket
+
     const paketCheckboxes = document.querySelectorAll('.paket');
 
     // Tambahkan event listener perubahan untuk setiap kotak centang
@@ -33,15 +33,3 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-
-// document.addEventListener("DOMContentLoaded", function() {
-//     document.getElementById('tombolsimpan').addEventListener('click', function(event) {
-//         if (!confirm("Apakah Anda yakin ingin memesan Tiket ini?")) {
-//             event.preventDefault(); // Mencegah pengiriman form jika pengguna membatalkan
-//             return;
-//             }
-//         else{
-//             alert("Pemesanan Berhasil Disimpan")
-//             }
-//         // window.location.href = 'historiPage.php'; // Arahkan kembali ke historiPage.php
-//     })});
