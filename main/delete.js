@@ -1,6 +1,5 @@
 function confirmDelete(id) {
     if (confirm("Apakah anda ingin membatalkan pemesanan?")) {
-        // Perform AJAX request to delete the record
         var xhr = new XMLHttpRequest();
         xhr.open("POST", "delete.php", true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -30,7 +29,6 @@ function refreshPage() {
 
 function confirmPayment(id) {
     if (confirm("Apakah Anda yakin ingin melakukan pembayaran?")) {
-        // Kirim permintaan AJAX
         var xhr = new XMLHttpRequest();
         xhr.open("POST", "bayar.php", true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -53,7 +51,6 @@ function confirmPayment(id) {
         };
         xhr.send("id=" + id); // Kirim ID ke bayar.php
     } else {
-        // Jika pengguna menekan tombol Cancel pada alert
         alert("Pembayaran dibatalkan.");
     }
 }
