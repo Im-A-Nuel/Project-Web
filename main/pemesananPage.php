@@ -15,7 +15,7 @@ if(isset($_SESSION["idUser"])){
 if(isset($_GET["idKonser"])){
   $id = $_GET["idKonser"];
 }else{
-  // header("Location: mainPage.php");
+  header("Location: mainPage.php");
 }
 
 
@@ -51,6 +51,7 @@ while($new = $hasil->fetch_assoc()){
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pemesanan</title>
     <link rel="stylesheet" href="..\src\style\style-pemesanan.css" />
+    <script src="pemesanan.js"></script>
     <script src="paket.js"></script>
     <script src="login.js"></script>
     <link rel="icon" href="../src/img/logo-removebg-preview.png" type="image/x-icon" />
@@ -127,7 +128,7 @@ while($new = $hasil->fetch_assoc()){
 
       <center>
       <div id="form">
-<form action="prosesPemesanan.php" method="post">
+<form action="prosesPemesanan.php" method="post" onsubmit="return validateForm()">
     <div id="detailPesan">
     <input type="hidden" name="idK" value="<?php echo $id; ?>">
               <table>
@@ -290,18 +291,6 @@ while($new = $hasil->fetch_assoc()){
                 <table>
                     <tr>
                         <td><h5>PAKET</h5></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            1 Ticket <input type="checkbox" name="reguler" id="reguler" />
-                        </td>
-                        <td>
-                            Rp.200.000
-                        </td>
-                        <td></td>
-                        <td>
-                            <input type="number" step="1" min="0" max="100" name="qty_reguler" id="qty_reguler" value="0" />
-                        </td>
                     </tr>
 
                     <?php foreach ($paket_tiket as $paket) : ?>

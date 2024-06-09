@@ -1,15 +1,19 @@
   document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('tombolsimpan').addEventListener('click', function(event) {
         if (!confirm("Apakah Anda yakin ingin menyimpan perubahan?")) {
-            event.preventDefault(); // Mencegah pengiriman form jika pengguna membatalkan
+            event.preventDefault();
             }
-        alert("Data Berhasil diubah!!")
+        else{
+          alert("Data Berhasil diubah!!")
+        }
     })});
 
   document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('tombolbatal').addEventListener('click', function(event) {
         if (!confirm("Apakah Anda yakin ingin membuang perubahan?")) {
-            event.preventDefault(); // Mencegah pengiriman form jika pengguna membatalkan
+            event.preventDefault();
             }
-        window.location.href = 'historiPage.php'; // Arahkan kembali ke historiPage.php
+        else{
+          window.location.href = 'historiPage.php'; // Arahkan kembali ke historiPage.php
+        }
     })});
