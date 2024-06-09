@@ -1,5 +1,4 @@
 function validateForm() {
-    // Ambil nilai dari input
     var nama = document.getElementById("datanama").value;
     var nomer = document.getElementById("notelpdata").value;
     var email = document.getElementById("dataemailform").value;
@@ -10,12 +9,10 @@ function validateForm() {
     var totalQty = 0;
     var errors = [];
 
-    // Validasi untuk input kosong
     if (nama === "" || nomer === "" || email === "" || nik === "" || tanggal === "" || kelamin === "") {
         errors.push("Harap lengkapi semua data!");
     }
 
-    // Validasi untuk pemilihan paket
     for (var i = 0; i < paketCheckboxes.length; i++) {
         if (paketCheckboxes[i].checked) {
             var qtyInput = document.querySelector("input[name='qty_" + paketCheckboxes[i].value + "']");
@@ -27,12 +24,10 @@ function validateForm() {
         }
     }
 
-    // Validasi untuk total jumlah tiket
     if (totalQty === 0) {
         errors.push("Harap pilih minimal satu paket tiket!");
     }
 
-    // Jika ada error, tampilkan pesan error
     if (errors.length > 0) {
         alert(errors.join("\n"));
         return false;
@@ -42,7 +37,7 @@ function validateForm() {
     return true;
 }
 
-// Fungsi untuk mereset form
+
 function resetForm() {
     document.getElementById("form").reset();
 }
