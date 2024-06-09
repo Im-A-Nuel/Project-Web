@@ -2,6 +2,8 @@
 
 include 'koneksi.php';
 
+date_default_timezone_set('Asia/Jakarta');
+
 session_start();
 
 if(!(isset($_SESSION['username'])) && !(isset($_SESSION['firstname']))){
@@ -89,8 +91,15 @@ $result = $connection->query($sql);
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
         $waktu_pembelian = new DateTime($row['waktu_pembelian']);
-        // $waktu_pembayaran = new DateTime($row['waktu_pembayaran']);
+        // $waktu_pembelian = new DateTime($row['waktu_pembelian'], new DateTimeZone('Asia/Jakarta'));
+
         $waktu_pembayaran = $row['waktu_pembayaran'];
+        if($row['waktu_pembayaran'] == null){
+            $waktu_batas_bayar = clone $waktu_pembelian;
+            $waktu_batas_bayar->add(new DateInterval('PT2H')); // Tambahkan 2 jam setelah pembelian untuk batas pembayaran
+            $waktu_batas = $waktu_batas_bayar->format('H:i d M Y');
+        }
+        
         ?>
     
     <div id="detailhistory">
@@ -156,7 +165,7 @@ if ($result->num_rows > 0) {
                     <p><span class="keterangan">waktu Pembayaran: </span> <?php echo $waktu_pembayaran?></p>
             <?php   
                 }else{ ?>
-                    <p><span class="keterangan">waktu Pembayaran: </span> - </p>
+                    <p><span class="keterangan">Bayar Sebelum: </span> <?php echo "<span style='color:red;'>".$waktu_batas."</span>" ?> </p>
             <?php
                 }
             ?>
@@ -165,11 +174,13 @@ if ($result->num_rows > 0) {
             <p><span class="keterangan">Total Pembayaran:</span> Rp. <?php echo number_format($row['total_harga'], 0, ',', '.'); ?></p>
 
             <div class="buttons">
-                <button class="delete-button" onclick="confirmDelete(<?php echo $row['id']; ?>)">Batal</button>
+
 
                 <?php
 
                 if($row['status_pembayaran'] == "Sudah Bayar"){?>
+                    <button class="delete-button" onclick="confirmDelete(<?php echo $row['id']; ?>)">Batal</button>
+
 
                     <form action="tiketPage.php" method="post">
                         <input type="hidden" name="idOrder" value="<?php echo $row['id']; ?>">
@@ -178,7 +189,15 @@ if ($result->num_rows > 0) {
                 
                 <?php    
                 }else{
+                    $waktu_sekarang = new DateTime("now", new DateTimeZone('Asia/Jakarta'));
+                    if($waktu_sekarang < $waktu_batas_bayar){
+                        // echo $waktu_sekarang->format('H:i d M Y');
+                        // echo $waktu_batas_bayar->format('H:i d M Y');
+                        // echo $waktu_sekarang < $waktu_batas_bayar;
+
                 ?>
+                    <button class="delete-button" onclick="confirmDelete(<?php echo $row['id']; ?>)">Batal</button>
+
                     <form action="updatePage.php" method="post">
                         <input type="hidden" name="idOrder" value="<?php echo $row['id']; ?>">
                         <button type="submit" class="edit-button">Edit</button>
@@ -186,7 +205,10 @@ if ($result->num_rows > 0) {
 
                     <button class="bayar-button" onclick="confirmPayment(<?php echo $row['id']; ?>)">Bayar</button>
                 <?php
+                }else{
+                    echo "<span style='color:red;font-weight:bold;'>"."Pemesanan Kadaluwarsa!"."</span>";
                 }
+            }
 
                 ?>
 

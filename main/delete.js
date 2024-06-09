@@ -39,10 +39,12 @@ function confirmPayment(id) {
                 if (xhr.status === 200) {
                     console.log("Response received: " + xhr.responseText);
                     if (xhr.responseText.trim() === "success") {
-                        alert("Pembayaran berhasil!");
-                    } else {
-                        alert("Error: " + xhr.responseText);
+                        alert("Pembayaran dibatalkan!!: " + xhr.responseText);
+                        } else {
+                            alert("Pembayaran berhasil!");
+                            refreshPage();
                     }
+                    refreshPage();
                 } else {
                     console.log("AJAX request failed: " + xhr.status);
                     alert("There was a problem with the request.");
@@ -50,10 +52,8 @@ function confirmPayment(id) {
             }
         };
         xhr.send("id=" + id); // Kirim ID ke bayar.php
-        refreshPage();
     } else {
         // Jika pengguna menekan tombol Cancel pada alert
         alert("Pembayaran dibatalkan.");
     }
-    refreshPage();
 }
