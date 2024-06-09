@@ -49,19 +49,19 @@ function resetForm() {
 
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('tombolsimpan').addEventListener('click', function(event) {
-        // Validate the form
+        // Validasi form
         if (!validateForm()) {
             event.preventDefault(); // Mencegah pengiriman form jika validasi gagal
             return;
         }
 
-        // If form is valid, ask for confirmation
+        
         if (!confirm("Apakah Anda yakin ingin memesan Tiket ini?")) {
             event.preventDefault(); // Mencegah pengiriman form jika pengguna membatalkan
             return;
         }
 
-        // If user confirms, show success message
+        // pesan berhasil
         alert("Pemesanan Berhasil Disimpan");
     });
 });
