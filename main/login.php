@@ -52,8 +52,6 @@ if(isset($_POST["username"]) && isset($_POST["password"])){
         <input type="password" id="password" name="password" required />
 
         <button type="submit">Login</button>
-
-        <button type="reset">Reset</button>
       </form>
 
       <a href="register.php">Belum punya akun ?</a>
